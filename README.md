@@ -6,5 +6,4 @@
 
 - [Afedziukovich](https://github.com/afedziukovich) —
 - [Artsiom Belski](https://github.com/Thrapis) —
-- [Alexander](https://github.com/devenrgy)
-- [Denis Svetleishii](https://github.com/iambigbobby) —
+- [Alexander](https://github.com/devenrgy) -
