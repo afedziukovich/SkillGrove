@@ -1,9 +1,5 @@
-# SkillGrove
+# Vue 3 + TypeScript + Vite
 
-**SkillGrove** — это интерактивная платформа для подготовки к техническим интервью и прокачки навыков JavaScript/TypeScript. Здесь можно проходить испытания, общаться с AI-тьютором, решать задачи и отслеживать прогресс. Проект создаётся в рамках финального задания RS School.
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Команда
-
-- [Afedziukovich](https://github.com/afedziukovich) —
-- [Artsiom Belski](https://github.com/Thrapis) —
-- [Alexander](https://github.com/devenrgy) -
+Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
