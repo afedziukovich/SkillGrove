@@ -8,7 +8,7 @@ export default [
   js.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
   {
-    files: ['**/*.{js,ts,vue}'],
+    files: ['**/*.{js,jsx,ts,tsx,vue}'],
     languageOptions: {
       parser: vueParser,
       parserOptions: {
