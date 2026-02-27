@@ -7,13 +7,17 @@
         "icon": {
           "title": "Nuxt Icon",
           "description": "Configure Nuxt Icon module preferences.",
-          "tags": ["@studioIcon material-symbols:star"],
+          "tags": [
+            "@studioIcon material-symbols:star"
+          ],
           "id": "#appConfig/icon",
           "properties": {
             "size": {
               "title": "Icon Size",
               "description": "Set the default icon size.",
-              "tags": ["@studioIcon material-symbols:format-size-rounded"],
+              "tags": [
+                "@studioIcon material-symbols:format-size-rounded"
+              ],
               "tsType": "string | undefined",
               "id": "#appConfig/icon/size",
               "default": {},
@@ -22,7 +26,9 @@
             "class": {
               "title": "CSS Class",
               "description": "Set the default CSS class.",
-              "tags": ["@studioIcon material-symbols:css"],
+              "tags": [
+                "@studioIcon material-symbols:css"
+              ],
               "id": "#appConfig/icon/class",
               "default": "",
               "type": "string"
@@ -30,7 +36,9 @@
             "attrs": {
               "title": "Default Attributes",
               "description": "Attributes applied to every icon component.\n\n@default { \"aria-hidden\": true }",
-              "tags": ["@studioIcon material-symbols:settings"],
+              "tags": [
+                "@studioIcon material-symbols:settings"
+              ],
               "tsType": "Record<string, string | number | boolean>",
               "id": "#appConfig/icon/attrs",
               "default": {
@@ -41,8 +49,13 @@
             "mode": {
               "title": "Default Rendering Mode",
               "description": "Set the default rendering mode for the icon component",
-              "enum": ["css", "svg"],
-              "tags": ["@studioIcon material-symbols:move-down-rounded"],
+              "enum": [
+                "css",
+                "svg"
+              ],
+              "tags": [
+                "@studioIcon material-symbols:move-down-rounded"
+              ],
               "id": "#appConfig/icon/mode",
               "default": "css",
               "type": "string"
@@ -50,7 +63,9 @@
             "aliases": {
               "title": "Icon aliases",
               "description": "Define Icon aliases to update them easily without code changes.",
-              "tags": ["@studioIcon material-symbols:star-rounded"],
+              "tags": [
+                "@studioIcon material-symbols:star-rounded"
+              ],
               "tsType": "{ [alias: string]: string }",
               "id": "#appConfig/icon/aliases",
               "default": {},
@@ -59,7 +74,9 @@
             "cssSelectorPrefix": {
               "title": "CSS Selector Prefix",
               "description": "Set the default CSS selector prefix.",
-              "tags": ["@studioIcon material-symbols:format-textdirection-l-to-r"],
+              "tags": [
+                "@studioIcon material-symbols:format-textdirection-l-to-r"
+              ],
               "id": "#appConfig/icon/cssSelectorPrefix",
               "default": "i-",
               "type": "string"
@@ -67,7 +84,9 @@
             "cssLayer": {
               "title": "CSS Layer Name",
               "description": "Set the default CSS `@layer` name.",
-              "tags": ["@studioIcon material-symbols:layers"],
+              "tags": [
+                "@studioIcon material-symbols:layers"
+              ],
               "tsType": "string | undefined",
               "id": "#appConfig/icon/cssLayer",
               "default": {},
@@ -76,7 +95,9 @@
             "cssWherePseudo": {
               "title": "Use CSS `:where()` Pseudo Selector",
               "description": "Use CSS `:where()` pseudo selector to reduce specificity.",
-              "tags": ["@studioIcon material-symbols:low-priority"],
+              "tags": [
+                "@studioIcon material-symbols:low-priority"
+              ],
               "id": "#appConfig/icon/cssWherePseudo",
               "default": true,
               "type": "boolean"
@@ -84,7 +105,9 @@
             "collections": {
               "title": "Icon Collections",
               "description": "List of known icon collections name. Used to resolve collection name ambiguity.\ne.g. `simple-icons-github` -> `simple-icons:github` instead of `simple:icons-github`\n\nWhen not provided, will use the full Iconify collection list.",
-              "tags": ["@studioIcon material-symbols:format-list-bulleted"],
+              "tags": [
+                "@studioIcon material-symbols:format-list-bulleted"
+              ],
               "tsType": "string[] | null",
               "id": "#appConfig/icon/collections",
               "default": null,
@@ -92,7 +115,9 @@
             },
             "customCollections": {
               "title": "Custom Icon Collections",
-              "tags": ["@studioIcon material-symbols:format-list-bulleted"],
+              "tags": [
+                "@studioIcon material-symbols:format-list-bulleted"
+              ],
               "tsType": "string[] | null",
               "id": "#appConfig/icon/customCollections",
               "default": null,
@@ -101,15 +126,23 @@
             "provider": {
               "title": "Icon Provider",
               "description": "Provider to use for fetching icons\n\n- `server` - Fetch icons with a server handler\n- `iconify` - Fetch icons with Iconify API, purely client-side\n- `none` - Do not fetch icons (use client bundle only)\n\n`server` by default; `iconify` when `ssr: false`",
-              "enum": ["server", "iconify", "none"],
-              "tags": ["@studioIcon material-symbols:cloud"],
+              "enum": [
+                "server",
+                "iconify",
+                "none"
+              ],
+              "tags": [
+                "@studioIcon material-symbols:cloud"
+              ],
               "type": "\"server\" | \"iconify\" | \"none\" | undefined",
               "id": "#appConfig/icon/provider"
             },
             "iconifyApiEndpoint": {
               "title": "Iconify API Endpoint URL",
               "description": "Define a custom Iconify API endpoint URL. Useful if you want to use a self-hosted Iconify API. Learn more: https://iconify.design/docs/api.",
-              "tags": ["@studioIcon material-symbols:api"],
+              "tags": [
+                "@studioIcon material-symbols:api"
+              ],
               "id": "#appConfig/icon/iconifyApiEndpoint",
               "default": "https://api.iconify.design",
               "type": "string"
@@ -117,8 +150,15 @@
             "fallbackToApi": {
               "title": "Fallback to Iconify API",
               "description": "Fallback to Iconify API if server provider fails to found the collection.",
-              "tags": ["@studioIcon material-symbols:public"],
-              "enum": [true, false, "server-only", "client-only"],
+              "tags": [
+                "@studioIcon material-symbols:public"
+              ],
+              "enum": [
+                true,
+                false,
+                "server-only",
+                "client-only"
+              ],
               "type": "boolean | \"server-only\" | \"client-only\"",
               "id": "#appConfig/icon/fallbackToApi",
               "default": true
@@ -126,7 +166,9 @@
             "localApiEndpoint": {
               "title": "Local API Endpoint Path",
               "description": "Define a custom path for the local API endpoint.",
-              "tags": ["@studioIcon material-symbols:api"],
+              "tags": [
+                "@studioIcon material-symbols:api"
+              ],
               "id": "#appConfig/icon/localApiEndpoint",
               "default": "/api/_nuxt_icon",
               "type": "string"
@@ -134,7 +176,9 @@
             "fetchTimeout": {
               "title": "Fetch Timeout",
               "description": "Set the timeout for fetching icons.",
-              "tags": ["@studioIcon material-symbols:timer"],
+              "tags": [
+                "@studioIcon material-symbols:timer"
+              ],
               "id": "#appConfig/icon/fetchTimeout",
               "default": 1500,
               "type": "number"
@@ -142,7 +186,9 @@
             "customize": {
               "title": "Customize callback",
               "description": "Customize icon content (replace stroke-width, colors, etc...).",
-              "tags": ["@studioIcon material-symbols:edit"],
+              "tags": [
+                "@studioIcon material-symbols:edit"
+              ],
               "type": "IconifyIconCustomizeCallback",
               "id": "#appConfig/icon/customize"
             }

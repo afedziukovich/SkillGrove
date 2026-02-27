@@ -72,6 +72,7 @@ declare global {
   const getValidatedRouterParams: typeof import('../../node_modules/h3').getValidatedRouterParams;
   const handleCacheHeaders: typeof import('../../node_modules/h3').handleCacheHeaders;
   const handleCors: typeof import('../../node_modules/h3').handleCors;
+  const hashPassword: typeof import('../../server/utils/authentication').hashPassword;
   const isCorsOriginAllowed: typeof import('../../node_modules/h3').isCorsOriginAllowed;
   const isError: typeof import('../../node_modules/h3').isError;
   const isEvent: typeof import('../../node_modules/h3').isEvent;
@@ -126,6 +127,7 @@ declare global {
   const useRuntimeConfig: typeof import('../../node_modules/nitropack/dist/runtime/internal/config').useRuntimeConfig;
   const useSession: typeof import('../../node_modules/h3').useSession;
   const useStorage: typeof import('../../node_modules/nitropack/dist/runtime/internal/storage').useStorage;
+  const verifyPassword: typeof import('../../server/utils/authentication').verifyPassword;
   const writeEarlyHints: typeof import('../../node_modules/h3').writeEarlyHints;
 }
 // for type re-export
@@ -271,3 +273,7 @@ export {
 } from 'E:/Study/js-fe-2025Q3/SkillGrove/node_modules/@nuxt/nitro-server/dist/runtime/utils/paths';
 export { defineAppConfig } from 'E:/Study/js-fe-2025Q3/SkillGrove/node_modules/@nuxt/nitro-server/dist/runtime/utils/config';
 export { useImage } from 'E:/Study/js-fe-2025Q3/SkillGrove/node_modules/@nuxt/image/dist/runtime/server/utils/image';
+export {
+  hashPassword,
+  verifyPassword,
+} from 'E:/Study/js-fe-2025Q3/SkillGrove/server/utils/authentication';
