@@ -1,3 +1,3 @@
 <template>
-  <footer>It is footer!</footer>
+  <footer class="w-full flex justify-center gap-1">It is footer!</footer>
 </template>
