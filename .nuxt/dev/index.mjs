@@ -2395,9 +2395,222 @@ function onConsoleLog(callback) {
 	consola$1.wrapConsole();
 }
 
+var __defProp$5 = Object.defineProperty;
+var __defNormalProp$5 = (obj, key, value) => key in obj ? __defProp$5(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField$5 = (obj, key, value) => __defNormalProp$5(obj, typeof key !== "symbol" ? key + "" : key, value);
+class MockSessionRepository {
+  constructor() {
+    __publicField$5(this, "sessions", []);
+    __publicField$5(this, "idCounter", 1);
+  }
+  async create(session) {
+    const newSession = { ...session, id: this.idCounter++ };
+    this.sessions.push(newSession);
+    return newSession;
+  }
+  async findById(id) {
+    return this.sessions.find((s) => s.id === id) || null;
+  }
+  async findByToken(token) {
+    return this.sessions.find((s) => s.token === token) || null;
+  }
+  async deleteById(id) {
+    this.sessions = this.sessions.filter((s) => s.id !== id);
+  }
+  async deleteByUserId(userId) {
+    this.sessions = this.sessions.filter((s) => s.user_id !== userId);
+  }
+}
+
+var __defProp$4 = Object.defineProperty;
+var __defNormalProp$4 = (obj, key, value) => key in obj ? __defProp$4(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField$4 = (obj, key, value) => __defNormalProp$4(obj, typeof key !== "symbol" ? key + "" : key, value);
+class MockTaskCategoryRepository {
+  constructor() {
+    __publicField$4(this, "categories", [{ id: 1, name: "Category 1" }]);
+    __publicField$4(this, "idCounter", 2);
+  }
+  async create(category) {
+    const newCategory = { ...category, id: this.idCounter++ };
+    this.categories.push(newCategory);
+    return newCategory;
+  }
+  async findById(id) {
+    return this.categories.find((c) => c.id === id) || null;
+  }
+  async findAll() {
+    return [...this.categories];
+  }
+  async update(category) {
+    const index = this.categories.findIndex((c) => c.id === category.id);
+    if (index === -1) throw new Error("Category not found");
+    this.categories[index] = category;
+    return category;
+  }
+  async deleteById(id) {
+    this.categories = this.categories.filter((c) => c.id !== id);
+  }
+}
+
+var __defProp$3 = Object.defineProperty;
+var __defNormalProp$3 = (obj, key, value) => key in obj ? __defProp$3(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField$3 = (obj, key, value) => __defNormalProp$3(obj, typeof key !== "symbol" ? key + "" : key, value);
+class MockTaskDifficultyRepository {
+  constructor() {
+    __publicField$3(this, "difficulties", [{ id: 1, name: "Easy", max_experience: 100 }]);
+    __publicField$3(this, "idCounter", 2);
+  }
+  async create(difficulty) {
+    const newDifficulty = { ...difficulty, id: this.idCounter++ };
+    this.difficulties.push(newDifficulty);
+    return newDifficulty;
+  }
+  async findById(id) {
+    return this.difficulties.find((d) => d.id === id) || null;
+  }
+  async findAll() {
+    return [...this.difficulties];
+  }
+  async update(difficulty) {
+    const index = this.difficulties.findIndex((d) => d.id === difficulty.id);
+    if (index === -1) throw new Error("Difficulty not found");
+    this.difficulties[index] = difficulty;
+    return difficulty;
+  }
+  async deleteById(id) {
+    this.difficulties = this.difficulties.filter((d) => d.id !== id);
+  }
+}
+
+var __defProp$2 = Object.defineProperty;
+var __defNormalProp$2 = (obj, key, value) => key in obj ? __defProp$2(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField$2 = (obj, key, value) => __defNormalProp$2(obj, typeof key !== "symbol" ? key + "" : key, value);
+class MockTaskRepository {
+  constructor() {
+    __publicField$2(this, "tasks", [
+      {
+        id: 1,
+        title: "Task 1",
+        description: "Description for Task 1",
+        category_id: 1,
+        difficulty_id: 1
+      }
+    ]);
+    __publicField$2(this, "idCounter", 2);
+  }
+  async create(task) {
+    const newTask = { ...task, id: this.idCounter++ };
+    this.tasks.push(newTask);
+    return newTask;
+  }
+  async findById(id) {
+    return this.tasks.find((t) => t.id === id) || null;
+  }
+  async findAll() {
+    return [...this.tasks];
+  }
+  async findByCategory(categoryId) {
+    return this.tasks.filter((t) => t.category_id === categoryId);
+  }
+  async findByDifficulty(difficultyId) {
+    return this.tasks.filter((t) => t.difficulty_id === difficultyId);
+  }
+  async update(task) {
+    const index = this.tasks.findIndex((t) => t.id === task.id);
+    if (index === -1) throw new Error("Task not found");
+    this.tasks[index] = task;
+    return task;
+  }
+  async deleteById(id) {
+    this.tasks = this.tasks.filter((t) => t.id !== id);
+  }
+}
+
+var __defProp$1 = Object.defineProperty;
+var __defNormalProp$1 = (obj, key, value) => key in obj ? __defProp$1(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField$1 = (obj, key, value) => __defNormalProp$1(obj, typeof key !== "symbol" ? key + "" : key, value);
+class MockUserProgressRepository {
+  constructor() {
+    __publicField$1(this, "progress", []);
+    __publicField$1(this, "idCounter", 1);
+  }
+  async create(progress) {
+    const newProgress = { ...progress, id: this.idCounter++ };
+    this.progress.push(newProgress);
+    return newProgress;
+  }
+  async findById(id) {
+    return this.progress.find((p) => p.id === id) || null;
+  }
+  async findByUserId(userId) {
+    return this.progress.filter((p) => p.user_id === userId);
+  }
+  async findByTaskId(taskId) {
+    return this.progress.filter((p) => p.task_id === taskId);
+  }
+  async update(progress) {
+    const index = this.progress.findIndex((p) => p.id === progress.id);
+    if (index === -1) throw new Error("Progress not found");
+    this.progress[index] = progress;
+    return progress;
+  }
+  async deleteById(id) {
+    this.progress = this.progress.filter((p) => p.id !== id);
+  }
+}
+
+var __defProp = Object.defineProperty;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+class MockUserRepository {
+  constructor() {
+    __publicField(this, "mockUsers", [
+      {
+        id: 1,
+        login: "admin",
+        password_hash: "$2b$10$N9qo8uLOickgx2ZMRZoMyE5rTXpZJw7XVQ6Yy0YQ1XpLq5L6tKsYm",
+        salt: "$2b$10$N9qo8uLOickgx2ZMRZoMy",
+        experience: 0,
+        level: 1
+      }
+      // Password 12345
+    ]);
+    __publicField(this, "idCounter", 1);
+  }
+  async create(user) {
+    const newUser = { ...user, id: this.idCounter++ };
+    this.mockUsers.push(newUser);
+    return newUser;
+  }
+  async findById(id) {
+    return this.mockUsers.find((user) => user.id === id) || null;
+  }
+  async findByLogin(login) {
+    return this.mockUsers.find((user) => user.login === login) || null;
+  }
+}
+
+const _T_8539jvLnMV5syXvrVrHgkykmQOkm01CGMuJIsTTI = defineEventHandler(() => {
+  const userRepository = process.env.NUXT_USE_MOCK === "true" ? new MockUserRepository() : new MockUserRepository();
+  const sessionRepository = process.env.NUXT_USE_MOCK === "true" ? new MockSessionRepository() : new MockSessionRepository();
+  const userProgressRepository = process.env.NUXT_USE_MOCK === "true" ? new MockUserProgressRepository() : new MockUserProgressRepository();
+  const taskRepository = process.env.NUXT_USE_MOCK === "true" ? new MockTaskRepository() : new MockTaskRepository();
+  const taskCategoryRepository = process.env.NUXT_USE_MOCK === "true" ? new MockTaskCategoryRepository() : new MockTaskCategoryRepository();
+  const taskDifficultyRepository = process.env.NUXT_USE_MOCK === "true" ? new MockTaskDifficultyRepository() : new MockTaskDifficultyRepository();
+  return {
+    userRepository,
+    sessionRepository,
+    userProgressRepository,
+    taskRepository,
+    taskCategoryRepository,
+    taskDifficultyRepository
+  };
+});
+
 const plugins = [
   _YBImjF97vn9PGKFvYfqO32h89dINxWencNQH4PE1rSQ,
-_aP6b2NrowDX2oQIAyEbbTnONBt7AYlnw0YOzJI349T0
+_aP6b2NrowDX2oQIAyEbbTnONBt7AYlnw0YOzJI349T0,
+_T_8539jvLnMV5syXvrVrHgkykmQOkm01CGMuJIsTTI
 ];
 
 const assets = {};
