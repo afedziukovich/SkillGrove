@@ -11,7 +11,6 @@ node_modules
 dist
 dist-ssr
 *.local
-.env
 
 # Editor directories and files
 .vscode/*
@@ -23,3 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Local env files
+.env
+.env.*
+!.env.example
