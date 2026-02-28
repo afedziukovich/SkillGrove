@@ -1,9 +1,8 @@
 <template>
-  <div class="h-dvh flex flex-col">
+  <div class="min-h-screen flex flex-col">
     <AppHeader />
-    <main class="grow flex flex-col items-center justify-center">
-      <slot></slot>
+    <main class="flex-1 container mx-auto p-6">
+      <slot />
     </main>
-    <AppFooter />
   </div>
 </template>
