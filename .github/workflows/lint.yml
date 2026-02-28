@@ -30,19 +30,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Cache NPM Dependencies
-        id: cache-npm
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
-        if: steps.cache-npm.outputs.cache-hit != 'true'
 
       - name: Run ESLint
         run: npm run lint
