@@ -1,9 +1,15 @@
 import type { TaskDifficulty } from '~~/server/models/task-difficulty';
 import type { ITaskDifficultyRepository } from '../interfaces';
+import difficultiesData from '~~/server/data/task-difficulties.json';
 
 export class MockTaskDifficultyRepository implements ITaskDifficultyRepository {
-  private difficulties: TaskDifficulty[] = [{ id: 1, name: 'Easy', max_experience: 100 }];
-  private idCounter = 2;
+  private difficulties: TaskDifficulty[];
+  private idCounter: number;
+
+  constructor() {
+    this.difficulties = difficultiesData as TaskDifficulty[];
+    this.idCounter = Math.max(1, ...this.difficulties.map((d) => d.id)) + 1;
+  }
 
   async create(difficulty: Omit<TaskDifficulty, 'id'>): Promise<TaskDifficulty> {
     const newDifficulty = { ...difficulty, id: this.idCounter++ };

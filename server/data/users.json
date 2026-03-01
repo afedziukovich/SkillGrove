@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "login": "admin",
+    "password_hash": "$2b$10$N9qo8uLOickgx2ZMRZoMyE5rTXpZJw7XVQ6Yy0YQ1XpLq5L6tKsYm",
+    "salt": "$2b$10$N9qo8uLOickgx2ZMRZoMy",
+    "experience": 0,
+    "level": 1
+  }
+]

@@ -1,9 +1,15 @@
 import type { UserProgress } from '~~/server/models/user-progress';
 import type { IUserProgressRepository } from '../interfaces';
+import progressData from '~~/server/data/user-progress.json';
 
 export class MockUserProgressRepository implements IUserProgressRepository {
-  private progress: UserProgress[] = [];
-  private idCounter = 1;
+  private progress: UserProgress[];
+  private idCounter: number;
+
+  constructor() {
+    this.progress = progressData as UserProgress[];
+    this.idCounter = Math.max(1, ...this.progress.map((p) => p.id)) + 1;
+  }
 
   async create(progress: Omit<UserProgress, 'id'>): Promise<UserProgress> {
     const newProgress = { ...progress, id: this.idCounter++ };

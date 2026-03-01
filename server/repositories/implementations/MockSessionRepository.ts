@@ -1,9 +1,15 @@
 import type { Session } from '~~/server/models/session';
 import type { ISessionRepository } from '../interfaces';
+import sessionsData from '~~/server/data/sessions.json';
 
 export class MockSessionRepository implements ISessionRepository {
-  private sessions: Session[] = [];
-  private idCounter = 1;
+  private sessions: Session[];
+  private idCounter: number;
+
+  constructor() {
+    this.sessions = sessionsData as Session[];
+    this.idCounter = Math.max(1, ...this.sessions.map((s) => s.id)) + 1;
+  }
 
   async create(session: Omit<Session, 'id'>): Promise<Session> {
     const newSession = { ...session, id: this.idCounter++ };

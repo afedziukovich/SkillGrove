@@ -1,9 +1,15 @@
 import type { TaskCategory } from '~~/server/models/task-category';
 import type { ITaskCategoryRepository } from '../interfaces';
+import categoriesData from '~~/server/data/task-categories.json';
 
 export class MockTaskCategoryRepository implements ITaskCategoryRepository {
-  private categories: TaskCategory[] = [{ id: 1, name: 'Category 1' }];
-  private idCounter = 2;
+  private categories: TaskCategory[];
+  private idCounter: number;
+
+  constructor() {
+    this.categories = categoriesData as TaskCategory[];
+    this.idCounter = Math.max(1, ...this.categories.map((c) => c.id)) + 1;
+  }
 
   async create(category: Omit<TaskCategory, 'id'>): Promise<TaskCategory> {
     const newCategory = { ...category, id: this.idCounter++ };

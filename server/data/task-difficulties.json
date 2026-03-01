@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Basic",
+    "max_experience": 5
+  },
+  {
+    "id": 2,
+    "name": "Advanced",
+    "max_experience": 10
+  },
+  {
+    "id": 3,
+    "name": "Expert",
+    "max_experience": 15
+  }
+]

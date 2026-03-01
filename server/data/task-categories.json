@@ -1,0 +1,11 @@
+[
+  { "id": 1, "name": "JavaScript" },
+  { "id": 2, "name": "TypeScript" },
+  { "id": 3, "name": "DOM Manipulation" },
+  { "id": 4, "name": "Asynchronous JavaScript" },
+  { "id": 5, "name": "Arrays and Objects" },
+  { "id": 6, "name": "ES6+ Features" },
+  { "id": 7, "name": "Algorithms" },
+  { "id": 8, "name": "Testing" },
+  { "id": 9, "name": "Web APIs" }
+]
