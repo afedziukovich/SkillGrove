@@ -1,0 +1,812 @@
+[
+  {
+    "id": 1,
+    "description": "**Question:** What is the difference between `let`, `const`, and `var` in JavaScript? Explain with examples.",
+    "category_id": 1,
+    "difficulty_id": 1
+  },
+  {
+    "id": 2,
+    "description": "**Task:** Write a function `greet` that takes a `name` (string) and returns `\"Hello, [name]!\"`.\n\n**Example:**\n```javascript\ngreet('Alice'); // => \"Hello, Alice!\"\n```",
+    "category_id": 1,
+    "difficulty_id": 1
+  },
+  {
+    "id": 3,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nlet a = 5;\nlet b = '5';\nconsole.log(a == b);\nconsole.log(a === b);\n```",
+    "category_id": 1,
+    "difficulty_id": 1
+  },
+  {
+    "id": 4,
+    "description": "**Question:** What is hoisting in JavaScript? Provide examples for variables and functions.",
+    "category_id": 1,
+    "difficulty_id": 1
+  },
+  {
+    "id": 5,
+    "description": "**Task:** Use destructuring to extract `name` and `age` from the object below:\n\n```javascript\nconst person = { name: 'Alice', age: 25, city: 'New York' };\n```",
+    "category_id": 1,
+    "difficulty_id": 1
+  },
+  {
+    "id": 6,
+    "description": "**Question:** What is a closure in JavaScript? Explain with an example.",
+    "category_id": 1,
+    "difficulty_id": 2
+  },
+  {
+    "id": 7,
+    "description": "**Task:** Write a function `createCounter` that returns an object with methods `increment`, `decrement`, and `getValue`. Use closures to maintain state.\n\n**Example:**\n```javascript\nconst counter = createCounter();\ncounter.increment(); // => 1\ncounter.getValue();   // => 1\n```",
+    "category_id": 1,
+    "difficulty_id": 2
+  },
+  {
+    "id": 8,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nfunction outer() {\n  let x = 10;\n  return function inner() {\n    console.log(x++);\n  };\n}\nconst fn = outer();\nfn(); // ?\nfn(); // ?\n```",
+    "category_id": 1,
+    "difficulty_id": 2
+  },
+  {
+    "id": 9,
+    "description": "**Question:** Explain the difference between `call`, `apply`, and `bind` in JavaScript. Provide examples.",
+    "category_id": 1,
+    "difficulty_id": 2
+  },
+  {
+    "id": 10,
+    "description": "**Task:** Write a function `sum` that takes any number of arguments and returns their sum.\n\n**Example:**\n```javascript\nsum(1, 2, 3); // => 6\n```",
+    "category_id": 1,
+    "difficulty_id": 2
+  },
+  {
+    "id": 11,
+    "description": "**Question:** What is the event loop in JavaScript? Explain how `setTimeout`, `Promise`, and `microtasks` interact.",
+    "category_id": 1,
+    "difficulty_id": 3
+  },
+  {
+    "id": 12,
+    "description": "**Task:** Implement a debounce function that delays invoking a function until after `wait` milliseconds have elapsed since the last time it was called.\n\n**Example:**\n```javascript\nfunction debounce(func, wait) {\n  // Your code here\n}\n```",
+    "category_id": 1,
+    "difficulty_id": 3
+  },
+  {
+    "id": 13,
+    "description": "**Question:** What will the following code output? Explain the order of execution.\n\n```javascript\nconsole.log('Start');\nsetTimeout(() => console.log('Timeout'), 0);\nPromise.resolve().then(() => console.log('Promise'));\nconsole.log('End');\n```",
+    "category_id": 1,
+    "difficulty_id": 3
+  },
+  {
+    "id": 14,
+    "description": "**Question:** What are generators in JavaScript? Explain how `function*` and `yield` work.",
+    "category_id": 1,
+    "difficulty_id": 3
+  },
+  {
+    "id": 15,
+    "description": "**Task:** Write a generator function `range` that yields numbers from `start` to `end` (inclusive).\n\n**Example:**\n```javascript\nfunction* range(start, end) {\n  // Your code here\n}\nconst gen = range(1, 3);\nconsole.log([...gen]); // => [1, 2, 3]\n```",
+    "category_id": 1,
+    "difficulty_id": 3
+  },
+  {
+    "id": 16,
+    "description": "**Question:** What is the difference between `interface` and `type` in TypeScript?",
+    "category_id": 2,
+    "difficulty_id": 1
+  },
+  {
+    "id": 17,
+    "description": "**Task:** Define a TypeScript interface `User` with properties `id` (number) and `name` (string). Create an object of type `User`.",
+    "category_id": 2,
+    "difficulty_id": 1
+  },
+  {
+    "id": 18,
+    "description": "**Question:** What will the following TypeScript code output?\n\n```typescript\ntype MyType = 'A' | 'B' | 'C';\nconst value: MyType = 'D'; // Error?\n```",
+    "category_id": 2,
+    "difficulty_id": 1
+  },
+  {
+    "id": 19,
+    "description": "**Question:** What are union types in TypeScript? Provide an example.",
+    "category_id": 2,
+    "difficulty_id": 1
+  },
+  {
+    "id": 20,
+    "description": "**Task:** Write a TypeScript function that accepts a union type `string | number` and returns its length (for strings) or value (for numbers).\n\n**Example:**\n```typescript\nfunction getLengthOrValue(input: string | number): number {\n  // Your code here\n}\n```",
+    "category_id": 2,
+    "difficulty_id": 1
+  },
+  {
+    "id": 21,
+    "description": "**Question:** What are TypeScript generics? Explain with an example.",
+    "category_id": 2,
+    "difficulty_id": 2
+  },
+  {
+    "id": 22,
+    "description": "**Task:** Implement a generic function `identity` that returns its input.\n\n**Example:**\n```typescript\nfunction identity<T>(arg: T): T {\n  return arg;\n}\n```",
+    "category_id": 2,
+    "difficulty_id": 2
+  },
+  {
+    "id": 23,
+    "description": "**Question:** What will the following TypeScript code output?\n\n```typescript\ntype A = { a: number };\ntype B = { b: string };\ntype C = A & B;\nconst obj: C = { a: 1, b: 'hello' };\nconsole.log(obj.a, obj.b);\n```",
+    "category_id": 2,
+    "difficulty_id": 2
+  },
+  {
+    "id": 24,
+    "description": "**Question:** What are TypeScript utility types? Provide examples of `Partial`, `Pick`, and `Omit`.",
+    "category_id": 2,
+    "difficulty_id": 2
+  },
+  {
+    "id": 25,
+    "description": "**Task:** Create a TypeScript type `Nullable<T>` that makes all properties of `T` nullable.\n\n**Example:**\n```typescript\ntype Nullable<T> = {\n  [K in keyof T]: T[K] | null;\n};\n```",
+    "category_id": 2,
+    "difficulty_id": 2
+  },
+  {
+    "id": 26,
+    "description": "**Question:** What are TypeScript decorators? Explain how they work with classes and methods.",
+    "category_id": 2,
+    "difficulty_id": 3
+  },
+  {
+    "id": 27,
+    "description": "**Task:** Write a TypeScript decorator `@log` that logs the arguments and return value of a method.\n\n**Example:**\n```typescript\nfunction log(target: any, propertyKey: string, descriptor: PropertyDescriptor) {\n  // Your code here\n}\n```",
+    "category_id": 2,
+    "difficulty_id": 3
+  },
+  {
+    "id": 28,
+    "description": "**Question:** What will the following TypeScript code output?\n\n```typescript\ntype DeepReadonly<T> = {\n  readonly [K in keyof T]: T[K] extends object ? DeepReadonly<T[K]> : T[K];\n};\n\ninterface Nested {\n  a: { b: number };\n}\n\ntype ReadonlyNested = DeepReadonly<Nested>;\nconst obj: ReadonlyNested = { a: { b: 1 } };\nobj.a.b = 2; // Error?\n```",
+    "category_id": 2,
+    "difficulty_id": 3
+  },
+  {
+    "id": 29,
+    "description": "**Question:** What is declaration merging in TypeScript? Provide an example with interfaces.",
+    "category_id": 2,
+    "difficulty_id": 3
+  },
+  {
+    "id": 30,
+    "description": "**Task:** Extend the global `Window` interface to add a custom property `myApp` of type `{ version: string }`.\n\n**Example:**\n```typescript\ndeclare global {\n  interface Window {\n    myApp: { version: string };\n  }\n}\n```",
+    "category_id": 2,
+    "difficulty_id": 3
+  },
+  {
+    "id": 31,
+    "description": "**Question:** What is the DOM? Explain the difference between the DOM and HTML.",
+    "category_id": 3,
+    "difficulty_id": 1
+  },
+  {
+    "id": 32,
+    "description": "**Task:** Select the element with ID `myElement` and change its text content to `\"Hello, World!\"`.\n\n**Example:**\n```javascript\n// Your code here\n```",
+    "category_id": 3,
+    "difficulty_id": 1
+  },
+  {
+    "id": 33,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nconst div = document.createElement('div');\ndiv.id = 'test';\ndocument.body.appendChild(div);\nconsole.log(document.getElementById('test'));\n```",
+    "category_id": 3,
+    "difficulty_id": 1
+  },
+  {
+    "id": 34,
+    "description": "**Question:** What is the difference between `innerHTML` and `textContent`?",
+    "category_id": 3,
+    "difficulty_id": 1
+  },
+  {
+    "id": 35,
+    "description": "**Task:** Create a new `<button>` element with the text `\"Click Me\"` and append it to the `<body>`.\n\n**Example:**\n```javascript\n// Your code here\n```",
+    "category_id": 3,
+    "difficulty_id": 1
+  },
+  {
+    "id": 36,
+    "description": "**Question:** What is event delegation? Explain how it improves performance.",
+    "category_id": 3,
+    "difficulty_id": 2
+  },
+  {
+    "id": 37,
+    "description": "**Task:** Implement event delegation for a list of buttons inside a `<div id=\"buttonContainer\">`. Log the clicked button’s text.\n\n**Example:**\n```javascript\ndocument.getElementById('buttonContainer').addEventListener('click', (e) => {\n  // Your code here\n});\n```",
+    "category_id": 3,
+    "difficulty_id": 2
+  },
+  {
+    "id": 38,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nconst div = document.querySelector('div');\ndiv.addEventListener('click', () => console.log('Div'));\ndiv.children[0].addEventListener('click', () => console.log('Child'));\n// User clicks the child element\n```",
+    "category_id": 3,
+    "difficulty_id": 2
+  },
+  {
+    "id": 39,
+    "description": "**Question:** What is the difference between `addEventListener` and `onclick`?",
+    "category_id": 3,
+    "difficulty_id": 2
+  },
+  {
+    "id": 40,
+    "description": "**Task:** Write a function to toggle the class `active` on an element with ID `myElement` when clicked.\n\n**Example:**\n```javascript\ndocument.getElementById('myElement').addEventListener('click', () => {\n  // Your code here\n});\n```",
+    "category_id": 3,
+    "difficulty_id": 2
+  },
+  {
+    "id": 41,
+    "description": "**Question:** What is the Shadow DOM? Explain its use cases.",
+    "category_id": 3,
+    "difficulty_id": 3
+  },
+  {
+    "id": 42,
+    "description": "**Task:** Create a custom element `<hello-world>` with a Shadow DOM that displays `\"Hello, World!\"` in a `<p>` tag.\n\n**Example:**\n```javascript\nclass HelloWorld extends HTMLElement {\n  constructor() {\n    super();\n    // Your code here\n  }\n}\ncustomElements.define('hello-world', HelloWorld);\n```",
+    "category_id": 3,
+    "difficulty_id": 3
+  },
+  {
+    "id": 43,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nconst template = document.createElement('template');\ntemplate.innerHTML = '<div>Template</div>';\nconst content = template.content.cloneNode(true);\nconsole.log(content.querySelector('div').textContent);\n```",
+    "category_id": 3,
+    "difficulty_id": 3
+  },
+  {
+    "id": 44,
+    "description": "**Question:** What are Web Components? Explain the role of `CustomElementRegistry` and `ShadowRoot`.",
+    "category_id": 3,
+    "difficulty_id": 3
+  },
+  {
+    "id": 45,
+    "description": "**Task:** Create a Web Component `<counter-element>` with a button that increments a counter displayed in a `<span>`.\n\n**Example:**\n```javascript\nclass CounterElement extends HTMLElement {\n  // Your code here\n}\ncustomElements.define('counter-element', CounterElement);\n```",
+    "category_id": 3,
+    "difficulty_id": 3
+  },
+  {
+    "id": 46,
+    "description": "**Question:** What is the difference between `setTimeout` and `setInterval`?",
+    "category_id": 4,
+    "difficulty_id": 1
+  },
+  {
+    "id": 47,
+    "description": "**Task:** Write a function that uses `setTimeout` to print numbers 1 to 5 with a 1-second delay between each.\n\n**Example:**\n```javascript\nfunction printNumbers() {\n  // Your code here\n}\n```",
+    "category_id": 4,
+    "difficulty_id": 1
+  },
+  {
+    "id": 48,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nconsole.log('Start');\nsetTimeout(() => console.log('Timeout'), 0);\nconsole.log('End');\n```",
+    "category_id": 4,
+    "difficulty_id": 1
+  },
+  {
+    "id": 49,
+    "description": "**Question:** What is a callback function? Provide an example.",
+    "category_id": 4,
+    "difficulty_id": 1
+  },
+  {
+    "id": 50,
+    "description": "**Task:** Write a function `fetchData` that takes a callback and simulates fetching data after 1 second.\n\n**Example:**\n```javascript\nfunction fetchData(callback) {\n  // Your code here\n}\n```",
+    "category_id": 4,
+    "difficulty_id": 1
+  },
+  {
+    "id": 51,
+    "description": "**Question:** What are Promises in JavaScript? Explain the states (`pending`, `fulfilled`, `rejected`).",
+    "category_id": 4,
+    "difficulty_id": 2
+  },
+  {
+    "id": 52,
+    "description": "**Task:** Rewrite the following callback-based function to use Promises:\n\n```javascript\nfunction fetchData(callback) {\n  setTimeout(() => callback(null, { data: 'Hello' }), 1000);\n}\n```",
+    "category_id": 4,
+    "difficulty_id": 2
+  },
+  {
+    "id": 53,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nPromise.resolve(1)\n  .then(x => x + 1)\n  .then(x => { throw new Error('Oops!') })\n  .catch(e => console.log(e.message))\n  .then(() => console.log('Done'));\n```",
+    "category_id": 4,
+    "difficulty_id": 2
+  },
+  {
+    "id": 54,
+    "description": "**Question:** What is `Promise.all`? Explain how it differs from `Promise.race`.",
+    "category_id": 4,
+    "difficulty_id": 2
+  },
+  {
+    "id": 55,
+    "description": "**Task:** Use `Promise.all` to fetch data from two URLs in parallel and log the combined results.\n\n**Example:**\n```javascript\nconst urls = ['https://api.example.com/data1', 'https://api.example.com/data2'];\n// Your code here\n```",
+    "category_id": 4,
+    "difficulty_id": 2
+  },
+  {
+    "id": 56,
+    "description": "**Question:** What are async/await? How do they relate to Promises?",
+    "category_id": 4,
+    "difficulty_id": 3
+  },
+  {
+    "id": 57,
+    "description": "**Task:** Rewrite the following Promise chain using `async/await`:\n\n```javascript\nfetchData()\n  .then(data => console.log(data))\n  .catch(error => console.error(error));\n```",
+    "category_id": 4,
+    "difficulty_id": 3
+  },
+  {
+    "id": 58,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nasync function foo() {\n  console.log(await Promise.resolve('A'));\n  console.log(await 'B');\n  return 'C';\n}\nfoo().then(console.log);\n```",
+    "category_id": 4,
+    "difficulty_id": 3
+  },
+  {
+    "id": 59,
+    "description": "**Question:** What is the event loop in JavaScript? Explain how `microtasks` and `macrotasks` are processed.",
+    "category_id": 4,
+    "difficulty_id": 3
+  },
+  {
+    "id": 60,
+    "description": "**Task:** Write an async function that retries a failed API call up to 3 times with a 1-second delay between retries.\n\n**Example:**\n```javascript\nasync function fetchWithRetry(url, retries = 3) {\n  // Your code here\n}\n```",
+    "category_id": 4,
+    "difficulty_id": 3
+  },
+  {
+    "id": 61,
+    "description": "**Question:** What is the difference between `map` and `forEach` in JavaScript? Provide examples.",
+    "category_id": 5,
+    "difficulty_id": 1
+  },
+  {
+    "id": 62,
+    "description": "**Task:** Use `map` to double each number in the array `[1, 2, 3]`.\n\n**Example:**\n```javascript\nconst numbers = [1, 2, 3];\n// Your code here\n```",
+    "category_id": 5,
+    "difficulty_id": 1
+  },
+  {
+    "id": 63,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nconst arr = [1, 2, 3];\nconst doubled = arr.map(x => x * 2);\nconsole.log(doubled);\n```",
+    "category_id": 5,
+    "difficulty_id": 1
+  },
+  {
+    "id": 64,
+    "description": "**Question:** What is the difference between `filter` and `find` in JavaScript?",
+    "category_id": 5,
+    "difficulty_id": 1
+  },
+  {
+    "id": 65,
+    "description": "**Task:** Use `filter` to return only even numbers from the array `[1, 2, 3, 4]`.\n\n**Example:**\n```javascript\nconst numbers = [1, 2, 3, 4];\n// Your code here\n```",
+    "category_id": 5,
+    "difficulty_id": 1
+  },
+  {
+    "id": 66,
+    "description": "**Question:** What is the `reduce` method in JavaScript? Provide an example.",
+    "category_id": 5,
+    "difficulty_id": 2
+  },
+  {
+    "id": 67,
+    "description": "**Task:** Use `reduce` to calculate the sum of the array `[1, 2, 3, 4]`.\n\n**Example:**\n```javascript\nconst numbers = [1, 2, 3, 4];\n// Your code here\n```",
+    "category_id": 5,
+    "difficulty_id": 2
+  },
+  {
+    "id": 68,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nconst arr = [1, 2, 3];\nconst sum = arr.reduce((acc, x) => acc + x, 0);\nconsole.log(sum);\n```",
+    "category_id": 5,
+    "difficulty_id": 2
+  },
+  {
+    "id": 69,
+    "description": "**Question:** What is the difference between shallow and deep copying of objects?",
+    "category_id": 5,
+    "difficulty_id": 2
+  },
+  {
+    "id": 70,
+    "description": "**Task:** Write a function `deepClone` that creates a deep copy of an object.\n\n**Example:**\n```javascript\nfunction deepClone(obj) {\n  // Your code here\n}\n```",
+    "category_id": 5,
+    "difficulty_id": 2
+  },
+  {
+    "id": 71,
+    "description": "**Question:** What is the time complexity of sorting an array in JavaScript? Explain how `Array.prototype.sort` works.",
+    "category_id": 5,
+    "difficulty_id": 3
+  },
+  {
+    "id": 72,
+    "description": "**Task:** Implement a custom `mySort` function that sorts an array of numbers in ascending order.\n\n**Example:**\n```javascript\nfunction mySort(arr) {\n  // Your code here\n}\n```",
+    "category_id": 5,
+    "difficulty_id": 3
+  },
+  {
+    "id": 73,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nconst arr = [3, 1, 4, 2];\narr.sort((a, b) => a - b);\nconsole.log(arr);\n```",
+    "category_id": 5,
+    "difficulty_id": 3
+  },
+  {
+    "id": 74,
+    "description": "**Question:** What are iterators and iterables in JavaScript? Provide an example of a custom iterable.",
+    "category_id": 5,
+    "difficulty_id": 3
+  },
+  {
+    "id": 75,
+    "description": "**Task:** Create a custom iterable object that yields values from 1 to `n`.\n\n**Example:**\n```javascript\nconst iterable = {\n  [Symbol.iterator]: function*() {\n    // Your code here\n  }\n};\n```",
+    "category_id": 5,
+    "difficulty_id": 3
+  },
+  {
+    "id": 76,
+    "description": "**Question:** What is the time complexity of the binary search algorithm?",
+    "category_id": 7,
+    "difficulty_id": 1
+  },
+  {
+    "id": 77,
+    "description": "**Task:** Implement binary search on a sorted array.\n\n**Example:**\n```javascript\nfunction binarySearch(arr, target) {\n  // Your code here\n}\n```",
+    "category_id": 7,
+    "difficulty_id": 1
+  },
+  {
+    "id": 78,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nfunction isPalindrome(str) {\n  return str === str.split('').reverse().join('');\n}\nconsole.log(isPalindrome('racecar'));\n```",
+    "category_id": 7,
+    "difficulty_id": 1
+  },
+  {
+    "id": 79,
+    "description": "**Question:** What is the Fibonacci sequence? Write a recursive function to calculate the nth Fibonacci number.",
+    "category_id": 7,
+    "difficulty_id": 1
+  },
+  {
+    "id": 80,
+    "description": "**Task:** Write a function to check if a string is an anagram of another string.\n\n**Example:**\n```javascript\nfunction areAnagrams(str1, str2) {\n  // Your code here\n}\n```",
+    "category_id": 7,
+    "difficulty_id": 1
+  },
+  {
+    "id": 81,
+    "description": "**Question:** What is a linked list? Explain its advantages over arrays.",
+    "category_id": 7,
+    "difficulty_id": 2
+  },
+  {
+    "id": 82,
+    "description": "**Task:** Implement a linked list with methods `append`, `prepend`, and `toArray`.\n\n**Example:**\n```javascript\nclass LinkedList {\n  constructor() {\n    this.head = null;\n  }\n  // Your code here\n}\n```",
+    "category_id": 7,
+    "difficulty_id": 2
+  },
+  {
+    "id": 83,
+    "description": "**Question:** What is the time complexity of bubble sort? Explain how it works.",
+    "category_id": 7,
+    "difficulty_id": 2
+  },
+  {
+    "id": 84,
+    "description": "**Task:** Implement bubble sort for an array of numbers.\n\n**Example:**\n```javascript\nfunction bubbleSort(arr) {\n  // Your code here\n}\n```",
+    "category_id": 7,
+    "difficulty_id": 2
+  },
+  {
+    "id": 85,
+    "description": "**Question:** What is a binary tree? Explain in-order, pre-order, and post-order traversal.",
+    "category_id": 7,
+    "difficulty_id": 2
+  },
+  {
+    "id": 86,
+    "description": "**Question:** What is dynamic programming? Explain with the Fibonacci sequence example.",
+    "category_id": 7,
+    "difficulty_id": 3
+  },
+  {
+    "id": 87,
+    "description": "**Task:** Implement a memoized version of the Fibonacci function.\n\n**Example:**\n```javascript\nfunction fib(n, memo = {}) {\n  // Your code here\n}\n```",
+    "category_id": 7,
+    "difficulty_id": 3
+  },
+  {
+    "id": 88,
+    "description": "**Question:** What is the time complexity of Dijkstra’s algorithm?",
+    "category_id": 7,
+    "difficulty_id": 3
+  },
+  {
+    "id": 89,
+    "description": "**Task:** Implement Dijkstra’s algorithm to find the shortest path in a weighted graph.\n\n**Example Graph:**\n```javascript\nconst graph = {\n  'A': { 'B': 1, 'C': 4 },\n  'B': { 'A': 1, 'C': 2, 'D': 5 },\n  'C': { 'A': 4, 'B': 2, 'D': 1 },\n  'D': { 'B': 5, 'C': 1 }\n};\n```\n\n**Example Solution:**\n```javascript\nfunction dijkstra(graph, start) {\n  // Your code here\n}\n```",
+    "category_id": 7,
+    "difficulty_id": 3
+  },
+  {
+    "id": 90,
+    "description": "**Question:** What is the Knapsack Problem? Explain the dynamic programming approach to solve it.",
+    "category_id": 7,
+    "difficulty_id": 3
+  },
+  {
+    "id": 91,
+    "description": "**Question:** What is unit testing? Explain the AAA pattern (Arrange, Act, Assert).",
+    "category_id": 8,
+    "difficulty_id": 1
+  },
+  {
+    "id": 92,
+    "description": "**Task:** Write a unit test for a function that adds two numbers using Jest.\n\n**Example:**\n```javascript\ntest('adds 1 + 2 to equal 3', () => {\n  // Your code here\n});\n```",
+    "category_id": 8,
+    "difficulty_id": 1
+  },
+  {
+    "id": 93,
+    "description": "**Question:** What is test coverage? How do you measure it?",
+    "category_id": 8,
+    "difficulty_id": 1
+  },
+  {
+    "id": 94,
+    "description": "**Task:** Write a test for a function that checks if a string is a palindrome.\n\n**Example:**\n```javascript\nfunction isPalindrome(str) {\n  return str === str.split('').reverse().join('');\n}\n```",
+    "category_id": 8,
+    "difficulty_id": 1
+  },
+  {
+    "id": 95,
+    "description": "**Question:** What is the difference between unit testing and integration testing?",
+    "category_id": 8,
+    "difficulty_id": 1
+  },
+  {
+    "id": 96,
+    "description": "**Question:** What is mocking in testing? Explain the difference between stubs and spies.",
+    "category_id": 8,
+    "difficulty_id": 2
+  },
+  {
+    "id": 97,
+    "description": "**Task:** Mock a function `fetchData` that returns a Promise resolving to `{ data: 'test' }` using Jest.\n\n**Example:**\n```javascript\njest.mock('./api', () => ({\n  fetchData: jest.fn()\n}));\n```",
+    "category_id": 8,
+    "difficulty_id": 2
+  },
+  {
+    "id": 98,
+    "description": "**Question:** What is snapshot testing? When would you use it?",
+    "category_id": 8,
+    "difficulty_id": 2
+  },
+  {
+    "id": 99,
+    "description": "**Task:** Write a snapshot test for a React component.\n\n**Example:**\n```javascript\nimport renderer from 'react-test-renderer';\ntest('renders correctly', () => {\n  const tree = renderer.create(<MyComponent />).toJSON();\n  expect(tree).toMatchSnapshot();\n});\n```",
+    "category_id": 8,
+    "difficulty_id": 2
+  },
+  {
+    "id": 100,
+    "description": "**Question:** What is Test-Driven Development (TDD)? Explain the red-green-refactor cycle.",
+    "category_id": 8,
+    "difficulty_id": 2
+  },
+  {
+    "id": 101,
+    "description": "**Question:** What is property-based testing? How does it differ from example-based testing?",
+    "category_id": 8,
+    "difficulty_id": 3
+  },
+  {
+    "id": 102,
+    "description": "**Task:** Use `fast-check` to write a property-based test for a function that checks if a number is even.\n\n**Example:**\n```javascript\nimport { check } from 'fast-check';\ncheck(\n  // Your code here\n);\n```",
+    "category_id": 8,
+    "difficulty_id": 3
+  },
+  {
+    "id": 103,
+    "description": "**Question:** What are the challenges of testing asynchronous code? How do you handle them?",
+    "category_id": 8,
+    "difficulty_id": 3
+  },
+  {
+    "id": 104,
+    "description": "**Task:** Write a test for an async function that fetches data from an API and handles errors.\n\n**Example:**\n```javascript\ntest('fetches data', async () => {\n  // Your code here\n});\n```",
+    "category_id": 8,
+    "difficulty_id": 3
+  },
+  {
+    "id": 105,
+    "description": "**Question:** What is end-to-end testing? How does it differ from unit and integration testing?",
+    "category_id": 8,
+    "difficulty_id": 3
+  },
+  {
+    "id": 106,
+    "description": "**Question:** What is the Fetch API? How does it differ from XMLHttpRequest?",
+    "category_id": 9,
+    "difficulty_id": 1
+  },
+  {
+    "id": 107,
+    "description": "**Task:** Use the Fetch API to GET data from `https://jsonplaceholder.typicode.com/posts/1` and log the response.\n\n**Example:**\n```javascript\nfetch('https://jsonplaceholder.typicode.com/posts/1')\n  .then(response => response.json())\n  .then(data => console.log(data));\n```",
+    "category_id": 9,
+    "difficulty_id": 1
+  },
+  {
+    "id": 108,
+    "description": "**Question:** What will the following code output?\n\n```javascript\nfetch('https://jsonplaceholder.typicode.com/posts/1')\n  .then(response => response.json())\n  .then(data => console.log(data.id));\n```",
+    "category_id": 9,
+    "difficulty_id": 1
+  },
+  {
+    "id": 109,
+    "description": "**Question:** What is localStorage? How does it differ from sessionStorage?",
+    "category_id": 9,
+    "difficulty_id": 1
+  },
+  {
+    "id": 110,
+    "description": "**Task:** Save the object `{ name: 'Alice' }` to `localStorage` under the key `user` and retrieve it.\n\n**Example:**\n```javascript\n// Your code here\n```",
+    "category_id": 9,
+    "difficulty_id": 1
+  },
+  {
+    "id": 111,
+    "description": "**Question:** What are WebSockets? How do they differ from HTTP?",
+    "category_id": 9,
+    "difficulty_id": 2
+  },
+  {
+    "id": 112,
+    "description": "**Task:** Create a WebSocket connection to `wss://echo.websocket.org` and send/receive the message `\"Hello\"`.\n\n**Example:**\n```javascript\nconst socket = new WebSocket('wss://echo.websocket.org');\nsocket.onmessage = (event) => console.log(event.data);\n// Your code here\n```",
+    "category_id": 9,
+    "difficulty_id": 2
+  },
+  {
+    "id": 113,
+    "description": "**Question:** What is the Service Worker API? Explain its lifecycle.",
+    "category_id": 9,
+    "difficulty_id": 2
+  },
+  {
+    "id": 114,
+    "description": "**Task:** Register a service worker and log a message when it’s installed.\n\n**Example:**\n```javascript\nif ('serviceWorker' in navigator) {\n  navigator.serviceWorker.register('/sw.js').then(\n    registration => console.log('ServiceWorker registered')\n  );\n}\n```",
+    "category_id": 9,
+    "difficulty_id": 2
+  },
+  {
+    "id": 115,
+    "description": "**Question:** What is the Geolocation API? How do you handle errors in geolocation?",
+    "category_id": 9,
+    "difficulty_id": 2
+  },
+  {
+    "id": 116,
+    "description": "**Question:** What is WebAssembly? How does it interact with JavaScript?",
+    "category_id": 9,
+    "difficulty_id": 3
+  },
+  {
+    "id": 117,
+    "description": "**Task:** Load a WebAssembly module that exports a function `add(a, b)` and call it from JavaScript.\n\n**Example (WASM):**\n```wat\n(module\n  (func $add (param $a i32) (param $b i32) (result i32)\n    local.get $a\n    local.get $b\n    i32.add)\n  (export \"add\" (func $add))\n)\n```\n\n**Example (JS):**\n```javascript\nWebAssembly.instantiateStreaming(fetch('add.wasm'))\n  .then(obj => {\n    const add = obj.instance.exports.add;\n    console.log(add(2, 3)); // Should log 5\n  });\n```",
+    "category_id": 9,
+    "difficulty_id": 3
+  },
+  {
+    "id": 118,
+    "description": "**Question:** What is the Web Crypto API? Provide an example of generating a random UUID.",
+    "category_id": 9,
+    "difficulty_id": 3
+  },
+  {
+    "id": 119,
+    "description": "**Task:** Use the Performance API to measure the execution time of a function.\n\n**Example:**\n```javascript\nfunction measureTime(fn) {\n  const start = performance.now();\n  fn();\n  const end = performance.now();\n  return end - start;\n}\n```",
+    "category_id": 9,
+    "difficulty_id": 3
+  },
+  {
+    "id": 120,
+    "description": "**Question:** What is the Intersection Observer API? Provide an example use case.",
+    "category_id": 9,
+    "difficulty_id": 3
+  },
+  {
+    "id": 121,
+    "description": "**Question:** What is the difference between `Promise.all` and `Promise.allSettled`?",
+    "category_id": 4,
+    "difficulty_id": 3
+  },
+  {
+    "id": 122,
+    "description": "**Task:** Use `Promise.allSettled` to handle multiple promises and log their statuses (fulfilled/rejected).\n\n**Example:**\n```javascript\nconst promises = [\n  Promise.resolve(1),\n  Promise.reject('Error'),\n  Promise.resolve(3)\n];\nPromise.allSettled(promises).then(results => {\n  // Your code here\n});\n```",
+    "category_id": 4,
+    "difficulty_id": 3
+  },
+  {
+    "id": 123,
+    "description": "**Question:** What is the `AbortController` API? How does it help with canceling fetch requests?",
+    "category_id": 4,
+    "difficulty_id": 3
+  },
+  {
+    "id": 124,
+    "description": "**Task:** Use `AbortController` to cancel a `fetch` request after 2 seconds.\n\n**Example:**\n```javascript\nconst controller = new AbortController();\nconst { signal } = controller;\nsetTimeout(() => controller.abort(), 2000);\nfetch('https://api.example.com/data', { signal })\n  .then(...)\n  .catch(err => {\n    if (err.name === 'AbortError') {\n      console.log('Fetch aborted');\n    }\n  });\n```",
+    "category_id": 4,
+    "difficulty_id": 3
+  },
+  {
+    "id": 125,
+    "description": "**Question:** What are microtasks and macrotasks in the event loop? Provide examples of each.",
+    "category_id": 4,
+    "difficulty_id": 3
+  },
+  {
+    "id": 126,
+    "description": "**Question:** What is the difference between `Array.prototype.forEach` and `Array.prototype.map`?",
+    "category_id": 5,
+    "difficulty_id": 3
+  },
+  {
+    "id": 127,
+    "description": "**Task:** Implement a custom `myMap` function that mimics `Array.prototype.map`.\n\n**Example:**\n```javascript\nArray.prototype.myMap = function(callback) {\n  // Your code here\n};\n```",
+    "category_id": 5,
+    "difficulty_id": 3
+  },
+  {
+    "id": 128,
+    "description": "**Question:** What is the time complexity of the following operations in JavaScript: `Array.push`, `Array.unshift`, `Array.splice`?",
+    "category_id": 5,
+    "difficulty_id": 3
+  },
+  {
+    "id": 129,
+    "description": "**Task:** Write a function to flatten a nested array using recursion.\n\n**Example:**\n```javascript\nfunction flatten(arr) {\n  // Your code here\n}\nflatten([1, [2, [3, 4], 5]]); // => [1, 2, 3, 4, 5]\n```",
+    "category_id": 5,
+    "difficulty_id": 3
+  },
+  {
+    "id": 130,
+    "description": "**Question:** What are typed arrays in JavaScript? Provide an example of creating a `Uint8Array`.",
+    "category_id": 5,
+    "difficulty_id": 3
+  },
+  {
+    "id": 131,
+    "description": "**Question:** What is the Knapsack Problem? Why is it classified as NP-Hard?",
+    "category_id": 7,
+    "difficulty_id": 3
+  },
+  {
+    "id": 132,
+    "description": "**Task:** Implement a heuristic solution for the Traveling Salesman Problem (e.g., Nearest Neighbor).\n\n**Example Input:**\n```javascript\nconst cities = [\n  { x: 0, y: 0 },\n  { x: 1, y: 2 },\n  { x: 3, y: 1 },\n  { x: 2, y: 3 }\n];\n```\n\n**Example Solution:**\n```javascript\nfunction travelingSalesman(cities) {\n  // Your code here\n}\n```",
+    "category_id": 7,
+    "difficulty_id": 3
+  },
+  {
+    "id": 133,
+    "description": "**Question:** What is Dijkstra’s algorithm? Explain how it works and its time complexity.",
+    "category_id": 7,
+    "difficulty_id": 3
+  },
+  {
+    "id": 134,
+    "description": "**Task:** Implement the A* search algorithm for pathfinding in a grid.\n\n**Example:**\n```javascript\nfunction aStar(grid, start, end) {\n  // Your code here\n}\n```",
+    "category_id": 7,
+    "difficulty_id": 3
+  },
+  {
+    "id": 135,
+    "description": "**Question:** What is a trie data structure? Explain its use cases and time complexity.",
+    "category_id": 7,
+    "difficulty_id": 3
+  }
+]

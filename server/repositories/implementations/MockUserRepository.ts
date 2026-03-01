@@ -1,18 +1,15 @@
 import type { User } from '~~/server/models/user';
 import type { IUserRepository } from '../interfaces';
+import usersData from '~~/server/data/users.json';
 
 export class MockUserRepository implements IUserRepository {
-  private users: User[] = [
-    {
-      id: 1,
-      login: 'admin',
-      password_hash: '$2b$10$N9qo8uLOickgx2ZMRZoMyE5rTXpZJw7XVQ6Yy0YQ1XpLq5L6tKsYm',
-      salt: '$2b$10$N9qo8uLOickgx2ZMRZoMy',
-      experience: 0,
-      level: 1,
-    }, // Password 12345
-  ];
-  private idCounter = 2;
+  private users: User[];
+  private idCounter: number;
+
+  constructor() {
+    this.users = usersData as User[];
+    this.idCounter = Math.max(1, ...this.users.map((u) => u.id)) + 1;
+  }
 
   async create(user: Omit<User, 'id'>): Promise<User> {
     const newUser = { ...user, id: this.idCounter++ };

@@ -1,17 +1,15 @@
 import type { Task } from '~~/server/models/task';
 import type { ITaskRepository } from '../interfaces';
+import tasksData from '~~/server/data/tasks.json';
 
 export class MockTaskRepository implements ITaskRepository {
-  private tasks: Task[] = [
-    {
-      id: 1,
-      title: 'Task 1',
-      description: 'Description for Task 1',
-      category_id: 1,
-      difficulty_id: 1,
-    },
-  ];
-  private idCounter = 2;
+  private tasks: Task[];
+  private idCounter: number;
+
+  constructor() {
+    this.tasks = tasksData as Task[];
+    this.idCounter = Math.max(1, ...this.tasks.map((t) => t.id)) + 1;
+  }
 
   async create(task: Omit<Task, 'id'>): Promise<Task> {
     const newTask = { ...task, id: this.idCounter++ };
