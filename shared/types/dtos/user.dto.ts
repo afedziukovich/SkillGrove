@@ -15,7 +15,6 @@ export interface UserCredentialsDTO {
 }
 
 export interface UpdatePasswordDTO {
-  userId: number;
   newPassword: string;
 }
 

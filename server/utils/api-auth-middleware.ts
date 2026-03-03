@@ -11,7 +11,7 @@ export function createAuthMiddleware(
   return defineEventHandler(async (event) => {
     if (event.method === 'OPTIONS') return;
 
-    if (!event.path.startsWith('/api/protected') || !event.path.startsWith('/api/auth/me')) {
+    if (!event.path.startsWith('/api/protected')) {
       return;
     }
 

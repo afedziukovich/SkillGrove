@@ -3,16 +3,16 @@ import { toResultDTO } from '~~/server/utils/converters/common.converter';
 import { AUTH_TOKEN_KEY_NAME } from '~~/shared/utils/constants';
 
 export default defineEventHandler(async (event) => {
-  const token = getCookie(event, AUTH_TOKEN_KEY_NAME);
-  if (!token) {
+  if (!event.context.auth) {
     throw createError({
       statusCode: 401,
-      statusMessage: 'No token',
+      statusMessage: 'Unauthorized',
     });
   }
 
   const { sessionRepository } = await useRepositories(event);
 
+  const token = event.context.auth.token;
   await sessionRepository.deleteByToken(token);
 
   setCookie(event, AUTH_TOKEN_KEY_NAME, '', {
