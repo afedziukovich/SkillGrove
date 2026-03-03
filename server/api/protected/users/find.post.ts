@@ -12,6 +12,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const { userRepository } = await useRepositories(event);
+
   const user = await userRepository.findByLogin(login);
   if (!user) {
     throw createError({

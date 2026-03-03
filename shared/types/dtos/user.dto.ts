@@ -24,3 +24,10 @@ export interface UserDTO {
   experience: number;
   level: number;
 }
+
+export interface UserPaginationQueryDTO {
+  limit: number;
+  page: number;
+  sortBy: 'id' | 'login' | 'level';
+  order: 'asc' | 'desc';
+}
