@@ -12,14 +12,9 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/icon',
-    '@nuxt/fonts',
-    '@nuxt/image',
-    '@nuxtjs/tailwindcss',
-    '@pinia/nuxt',
-  ],
+  modules: ['@nuxt/eslint', '@nuxt/icon', '@nuxt/fonts', '@nuxt/image', '@nuxtjs/tailwindcss'],
+
+  // plugins: ['~/plugins/pinia'],
 
   eslint: {
     config: {},
