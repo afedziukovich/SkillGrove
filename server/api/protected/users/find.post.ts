@@ -1,6 +1,6 @@
 import type { LoginUserDTO } from '~~/shared/types/dtos/user.dto';
 import useRepositories from '~~/server/plugins/repositories';
-import { toUserResponseDTO } from '~~/server/utils/converters/user.converter';
+import { toUserDTO } from '~~/server/utils/converters/user.converter';
 
 export default defineEventHandler(async (event) => {
   const { login } = await readBody<LoginUserDTO>(event);
@@ -20,5 +20,5 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  return toUserResponseDTO(user);
+  return toUserDTO(user);
 });

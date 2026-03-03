@@ -32,4 +32,8 @@ export class MockSessionRepository implements ISessionRepository {
   async deleteByUserId(userId: number): Promise<void> {
     this.sessions = this.sessions.filter((s) => s.user_id !== userId);
   }
+
+  async deleteByToken(token: string): Promise<void> {
+    this.sessions = this.sessions.filter((s) => s.token !== token);
+  }
 }

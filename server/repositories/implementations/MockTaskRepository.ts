@@ -33,6 +33,12 @@ export class MockTaskRepository implements ITaskRepository {
     return this.tasks.filter((t) => t.difficulty_id === difficultyId);
   }
 
+  async findByCategoryAndDifficulty(categoryId: number, difficultyId: number): Promise<Task[]> {
+    return this.tasks.filter(
+      (t) => t.category_id === categoryId && t.difficulty_id === difficultyId
+    );
+  }
+
   async update(task: Task): Promise<Task> {
     const index = this.tasks.findIndex((t) => t.id === task.id);
     if (index === -1) throw new Error('Task not found');

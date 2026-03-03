@@ -1,7 +1,7 @@
 import type { CreateUserDTO } from '~~/shared/types/dtos/user.dto';
 import type { User } from '~~/server/models/user';
 import useRepositories from '~~/server/plugins/repositories';
-import { toUserResponseDTO } from '~~/server/utils/converters/user.converter';
+import { toUserDTO } from '~~/server/utils/converters/user.converter';
 
 export default defineEventHandler(async (event) => {
   const { login, password, experience = 0, level = 1 } = await readBody<CreateUserDTO>(event);
@@ -18,5 +18,5 @@ export default defineEventHandler(async (event) => {
   const { userRepository } = await useRepositories(event);
   const createdUser = await userRepository.create(userData);
 
-  return toUserResponseDTO(createdUser);
+  return toUserDTO(createdUser);
 });

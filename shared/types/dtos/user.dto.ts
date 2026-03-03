@@ -9,12 +9,17 @@ export interface LoginUserDTO {
   login: string;
 }
 
+export interface UserCredentialsDTO {
+  login: string;
+  password: string;
+}
+
 export interface UpdatePasswordDTO {
   userId: number;
   newPassword: string;
 }
 
-export interface UserResponseDTO {
+export interface UserDTO {
   id: number;
   login: string;
   experience: number;

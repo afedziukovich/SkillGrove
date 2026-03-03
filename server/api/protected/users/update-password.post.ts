@@ -1,6 +1,6 @@
 import type { UpdatePasswordDTO } from '~~/shared/types/dtos/user.dto';
 import useRepositories from '~~/server/plugins/repositories';
-import { toUserResponseDTO } from '~~/server/utils/converters/user.converter';
+import { toUserDTO } from '~~/server/utils/converters/user.converter';
 
 export default defineEventHandler(async (event) => {
   const { userId, newPassword } = await readBody<UpdatePasswordDTO>(event);
@@ -18,6 +18,6 @@ export default defineEventHandler(async (event) => {
 
   return {
     success: true,
-    user: toUserResponseDTO(updatedUser),
+    user: toUserDTO(updatedUser),
   };
 });

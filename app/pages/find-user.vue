@@ -33,10 +33,14 @@
 
 <script setup lang="ts">
 import { FetchError } from 'ofetch';
-import type { UserResponseDTO } from '~~/shared/types/dtos/user.dto';
+import type { UserDTO } from '~~/shared/types/dtos/user.dto';
+
+definePageMeta({
+  requiresAuth: true,
+});
 
 const login = ref<string>('');
-const user = ref<UserResponseDTO | null>(null);
+const user = ref<UserDTO | null>(null);
 const findError = ref<string | null>(null);
 const isLoading = ref<boolean>(false);
 
@@ -46,7 +50,7 @@ async function findUser() {
   findError.value = null;
 
   try {
-    const response = await $fetch<UserResponseDTO>('/api/users/find', {
+    const response = await $fetch<UserDTO>('/api/protected/users/find', {
       method: 'POST',
       body: { login: login.value },
     });
