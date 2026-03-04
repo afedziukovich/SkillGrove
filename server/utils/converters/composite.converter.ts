@@ -1,9 +1,6 @@
-import type { Task } from '~~/server/models/task';
-import type { TaskCategory } from '~~/server/models/task-category';
-import type { TaskDifficulty } from '~~/server/models/task-difficulty';
-import type { RandomTaskDTO, TaskJudgmentResultDTO } from '~~/shared/types/dtos/composite.dto';
+import type { RandomTaskDTO, TaskJudgmentResultDTO } from '~~/shared/types/dtos';
+import type { User, Task, TaskCategory, TaskDifficulty } from '~~/server/models';
 import { toTaskDTO } from './task.converter';
-import type { User } from '~~/server/models/user';
 
 export function toRandomTaskDTO(
   task: Task,

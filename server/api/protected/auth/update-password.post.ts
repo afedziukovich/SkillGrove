@@ -1,4 +1,4 @@
-import type { UpdatePasswordDTO } from '~~/shared/types/dtos/user.dto';
+import type { UpdatePasswordDTO } from '~~/shared/types/dtos';
 import useRepositories from '~~/server/plugins/repositories';
 
 export default defineEventHandler(async (event) => {

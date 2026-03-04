@@ -1,4 +1,4 @@
-import type { Session } from '~~/server/models/session';
+import type { Session } from '~~/server/models';
 
 export interface ISessionRepository {
   create(session: Omit<Session, 'id'>): Promise<Session>;

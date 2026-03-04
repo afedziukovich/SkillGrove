@@ -1,4 +1,4 @@
-import type { User } from '~~/server/models/user';
+import type { User } from '~~/server/models';
 import type { IUserRepository } from '../interfaces';
 import usersData from '~~/server/data/users.json';
 import { dynamicSort } from '#shared/utils/dynamic-sort';

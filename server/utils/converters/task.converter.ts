@@ -1,5 +1,5 @@
-import type { Task } from '~~/server/models/task';
-import type { TaskDTO } from '~~/shared/types/dtos/task.dto';
+import type { Task } from '~~/server/models';
+import type { TaskDTO } from '~~/shared/types/dtos';
 
 export function toTaskDTO(task: Task): TaskDTO {
   return {

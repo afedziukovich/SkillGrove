@@ -1,4 +1,4 @@
-import type { TaskDifficulty } from '~~/server/models/task-difficulty';
+import type { TaskDifficulty } from '~~/server/models';
 
 export interface ITaskDifficultyRepository {
   create(difficulty: Omit<TaskDifficulty, 'id'>): Promise<TaskDifficulty>;

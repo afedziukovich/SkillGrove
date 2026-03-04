@@ -1,6 +1,6 @@
-import type { UserPaginationQueryDTO } from '~~/shared/types/dtos/user.dto';
+import type { UserPaginationQueryDTO } from '~~/shared/types/dtos';
 import useRepositories from '~~/server/plugins/repositories';
-import { toArrayOfUserDTO } from '~~/server/utils/converters/user.converter';
+import { toArrayOfUserDTO } from '~~/server/utils/converters';
 
 export default defineEventHandler(async (event) => {
   const {

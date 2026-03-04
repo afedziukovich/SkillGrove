@@ -1,4 +1,4 @@
-import { toUserDTO } from '~~/server/utils/converters/user.converter';
+import { toUserDTO } from '~~/server/utils/converters';
 
 export default defineEventHandler(async (event) => {
   if (!event.context.auth) {

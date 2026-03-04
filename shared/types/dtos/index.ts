@@ -10,4 +10,4 @@ export type {
 export type { TaskCategoryDTO } from './task-category.dto';
 export type { TaskDifficultyDTO } from './task-difficulty.dto';
 export type { RandomTaskParametersDTO, TaskDTO, TaskSolutionDTO } from './task.dto';
-export type { RandomTaskDTO } from './composite.dto';
+export type { RandomTaskDTO, TaskJudgmentResultDTO } from './composite.dto';

@@ -1,5 +1,5 @@
 import useRepositories from '~~/server/plugins/repositories';
-import { toTaskJudgmentResultDTO } from '~~/server/utils/converters/composite.converter';
+import { toTaskJudgmentResultDTO } from '~~/server/utils/converters';
 import { TaskSolutionSchema } from '~~/shared/schemas';
 
 export default defineEventHandler(async (event) => {

@@ -1,5 +1,5 @@
 import useRepositories from '~~/server/plugins/repositories';
-import { toRandomTaskDTO } from '~~/server/utils/converters/composite.converter';
+import { toRandomTaskDTO } from '~~/server/utils/converters';
 import { RandomTaskParametersSchema } from '~~/shared/schemas';
 
 export default defineEventHandler(async (event) => {

@@ -1,4 +1,4 @@
-import type { Session } from '~~/server/models/session';
+import type { Session } from '~~/server/models';
 import type { ISessionRepository } from '../interfaces';
 import sessionsData from '~~/server/data/sessions.json';
 

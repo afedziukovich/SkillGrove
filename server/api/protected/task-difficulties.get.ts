@@ -1,5 +1,5 @@
 import useRepositories from '~~/server/plugins/repositories';
-import { toArrayOfTaskDifficultyDTO } from '~~/server/utils/converters/task-difficulty.converter';
+import { toArrayOfTaskDifficultyDTO } from '~~/server/utils/converters';
 
 export default defineEventHandler(async (event) => {
   const { taskDifficultyRepository } = await useRepositories(event);
