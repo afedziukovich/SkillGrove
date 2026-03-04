@@ -1,15 +1,14 @@
 import { defineStore } from 'pinia';
-import { $fetch, FetchError } from 'ofetch';
+import { $fetch } from 'ofetch';
 import type { UserDTO, ResultDTO } from '../shared/dtos';
 import type { UserCredentialsDTO } from '../shared/schemas';
-import { toResultDTO } from '../server/utils/converters/common.converter';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null as null | UserDTO,
   }),
   actions: {
-    async register(credentials: UserCredentialsDTO): Promise<ResultDTO> {
+    async register(credentials: UserCredentialsDTO): Promise<boolean> {
       try {
         const user = await $fetch<UserDTO>('/api/public/auth/register', {
           method: 'POST',
@@ -17,14 +16,12 @@ export const useAuthStore = defineStore('auth', {
         });
         this.user = user;
 
-        return toResultDTO(true);
-      } catch (error: unknown) {
-        const message =
-          error instanceof FetchError ? (error.statusMessage ?? error.message) : 'Register failed';
-        return toResultDTO(false, message);
+        return true;
+      } catch {
+        return false;
       }
     },
-    async login(credentials: UserCredentialsDTO): Promise<ResultDTO> {
+    async login(credentials: UserCredentialsDTO): Promise<boolean> {
       try {
         const user = await $fetch<UserDTO>('/api/public/auth/login', {
           method: 'POST',
@@ -32,11 +29,9 @@ export const useAuthStore = defineStore('auth', {
         });
         this.user = user;
 
-        return toResultDTO(true);
-      } catch (error: unknown) {
-        const message =
-          error instanceof FetchError ? (error.statusMessage ?? error.message) : 'Login failed';
-        return toResultDTO(false, message);
+        return true;
+      } catch {
+        return false;
       }
     },
     async fetchUser(): Promise<void> {
@@ -44,12 +39,17 @@ export const useAuthStore = defineStore('auth', {
         const user = await $fetch<UserDTO>('/api/protected/auth/me');
         this.user = user;
       } catch {
-        this.logout();
+        this.user = null;
       }
     },
-    logout(): Promise<ResultDTO> {
-      this.user = null;
-      return $fetch<ResultDTO>('/api/protected/auth/logout', { method: 'POST' });
+    async logout(): Promise<boolean> {
+      try {
+        this.user = null;
+        $fetch<ResultDTO>('/api/protected/auth/logout', { method: 'POST' });
+        return true;
+      } catch {
+        return false;
+      }
     },
   },
   getters: {
