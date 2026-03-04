@@ -11,6 +11,7 @@ export interface IUserRepository {
     order: 'asc' | 'desc'
   ): Promise<User[]>;
   update(user: User): Promise<User>;
+  updateStatistics(userId: number, level: number, experience: number): Promise<User>;
   updatePassword(userId: number, newPasswordHash: string, newSalt: string): Promise<User>;
   deleteById(id: number): Promise<void>;
 }

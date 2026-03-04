@@ -44,6 +44,16 @@ export class MockUserRepository implements IUserRepository {
     return user;
   }
 
+  async updateStatistics(userId: number, level: number, experience: number): Promise<User> {
+    const user = await this.findById(userId);
+    if (!user) throw new Error('User not found');
+
+    user.level = level;
+    user.experience = experience;
+
+    return user;
+  }
+
   async updatePassword(userId: number, newPasswordHash: string, newSalt: string): Promise<User> {
     const user = await this.findById(userId);
     if (!user) throw new Error('User not found');
