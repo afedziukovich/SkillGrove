@@ -1,4 +1,4 @@
-import type { Session } from '~~/server/models/session';
+import type { Session } from '~~/server/models';
 
 export interface ISessionRepository {
   create(session: Omit<Session, 'id'>): Promise<Session>;
@@ -6,4 +6,5 @@ export interface ISessionRepository {
   findByToken(token: string): Promise<Session | null>;
   deleteById(id: number): Promise<void>;
   deleteByUserId(userId: number): Promise<void>;
+  deleteByToken(token: string): Promise<void>;
 }

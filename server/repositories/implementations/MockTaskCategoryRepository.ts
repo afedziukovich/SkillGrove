@@ -1,4 +1,4 @@
-import type { TaskCategory } from '~~/server/models/task-category';
+import type { TaskCategory } from '~~/server/models';
 import type { ITaskCategoryRepository } from '../interfaces';
 import categoriesData from '~~/server/data/task-categories.json';
 

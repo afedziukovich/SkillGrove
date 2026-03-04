@@ -1,6 +1,7 @@
-import type { User } from '~~/server/models/user';
+import type { User } from '~~/server/models';
 import type { IUserRepository } from '../interfaces';
 import usersData from '~~/server/data/users.json';
+import { dynamicSort } from '#shared/utils/dynamic-sort';
 
 export class MockUserRepository implements IUserRepository {
   private users: User[];
@@ -25,10 +26,31 @@ export class MockUserRepository implements IUserRepository {
     return this.users.find((u) => u.login === login) || null;
   }
 
+  async getPaginated(
+    limit: number,
+    page: number,
+    sortBy: keyof User,
+    order: 'asc' | 'desc'
+  ): Promise<User[]> {
+    return this.users
+      .toSorted(dynamicSort<User>(sortBy, order))
+      .slice((page - 1) * limit, page * limit);
+  }
+
   async update(user: User): Promise<User> {
     const index = this.users.findIndex((u) => u.id === user.id);
     if (index === -1) throw new Error('User not found');
     this.users[index] = user;
+    return user;
+  }
+
+  async updateStatistics(userId: number, level: number, experience: number): Promise<User> {
+    const user = await this.findById(userId);
+    if (!user) throw new Error('User not found');
+
+    user.level = level;
+    user.experience = experience;
+
     return user;
   }
 

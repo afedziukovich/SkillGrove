@@ -1,4 +1,4 @@
-import type { TaskCategory } from '~~/server/models/task-category';
+import type { TaskCategory } from '~~/server/models';
 
 export interface ITaskCategoryRepository {
   create(category: Omit<TaskCategory, 'id'>): Promise<TaskCategory>;
