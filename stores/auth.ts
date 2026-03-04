@@ -9,6 +9,21 @@ export const useAuthStore = defineStore('auth', {
     user: null as null | UserDTO,
   }),
   actions: {
+    async register(credentials: UserCredentialsDTO): Promise<ResultDTO> {
+      try {
+        const user = await $fetch<UserDTO>('/api/public/auth/register', {
+          method: 'POST',
+          body: credentials,
+        });
+        this.user = user;
+
+        return toResultDTO(true);
+      } catch (error: unknown) {
+        const message =
+          error instanceof FetchError ? (error.statusMessage ?? error.message) : 'Register failed';
+        return toResultDTO(false, message);
+      }
+    },
     async login(credentials: UserCredentialsDTO): Promise<ResultDTO> {
       try {
         const user = await $fetch<UserDTO>('/api/public/auth/login', {
