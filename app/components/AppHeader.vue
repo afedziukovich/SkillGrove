@@ -67,7 +67,7 @@ const logout = () => {
               class="text-sm font-medium text-gray-800 hover:text-[#08c] transition-colors"
               @click="toggleMenu"
             >
-              {{ user?.firstName }} {{ user?.lastName }}
+              {{ user?.login }}
             </button>
 
             <!-- Dropdown -->
