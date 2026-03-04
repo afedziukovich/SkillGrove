@@ -1,8 +1,3 @@
-export interface RandomTaskParametersDTO {
-  categoryId: number;
-  difficultyId: number;
-}
-
 export interface TaskDTO {
   id: number;
   title: string;

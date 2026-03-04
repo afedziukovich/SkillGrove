@@ -1,4 +1,4 @@
-import type { RandomTaskDTO, TaskJudgmentResultDTO } from '~~/shared/types/dtos';
+import type { RandomTaskDTO, TaskJudgmentResultDTO } from '~~/shared/dtos';
 import type { User, Task, TaskCategory, TaskDifficulty } from '~~/server/models';
 import { toTaskDTO } from './task.converter';
 

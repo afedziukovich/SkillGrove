@@ -1,5 +1,5 @@
 import type { User } from '~~/server/models';
-import type { UserDTO } from '~~/shared/types/dtos';
+import type { UserDTO } from '~~/shared/dtos';
 
 export function toUserDTO(user: User): UserDTO {
   const { password_hash, salt, ...userData } = user;

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import type { UserCredentialsDTO, UserDTO } from '~~/shared/types/dtos/user.dto';
-import type { ResultDTO } from '~~/shared/types/dtos/common.dto';
+import type { UserCredentialsDTO, UserDTO } from '~~/shared/dtos/user.dto';
+import type { ResultDTO } from '~~/shared/dtos/common.dto';
 import { FetchError } from 'ofetch';
 import { toResultDTO } from '~~/server/utils/converters/common.converter';
 

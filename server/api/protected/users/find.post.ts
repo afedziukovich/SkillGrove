@@ -1,15 +1,16 @@
-import type { LoginUserDTO } from '~~/shared/types/dtos';
+import { LoginUserSchema } from '~~/shared/schemas';
 import useRepositories from '~~/server/plugins/repositories';
-import { toUserDTO } from '~~/server/utils/converters';
 
 export default defineEventHandler(async (event) => {
-  const { login } = await readBody<LoginUserDTO>(event);
-  if (!login) {
+  const body = await readValidatedBody(event, LoginUserSchema.safeParse);
+  if (!body.success) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Login is required',
+      message: 'Invalid body data',
     });
   }
+
+  const { login } = body.data;
 
   const { userRepository } = await useRepositories(event);
 

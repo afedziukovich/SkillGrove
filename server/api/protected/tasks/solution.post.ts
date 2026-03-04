@@ -1,10 +1,8 @@
 import useRepositories from '~~/server/plugins/repositories';
-import { toTaskJudgmentResultDTO } from '~~/server/utils/converters';
 import { TaskSolutionSchema } from '~~/shared/schemas';
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, TaskSolutionSchema.safeParse);
-
   if (!body.success) {
     throw createError({
       statusCode: 400,

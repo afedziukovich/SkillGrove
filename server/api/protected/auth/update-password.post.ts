@@ -1,14 +1,16 @@
-import type { UpdatePasswordDTO } from '~~/shared/types/dtos';
+import { UpdatePasswordSchema } from '~~/shared/schemas';
 import useRepositories from '~~/server/plugins/repositories';
 
 export default defineEventHandler(async (event) => {
-  const { newPassword } = await readBody<UpdatePasswordDTO>(event);
-  if (!newPassword) {
+  const body = await readValidatedBody(event, UpdatePasswordSchema.safeParse);
+  if (!body.success) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'newPassword is required',
+      message: 'Invalid body data',
     });
   }
+
+  const { newPassword } = body.data;
 
   if (!event.context.auth) {
     throw createError({

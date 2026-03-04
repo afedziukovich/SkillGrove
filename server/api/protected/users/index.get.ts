@@ -1,14 +1,16 @@
-import type { UserPaginationQueryDTO } from '~~/shared/types/dtos';
+import { UserPaginationQuerySchema } from '~~/shared/schemas';
 import useRepositories from '~~/server/plugins/repositories';
-import { toArrayOfUserDTO } from '~~/server/utils/converters';
 
 export default defineEventHandler(async (event) => {
-  const {
-    limit = 20,
-    page = 1,
-    sortBy = 'id',
-    order = 'asc',
-  } = await getQuery<UserPaginationQueryDTO>(event);
+  const query = await getValidatedQuery(event, UserPaginationQuerySchema.safeParse);
+  if (!query.success) {
+    throw createError({
+      statusCode: 400,
+      message: 'Invalid parameters',
+    });
+  }
+
+  const { limit, page, sortBy, order } = query.data;
 
   const { userRepository } = await useRepositories(event);
 

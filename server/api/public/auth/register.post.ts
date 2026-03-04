@@ -1,7 +1,6 @@
-import type { CreateUserDTO } from '~~/shared/types/dtos/user.dto';
-import type { User } from '~~/server/models/user';
+import { UserCredentialsSchema } from '~~/shared/schemas';
+import type { User } from '~~/server/models';
 import useRepositories from '~~/server/plugins/repositories';
-import { toUserDTO } from '~~/server/utils/converters/user.converter';
 import { SignJWT } from 'jose';
 
 const APP_CONFIG = useRuntimeConfig();
@@ -9,13 +8,17 @@ const SECRET_KEY = new TextEncoder().encode(String(APP_CONFIG.jwtSecret));
 const MAX_AGE = Number(APP_CONFIG.public.jwtMaxAge);
 
 export default defineEventHandler(async (event) => {
-  const { login, password, experience = 0, level = 1 } = await readBody<CreateUserDTO>(event);
-  if (!login || !password) {
+  const body = await readValidatedBody(event, UserCredentialsSchema.safeParse);
+  if (!body.success) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Login and password are required',
+      message: 'Invalid body data',
     });
   }
+
+  const { login, password } = body.data;
+  const experience = 0;
+  const level = 1;
 
   const { userRepository, sessionRepository } = await useRepositories(event);
 

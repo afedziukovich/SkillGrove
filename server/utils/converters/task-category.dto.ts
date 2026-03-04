@@ -1,5 +1,5 @@
 import type { TaskCategory } from '~~/server/models';
-import type { TaskCategoryDTO } from '~~/shared/types/dtos';
+import type { TaskCategoryDTO } from '~~/shared/dtos';
 
 export function toTaskCategoryDTO(category: TaskCategory): TaskCategoryDTO {
   return {

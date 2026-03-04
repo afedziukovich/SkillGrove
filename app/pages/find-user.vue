@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { FetchError } from 'ofetch';
-import type { UserDTO } from '~~/shared/types/dtos/user.dto';
+import type { UserDTO } from '~~/shared/dtos/user.dto';
 
 definePageMeta({
   requiresAuth: true,
