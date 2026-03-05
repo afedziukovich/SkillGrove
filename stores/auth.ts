@@ -1,62 +1,58 @@
 import { defineStore } from 'pinia';
-
-interface User {
-  id: number;
-  login: string;
-  level: number;
-  experience: number;
-}
+import { $fetch } from 'ofetch';
+import type { UserDTO, ResultDTO } from '../shared/dtos';
+import type { UserCredentialsDTO } from '../shared/schemas';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    user: null as User | null,
-    loading: false,
+    user: null as null | UserDTO,
   }),
-
-  getters: {
-    isAuthenticated: (state) => !!state.user,
-  },
-
   actions: {
-    async login(credentials: { login: string; password: string }) {
-      this.loading = true;
+    async register(credentials: UserCredentialsDTO): Promise<boolean> {
       try {
-        const response = await $fetch<User>('/api/auth/login', {
+        const user = await $fetch<UserDTO>('/api/public/auth/register', {
           method: 'POST',
           body: credentials,
         });
-        this.user = response;
-        return { success: true };
-      } catch (error: unknown) {
-        let errorMessage = 'Login failed';
-        if (error && typeof error === 'object' && 'data' in error) {
-          const data = (error as { data?: { statusMessage?: string } }).data;
-          errorMessage = data?.statusMessage || errorMessage;
-        }
-        return { success: false, error: errorMessage };
-      } finally {
-        this.loading = false;
+        this.user = user;
+
+        return true;
+      } catch {
+        return false;
       }
     },
-
-    async fetchUser() {
-      this.loading = true;
+    async login(credentials: UserCredentialsDTO): Promise<boolean> {
       try {
-        const user = await $fetch<User>('/api/auth/me');
+        const user = await $fetch<UserDTO>('/api/public/auth/login', {
+          method: 'POST',
+          body: credentials,
+        });
+        this.user = user;
+
+        return true;
+      } catch {
+        return false;
+      }
+    },
+    async fetchUser(): Promise<void> {
+      try {
+        const user = await $fetch<UserDTO>('/api/protected/auth/me');
         this.user = user;
       } catch {
         this.user = null;
-      } finally {
-        this.loading = false;
       }
     },
-
-    async logout() {
+    async logout(): Promise<boolean> {
       try {
-        await $fetch('/api/auth/logout', { method: 'POST' });
-      } finally {
         this.user = null;
+        $fetch<ResultDTO>('/api/protected/auth/logout', { method: 'POST' });
+        return true;
+      } catch {
+        return false;
       }
     },
+  },
+  getters: {
+    isAuthenticated: (state) => !!state.user,
   },
 });

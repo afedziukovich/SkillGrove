@@ -1,4 +1,4 @@
-import type { Session } from '~~/server/models/session';
+import type { Session } from '~~/server/models';
 import type { ISessionRepository } from '../interfaces';
 import sessionsData from '~~/server/data/sessions.json';
 
@@ -31,5 +31,9 @@ export class MockSessionRepository implements ISessionRepository {
 
   async deleteByUserId(userId: number): Promise<void> {
     this.sessions = this.sessions.filter((s) => s.user_id !== userId);
+  }
+
+  async deleteByToken(token: string): Promise<void> {
+    this.sessions = this.sessions.filter((s) => s.token !== token);
   }
 }

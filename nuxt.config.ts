@@ -12,9 +12,22 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/eslint', '@nuxt/icon', '@nuxt/fonts', '@nuxt/image', '@nuxtjs/tailwindcss'],
+  runtimeConfig: {
+    jwtSecret: process.env.JWT_SECRET,
 
-  // plugins: ['~/plugins/pinia'],
+    public: {
+      jwtMaxAge: process.env.JWT_MAX_AGE || '604800',
+    },
+  },
+
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/icon',
+    '@nuxt/fonts',
+    '@nuxt/image',
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
+  ],
 
   eslint: {
     config: {},

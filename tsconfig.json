@@ -14,5 +14,8 @@
     {
       "path": "./.nuxt/tsconfig.node.json"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "typeRoots": ["server/types", "app/types", "./node_modules/@types"]
+  }
 }

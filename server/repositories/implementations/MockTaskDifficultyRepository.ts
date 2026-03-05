@@ -1,4 +1,4 @@
-import type { TaskDifficulty } from '~~/server/models/task-difficulty';
+import type { TaskDifficulty } from '~~/server/models';
 import type { ITaskDifficultyRepository } from '../interfaces';
 import difficultiesData from '~~/server/data/task-difficulties.json';
 

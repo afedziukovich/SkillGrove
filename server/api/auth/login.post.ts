@@ -1,6 +1,6 @@
 import { defineEventHandler, readBody, setCookie, createError } from 'h3';
 import { randomUUID } from 'crypto';
-import { verifyPassword } from '~~/server/utils/authentication';
+import { verifyPassword } from '~~/server/utils/salted-hashing';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);

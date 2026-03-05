@@ -1,4 +1,4 @@
-import type { Task } from '~~/server/models/task';
+import type { Task } from '~~/server/models';
 import type { ITaskRepository } from '../interfaces';
 import tasksData from '~~/server/data/tasks.json';
 
@@ -31,6 +31,12 @@ export class MockTaskRepository implements ITaskRepository {
 
   async findByDifficulty(difficultyId: number): Promise<Task[]> {
     return this.tasks.filter((t) => t.difficulty_id === difficultyId);
+  }
+
+  async findByCategoryAndDifficulty(categoryId: number, difficultyId: number): Promise<Task[]> {
+    return this.tasks.filter(
+      (t) => t.category_id === categoryId && t.difficulty_id === difficultyId
+    );
   }
 
   async update(task: Task): Promise<Task> {

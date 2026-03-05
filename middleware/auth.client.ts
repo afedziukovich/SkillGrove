@@ -1,4 +1,5 @@
 import { defineNuxtRouteMiddleware, navigateTo } from 'nuxt/app';
+import { useAuthStore } from '../../stores';
 
 export default defineNuxtRouteMiddleware((to) => {
   if (to.path === '/login') {
