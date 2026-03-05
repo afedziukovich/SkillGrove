@@ -13,6 +13,7 @@ export function toRandomTaskDTO(
     difficulty: toTaskDifficultyDTO(difficulty),
   };
 }
+
 export function toTaskJudgmentResultDTO(
   user: User,
   experienceGained: number,

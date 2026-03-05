@@ -6,13 +6,5 @@
     "salt": "$2b$10$laVV8abMmEdY2T/gomxcm.",
     "experience": 0,
     "level": 1
-  },
-  {
-    "id": 2,
-    "login": "test",
-    "password_hash": "$2b$10$duVk9F.YNTgADghhbuiZmuGwmeg1JQUWxvIlLNEu2Ek5V86HLNWEu",
-    "salt": "",
-    "experience": 0,
-    "level": 1
   }
 ]

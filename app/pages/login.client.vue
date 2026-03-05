@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
+import type { UserCredentialsDTO } from '~~/shared/schemas';
 import { useAuthStore } from '~~/stores/auth';
 
 const authStore = useAuthStore();
 const router = useRouter();
 
-const form = reactive({
+const form = reactive<UserCredentialsDTO>({
   login: '',
   password: '',
 });
@@ -15,16 +16,16 @@ const error = ref('');
 const handleSubmit = async () => {
   const result = await authStore.login(form);
   if (result.success) {
-    router.push('/');
+    await router.push('/');
   } else {
-    error.value = result.error;
+    error.value = result.message ?? 'Login failed';
   }
 };
 </script>
 
 <template>
   <ClientOnly>
-    <div class="min-h-screen flex items-center justify-center bg-gray-50">
+    <div class="flex-1 flex items-center justify-center bg-gray-50">
       <div class="max-w-md w-full space-y-8">
         <div>
           <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Вход в аккаунт</h2>
