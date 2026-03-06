@@ -1,5 +1,6 @@
 import useRepositories from '~~/server/plugins/repositories';
 import { AUTH_TOKEN_KEY_NAME } from '~~/shared/utils/constants';
+import { toResultDTO } from '~~/shared/converters';
 
 export default defineEventHandler(async (event) => {
   if (!event.context.auth) {

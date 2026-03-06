@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   if (!query.success) {
     throw createError({
       statusCode: 400,
-      message: 'Invalid parameters',
+      statusMessage: 'Invalid parameters',
     });
   }
 

@@ -1,12 +1,13 @@
 import { UpdatePasswordSchema } from '~~/shared/schemas';
 import useRepositories from '~~/server/plugins/repositories';
+import { toResultDTO } from '~~/shared/converters';
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, UpdatePasswordSchema.safeParse);
   if (!body.success) {
     throw createError({
       statusCode: 400,
-      message: 'Invalid body data',
+      statusMessage: 'Invalid body data',
     });
   }
 
