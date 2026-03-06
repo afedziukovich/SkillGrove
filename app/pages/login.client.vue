@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import type { UserCredentialsDTO } from '~~/shared/schemas';
-import { useAuthStore } from '~~/stores/auth';
+import { useAuthStore } from '~/stores/auth';
 
 const authStore = useAuthStore();
 const router = useRouter();
