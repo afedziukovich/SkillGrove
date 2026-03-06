@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 import { $fetch, FetchError } from 'ofetch';
-import type { UserDTO, ResultDTO } from '../shared/dtos';
-import type { UserCredentialsDTO } from '../shared/schemas';
-import { toResultDTO } from '../shared/converters';
+import type { UserDTO, ResultDTO } from '#shared/dtos';
+import type { UserCredentialsDTO } from '#shared/schemas';
+import { toResultDTO } from '#shared/converters';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
