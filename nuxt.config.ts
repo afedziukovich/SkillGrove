@@ -31,7 +31,19 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+    '@nuxtjs/mdc',
   ],
+
+  mdc: {
+    highlight: {
+      theme: 'github-light',
+      wrapperStyle: true,
+      langs: ['javascript', 'typescript', 'json', 'python'],
+    },
+    components: {
+      prose: false,
+    },
+  },
 
   eslint: {
     config: {},
@@ -47,7 +59,5 @@ export default defineNuxtConfig({
     },
   },
 
-  postcss: {
-    plugins: {},
-  },
+  css: ['~/assets/css/mdc.css'],
 });
