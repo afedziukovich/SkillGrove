@@ -1,4 +1,4 @@
-import type { User } from '~~/server/models';
+import type { User } from '~~/server/models/entities';
 
 export interface IUserRepository {
   create(user: Omit<User, 'id'>): Promise<User>;

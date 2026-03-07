@@ -1,4 +1,4 @@
-import type { User } from '~~/server/models';
+import type { User } from '~~/server/models/entities';
 import type { UserDTO } from '~~/shared/dtos';
 
 export function toUserDTO(user: User): UserDTO {

@@ -1,4 +1,4 @@
-import type { UserProgress } from '~~/server/models';
+import type { UserProgress } from '~~/server/models/entities';
 
 export interface IUserProgressRepository {
   create(progress: Omit<UserProgress, 'id'>): Promise<UserProgress>;

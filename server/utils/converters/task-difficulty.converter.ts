@@ -1,4 +1,4 @@
-import type { TaskDifficulty } from '~~/server/models';
+import type { TaskDifficulty } from '~~/server/models/entities';
 import type { TaskDifficultyDTO } from '~~/shared/dtos';
 
 export function toTaskDifficultyDTO(difficulty: TaskDifficulty): TaskDifficultyDTO {
