@@ -15,6 +15,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     jwtSecret: process.env.JWT_SECRET,
 
+    groqApiEndpointSingle: process.env.GROQ_API_ENDPOINT_SINGLE,
+    groqApiKey: process.env.GROQ_API_KEY,
+    groqTargetModel: process.env.GROQ_TARGET_MODEL,
+
     public: {
       jwtMaxAge: process.env.JWT_MAX_AGE || '604800',
     },
