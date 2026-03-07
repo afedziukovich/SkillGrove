@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+definePageMeta({
+  requiresAuth: true,
+});
+</script>
 
 <template>
   <div>
