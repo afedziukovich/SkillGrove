@@ -1,76 +1,118 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
-import type { UserCredentialsDTO } from '~~/shared/schemas';
+import { ref, computed } from 'vue';
 import { useAuthStore } from '~/stores/auth';
+import { useRouter } from 'vue-router';
 
-const authStore = useAuthStore();
+const login = ref('');
+const password = ref('');
+const errorMessage = ref('');
+
+const auth = useAuthStore();
 const router = useRouter();
 
-const form = reactive<UserCredentialsDTO>({
-  login: '',
-  password: '',
+const formValid = computed(() => {
+  return login.value.trim().length > 0 && password.value.length > 0;
 });
 
-const error = ref('');
+const submit = async () => {
+  errorMessage.value = '';
 
-const handleSubmit = async () => {
-  const result = await authStore.login(form);
-  if (result.success) {
-    await router.push('/');
-  } else {
-    error.value = result.message ?? 'Login failed';
+  if (!formValid.value) {
+    errorMessage.value = 'Заполните логин и пароль';
+    return;
   }
+
+  const result = await auth.login({
+    login: login.value,
+    password: password.value,
+  });
+
+  if (result.success) {
+    router.push('/');
+  } else {
+    errorMessage.value = result.message || '';
+  }
+};
+
+const socialLogin = (provider: string) => {
+  console.log(provider + ' login will connect to backend API');
 };
 </script>
 
 <template>
-  <ClientOnly>
-    <div class="flex-1 flex items-center justify-center bg-gray-50">
-      <div class="max-w-md w-full space-y-8">
+  <div class="flex justify-center py-20 px-4">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
+      <h1 class="text-2xl font-bold text-center mb-6">
+        Выполните вход, чтобы продолжить свой путь к знаниям
+      </h1>
+
+      <form class="space-y-4" @submit.prevent="submit">
+        <!-- login -->
         <div>
-          <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Вход в аккаунт</h2>
+          <input
+            v-model="login"
+            type="text"
+            placeholder="Логин"
+            class="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#08c]"
+          />
         </div>
-        <form class="mt-8 space-y-6" @submit.prevent="handleSubmit">
-          <div class="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label for="login" class="sr-only">Логин</label>
-              <input
-                id="login"
-                v-model="form.login"
-                type="text"
-                required
-                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
-                placeholder="Логин"
-              />
-            </div>
-            <div>
-              <label for="password" class="sr-only">Пароль</label>
-              <input
-                id="password"
-                v-model="form.password"
-                type="password"
-                required
-                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
-                placeholder="Пароль"
-              />
-            </div>
-          </div>
 
-          <div v-if="error" class="text-red-500 text-sm text-center">
-            {{ error }}
-          </div>
+        <!-- password -->
+        <div>
+          <input
+            v-model="password"
+            type="password"
+            placeholder="Пароль"
+            class="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#08c]"
+          />
+        </div>
 
-          <div>
-            <button
-              type="submit"
-              :disabled="authStore.loading"
-              class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50"
-            >
-              {{ authStore.loading ? 'Загрузка...' : 'Войти' }}
-            </button>
-          </div>
-        </form>
+        <div v-if="errorMessage" class="text-red-500 text-sm text-center">
+          {{ errorMessage }}
+        </div>
+
+        <button
+          type="submit"
+          :disabled="auth.loading"
+          class="w-full bg-[#08c] hover:bg-[#0077aa] text-white font-semibold py-3 rounded-md transition disabled:opacity-60"
+        >
+          {{ auth.loading ? 'Вход...' : 'Войти' }}
+        </button>
+      </form>
+
+      <div class="flex items-center my-6">
+        <div class="flex-1 h-px bg-gray-300"></div>
+        <span class="px-3 text-sm text-gray-500">Другие варианты входа</span>
+        <div class="flex-1 h-px bg-gray-300"></div>
       </div>
+
+      <div class="flex justify-center gap-4">
+        <button
+          class="w-12 h-12 border rounded-md hover:bg-gray-100 flex items-center justify-center"
+          @click="socialLogin('Google')"
+        >
+          <Icon name="devicon:google" class="w-5 h-5" />
+        </button>
+
+        <button
+          class="w-12 h-12 border rounded-md hover:bg-gray-100 flex items-center justify-center"
+          @click="socialLogin('GitHub')"
+        >
+          <Icon name="devicon:github" class="w-5 h-5" />
+        </button>
+
+        <button
+          class="w-12 h-12 border rounded-md hover:bg-gray-100 flex items-center justify-center"
+          @click="socialLogin('LinkedIn')"
+        >
+          <Icon name="devicon:linkedin" class="w-5 h-5" />
+        </button>
+      </div>
+
+      <p class="text-center text-sm text-gray-500 mt-6">
+        Не зарегистрированы?
+        <NuxtLink to="/register" class="text-[#08c] hover:underline"> Регистрация </NuxtLink>
+      </p>
     </div>
-  </ClientOnly>
+  </div>
 </template>
