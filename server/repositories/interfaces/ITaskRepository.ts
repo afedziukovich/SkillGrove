@@ -1,4 +1,4 @@
-import type { Task } from '~~/server/models';
+import type { Task } from '~~/server/models/entities';
 
 export interface ITaskRepository {
   create(task: Omit<Task, 'id'>): Promise<Task>;

@@ -11,6 +11,7 @@ export interface RandomTaskDTO {
 
 export interface TaskJudgmentResultDTO {
   user: UserDTO;
+  correctness: 'Correct' | 'Partly correct' | 'Incorrect';
   experienceGained: number;
   explaination: string;
 }

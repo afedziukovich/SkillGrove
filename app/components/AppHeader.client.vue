@@ -9,6 +9,13 @@
           <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-700">
             <NuxtLink to="/about" class="hover:text-[#08c] transition-colors">О проекте</NuxtLink>
             <NuxtLink to="/courses" class="hover:text-[#08c] transition-colors">Курсы</NuxtLink>
+            <template v-if="isAuthenticated">
+              <NuxtLink
+                :to="`/task?categoryId=${Math.floor(Math.random() * 9) + 1}&difficultyId=${Math.floor(Math.random() * 3) + 1}`"
+                class="hover:text-[#08c] transition-colors"
+                >Find Task</NuxtLink
+              >
+            </template>
           </nav>
         </div>
 

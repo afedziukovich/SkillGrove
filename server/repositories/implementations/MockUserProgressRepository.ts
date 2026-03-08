@@ -1,4 +1,4 @@
-import type { UserProgress } from '~~/server/models';
+import type { UserProgress } from '~~/server/models/entities';
 import type { IUserProgressRepository } from '../interfaces';
 import progressData from '~~/server/data/user-progress.json';
 

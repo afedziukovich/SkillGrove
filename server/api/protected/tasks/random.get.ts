@@ -51,7 +51,13 @@ export default defineEventHandler(async (event) => {
   }
 
   const randomIndex = Math.floor(Math.random() * filteredTasks.length);
-  const randomTask = filteredTasks.at(randomIndex)!;
+  const randomTask = filteredTasks.at(randomIndex);
+  if (!randomTask) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'No task of such category and difficulty',
+    });
+  }
 
   return toRandomTaskDTO(randomTask, taskCategory, taskDifficulty);
 });

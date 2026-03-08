@@ -1,5 +1,5 @@
 import { UserCredentialsSchema } from '~~/shared/schemas';
-import type { User } from '~~/server/models';
+import type { User } from '~~/server/models/entities';
 import useRepositories from '~~/server/plugins/repositories';
 import { SignJWT } from 'jose';
 

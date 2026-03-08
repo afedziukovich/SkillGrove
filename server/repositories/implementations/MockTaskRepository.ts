@@ -1,4 +1,4 @@
-import type { Task } from '~~/server/models';
+import type { Task } from '~~/server/models/entities';
 import type { ITaskRepository } from '../interfaces';
 import tasksData from '~~/server/data/tasks.json';
 

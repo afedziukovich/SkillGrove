@@ -1,0 +1,27 @@
+.mdc {
+  @apply max-w-none text-lg;
+}
+
+.mdc > pre {
+  @apply m-0 p-1;
+}
+
+.mdc > p {
+  @apply my-1;
+}
+
+.mdc h1 {
+  @apply my-4 font-semibold text-2xl;
+}
+
+.mdc h2 {
+  @apply my-4 font-semibold text-xl;
+}
+
+.mdc ul {
+  @apply pl-6;
+}
+
+.mdc ul > li {
+  @apply list-disc;
+}
