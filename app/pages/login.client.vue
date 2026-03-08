@@ -3,40 +3,39 @@ import { ref, computed } from 'vue';
 import { useAuthStore } from '~/stores/auth';
 import { useRouter } from 'vue-router';
 
-const email = ref('');
+const login = ref('');
 const password = ref('');
-const touched = ref(false);
+const errorMessage = ref('');
 
 const auth = useAuthStore();
 const router = useRouter();
 
-const emailValid = computed(() => {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
-});
-
 const formValid = computed(() => {
-  return emailValid.value && password.value.length > 0;
+  return login.value.trim().length > 0 && password.value.length > 0;
 });
 
 const submit = async () => {
-  touched.value = true;
+  errorMessage.value = '';
 
-  if (!formValid.value) return;
+  if (!formValid.value) {
+    errorMessage.value = 'Заполните логин и пароль';
+    return;
+  }
 
   const result = await auth.login({
-    login: email.value,
+    login: login.value,
     password: password.value,
   });
 
   if (result.success) {
     router.push('/');
   } else {
-    alert(result.message);
+    errorMessage.value = result.message || '';
   }
 };
 
 const socialLogin = (provider: string) => {
-  alert(provider + ' login will connect to backend API');
+  console.log(provider + ' login will connect to backend API');
 };
 </script>
 
@@ -48,19 +47,14 @@ const socialLogin = (provider: string) => {
       </h1>
 
       <form class="space-y-4" @submit.prevent="submit">
-        <!-- email -->
+        <!-- login -->
         <div>
           <input
-            v-model="email"
-            type="email"
-            placeholder="Адрес электронной почты"
+            v-model="login"
+            type="text"
+            placeholder="Логин"
             class="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#08c]"
-            @blur="touched = true"
           />
-
-          <p v-if="touched && !emailValid" class="text-red-500 text-sm mt-1">
-            Введите правильный адрес электронной почты
-          </p>
         </div>
 
         <!-- password -->
@@ -71,6 +65,10 @@ const socialLogin = (provider: string) => {
             placeholder="Пароль"
             class="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#08c]"
           />
+        </div>
+
+        <div v-if="errorMessage" class="text-red-500 text-sm text-center">
+          {{ errorMessage }}
         </div>
 
         <button
@@ -90,24 +88,24 @@ const socialLogin = (provider: string) => {
 
       <div class="flex justify-center gap-4">
         <button
-          class="w-12 h-12 border rounded-md hover:bg-gray-100"
+          class="w-12 h-12 border rounded-md hover:bg-gray-100 flex items-center justify-center"
           @click="socialLogin('Google')"
         >
-          G
+          <Icon name="devicon:google" class="w-5 h-5" />
         </button>
 
         <button
-          class="w-12 h-12 border rounded-md hover:bg-gray-100"
+          class="w-12 h-12 border rounded-md hover:bg-gray-100 flex items-center justify-center"
           @click="socialLogin('GitHub')"
         >
-          GH
+          <Icon name="devicon:github" class="w-5 h-5" />
         </button>
 
         <button
-          class="w-12 h-12 border rounded-md hover:bg-gray-100"
+          class="w-12 h-12 border rounded-md hover:bg-gray-100 flex items-center justify-center"
           @click="socialLogin('LinkedIn')"
         >
-          IN
+          <Icon name="devicon:linkedin" class="w-5 h-5" />
         </button>
       </div>
 
