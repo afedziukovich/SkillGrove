@@ -1,3 +1,4 @@
+import { AUTH_TOKEN_KEY_NAME } from '~~/shared/utils/constants';
 import { jwtVerify } from 'jose';
 import type { ISessionRepository, IUserRepository } from '../repositories/interfaces';
 

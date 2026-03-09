@@ -1,5 +1,6 @@
 import { UserPaginationQuerySchema } from '~~/shared/schemas';
 import useRepositories from '~~/server/plugins/repositories';
+import { toArrayOfUserDTO } from '~~/server/utils/converters/user.converter';
 
 export default defineEventHandler(async (event) => {
   const query = await getValidatedQuery(event, UserPaginationQuerySchema.safeParse);
