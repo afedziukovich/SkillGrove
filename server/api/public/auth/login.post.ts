@@ -1,6 +1,9 @@
 import { UserCredentialsSchema } from '~~/shared/schemas';
 import useRepositories from '~~/server/plugins/repositories';
 import { SignJWT } from 'jose';
+import { toUserDTO } from '~~/server/utils/converters/user.converter';
+import { verifyPassword } from '~~/server/utils/salted-hashing';
+import { AUTH_TOKEN_KEY_NAME } from '~~/shared/utils/constants';
 
 const APP_CONFIG = useRuntimeConfig();
 const SECRET_KEY = new TextEncoder().encode(String(APP_CONFIG.jwtSecret));
