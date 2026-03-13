@@ -40,7 +40,7 @@ export const useAuthStore = defineStore('auth', {
         return toResultDTO(true);
       } catch (error: unknown) {
         const message =
-          error instanceof FetchError ? (error.statusMessage ?? error.message) : 'Register failed';
+          error instanceof FetchError ? (error.statusMessage ?? error.message) : 'Login failed';
         return toResultDTO(false, message);
       } finally {
         this.loading = false;
@@ -64,7 +64,7 @@ export const useAuthStore = defineStore('auth', {
         return $fetch<ResultDTO>('/api/protected/auth/logout', { method: 'POST' });
       } catch (error: unknown) {
         const message =
-          error instanceof FetchError ? (error.statusMessage ?? error.message) : 'Register failed';
+          error instanceof FetchError ? (error.statusMessage ?? error.message) : 'Logout failed';
         return toResultDTO(false, message);
       } finally {
         this.loading = false;
