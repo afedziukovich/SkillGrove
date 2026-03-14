@@ -32,6 +32,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@nuxtjs/mdc',
+    'nuxt-toast',
   ],
 
   mdc: {
@@ -42,6 +43,14 @@ export default defineNuxtConfig({
     },
     components: {
       prose: false,
+    },
+  },
+
+  toast: {
+    settings: {
+      position: 'bottomCenter',
+      timeout: 3000,
+      pauseOnHover: true,
     },
   },
 
