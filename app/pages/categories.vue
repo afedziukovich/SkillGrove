@@ -1,35 +1,31 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import type { TaskCategoryDTO } from '~~/shared/dtos';
 
-type Category = {
-  id: number;
-  name: string;
-  tasksCount?: number;
-};
-
-const categories = ref<Category[]>([]);
+const categories = ref<TaskCategoryDTO[]>([]);
 const loading = ref(true);
-const error = ref<string | null>(null);
+const errorMessage = ref<string | null>(null);
 
 const fetchCategories = async () => {
   loading.value = true;
-  error.value = null;
+  errorMessage.value = null;
 
   try {
-    const data = await $fetch<Category[]>('/api/protected/task-categories', {
+    const data = await $fetch<TaskCategoryDTO[]>('/api/protected/task-categories', {
       credentials: 'include',
     });
 
     categories.value = data;
-  } catch (e) {
-    console.error(e);
-    error.value = 'Не удалось загрузить категории';
+  } catch {
+    errorMessage.value = 'Не удалось загрузить категории';
   } finally {
     loading.value = false;
   }
 };
 
-onMounted(fetchCategories);
+onMounted(() => {
+  fetchCategories();
+});
 </script>
 
 <template>
@@ -42,8 +38,8 @@ onMounted(fetchCategories);
 
     <!-- Error -->
 
-    <div v-else-if="error" class="text-center text-red-500 py-20">
-      {{ error }}
+    <div v-else-if="errorMessage" class="text-center text-red-500 py-20">
+      {{ errorMessage }}
     </div>
 
     <!-- Empty state -->
@@ -58,17 +54,13 @@ onMounted(fetchCategories);
       <NuxtLink
         v-for="category in categories"
         :key="category.id"
-        :to="`/tasks?categoryId=${category.id}`"
+        :to="`/difficulties?categoryId=${category.id}`"
         class="group border rounded-lg p-6 text-center transition hover:border-[#08c] hover:shadow-md"
       >
-        <div class="text-3xl mb-2">📚</div>
+        <Icon name="material-symbols:category" size="30" class="text-green-500" />
 
         <div class="text-lg font-semibold">
           {{ category.name }}
-        </div>
-
-        <div class="text-sm text-gray-500 mt-1">
-          {{ category.tasksCount ?? 'Посмотреть задания' }}
         </div>
       </NuxtLink>
     </div>
