@@ -68,5 +68,11 @@ export default defineNuxtConfig({
     },
   },
 
+  typescript: {
+    tsConfig: {
+      include: ['../test/unit/**/*'],
+    },
+  },
+
   css: ['~/assets/css/mdc.css'],
 });
