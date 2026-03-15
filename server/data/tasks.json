@@ -943,5 +943,110 @@
     "description": "**Question:** What is a trie data structure? Explain its use cases and time complexity.",
     "category_id": 7,
     "difficulty_id": 3
+  },
+  {
+    "id": 136,
+    "title": "Arrow functions vs regular functions",
+    "description": "**Question:** What are the key differences between arrow functions and regular functions in JavaScript? Provide examples.",
+    "category_id": 6,
+    "difficulty_id": 1
+  },
+  {
+    "id": 137,
+    "title": "Template literals usage",
+    "description": "**Task:** Use template literals to create a string that includes the variables `name` and `age`:\n\n```javascript\nconst name = 'Alice';\nconst age = 25;\n// Your code here\n```",
+    "category_id": 6,
+    "difficulty_id": 1
+  },
+  {
+    "id": 138,
+    "title": "Default parameters in functions",
+    "description": "**Question:** What is the purpose of default parameters in ES6? How do they improve function definitions?",
+    "category_id": 6,
+    "difficulty_id": 1
+  },
+  {
+    "id": 139,
+    "title": "Rest and spread operators",
+    "description": "**Question:** Explain the difference between the rest operator and the spread operator in ES6. Provide examples for both.",
+    "category_id": 6,
+    "difficulty_id": 1
+  },
+  {
+    "id": 140,
+    "title": "Destructuring assignment",
+    "description": "**Task:** Use object destructuring to extract `title` and `author` from the following object:\n\n```javascript\nconst book = { title: 'ES6 Guide', author: 'John Doe', year: 2020 };\n```",
+    "category_id": 6,
+    "difficulty_id": 1
+  },
+  {
+    "id": 141,
+    "title": "Classes and inheritance",
+    "description": "**Question:** How do ES6 classes differ from constructor functions in ES5? Explain the concept of inheritance in ES6 classes.",
+    "category_id": 6,
+    "difficulty_id": 2
+  },
+  {
+    "id": 142,
+    "title": "Modules in ES6",
+    "description": "**Question:** What are ES6 modules? How do `import` and `export` work, and what are the benefits of using modules?",
+    "category_id": 6,
+    "difficulty_id": 2
+  },
+  {
+    "id": 143,
+    "title": "Promises and async/await",
+    "description": "**Question:** What are Promises in ES6, and how do they help with asynchronous operations? Explain how `async/await` simplifies working with Promises.",
+    "category_id": 6,
+    "difficulty_id": 2
+  },
+  {
+    "id": 144,
+    "title": "Generators and iterators",
+    "description": "**Task:** Write a generator function `range` that yields numbers from `start` to `end` (inclusive).\n\n**Example:**\n```javascript\nfunction* range(start, end) {\n  // Your code here\n}\n```",
+    "category_id": 6,
+    "difficulty_id": 2
+  },
+  {
+    "id": 145,
+    "title": "Symbols in ES6",
+    "description": "**Question:** What are Symbols in ES6? How are they used, and what makes them unique compared to other primitive types?",
+    "category_id": 6,
+    "difficulty_id": 2
+  },
+  {
+    "id": 146,
+    "title": "Proxies and reflection",
+    "description": "**Question:** What are Proxies in ES6? Explain how they enable meta-programming and provide an example of using the `Reflect` API.",
+    "category_id": 6,
+    "difficulty_id": 3
+  },
+  {
+    "id": 147,
+    "title": "WeakMap and WeakSet",
+    "description": "**Question:** What are `WeakMap` and `WeakSet` in ES6? How do they differ from `Map` and `Set`, and what are their use cases?",
+    "category_id": 6,
+    "difficulty_id": 3
+  },
+  {
+    "id": 148,
+    "title": "Iterator and iterable protocols",
+    "description": "**Question:** What are the iterator and iterable protocols in ES6? How do they enable custom iteration behavior in objects?",
+    "category_id": 6,
+    "difficulty_id": 3
+  },
+  {
+    "id": 149,
+    "title": "ES6 modules in browsers",
+    "description": "**Question:** How do ES6 modules work in browsers? Explain the difference between static and dynamic imports.",
+    "category_id": 6,
+    "difficulty_id": 3
+  },
+  {
+    "id": 150,
+    "title": "Private class fields",
+    "description": "**Question:** What are private class fields in ES6? How do they improve encapsulation in JavaScript classes?",
+    "category_id": 6,
+    "difficulty_id": 3
   }
 ]

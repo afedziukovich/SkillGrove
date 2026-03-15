@@ -8,7 +8,9 @@
           </NuxtLink>
           <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-700">
             <NuxtLink to="/about" class="hover:text-primary transition-colors">О проекте</NuxtLink>
-            <NuxtLink to="/courses" class="hover:text-primary transition-colors">Курсы</NuxtLink>
+            <NuxtLink to="/categories" class="hover:text-primary transition-colors"
+              >Категории</NuxtLink
+            >
             <template v-if="isAuthenticated">
               <NuxtLink
                 :to="`/task?categoryId=${Math.floor(Math.random() * 9) + 1}&difficultyId=${Math.floor(Math.random() * 3) + 1}`"
@@ -56,8 +58,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useAuthStore } from '~/stores/auth';
+import { useRouter } from 'vue-router';
 
 const authStore = useAuthStore();
+const router = useRouter();
 
 const isAuthenticated = computed(() => authStore.isAuthenticated);
 const user = computed(() => authStore.user);
@@ -73,9 +77,10 @@ const closeMenu = () => {
   isMenuOpen.value = false;
 };
 
-const logout = () => {
-  authStore.logout();
+const logout = async () => {
+  await authStore.logout();
   closeMenu();
+  router.push('/');
 };
 
 // Handle click outside
