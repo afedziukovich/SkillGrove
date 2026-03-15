@@ -11,13 +11,6 @@
             <NuxtLink to="/categories" class="hover:text-[#08c] transition-colors"
               >Категории</NuxtLink
             >
-            <template v-if="isAuthenticated">
-              <NuxtLink
-                :to="`/task?categoryId=${Math.floor(Math.random() * 9) + 1}&difficultyId=${Math.floor(Math.random() * 3) + 1}`"
-                class="hover:text-[#08c] transition-colors"
-                >Find Task</NuxtLink
-              >
-            </template>
           </nav>
         </div>
 
@@ -99,8 +92,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useAuthStore } from '~/stores/auth';
+import { useRouter } from 'vue-router';
 
 const authStore = useAuthStore();
+const router = useRouter();
 
 const isAuthenticated = computed(() => authStore.isAuthenticated);
 const user = computed(() => authStore.user);
@@ -115,8 +110,9 @@ const closeMenu = () => {
   isMenuOpen.value = false;
 };
 
-const logout = () => {
-  authStore.logout();
+const logout = async () => {
+  await authStore.logout();
   closeMenu();
+  router.push('/');
 };
 </script>
