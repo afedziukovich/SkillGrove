@@ -3,6 +3,8 @@ import { ref, computed } from 'vue';
 import { useAuthStore } from '~/stores/auth';
 import { useRouter } from 'vue-router';
 
+const toast = useToast();
+
 const login = ref('');
 const password = ref('');
 const errorMessage = ref('');
@@ -29,8 +31,18 @@ const submit = async () => {
 
   if (result.success) {
     router.push('/');
+    toast.success({
+      title: 'Login Success',
+      message: 'You have successfully logged in.',
+      position: 'bottomCenter',
+    });
   } else {
-    errorMessage.value = result.message || '';
+    errorMessage.value = result.message ?? 'An unexpected error occurred. Please try again later.';
+    toast.error({
+      title: 'Login Failure',
+      message: errorMessage.value,
+      position: 'bottomCenter',
+    });
   }
 };
 
