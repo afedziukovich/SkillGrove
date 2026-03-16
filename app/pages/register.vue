@@ -3,9 +3,11 @@ import { ref, computed } from 'vue';
 import { useAuthStore } from '~/stores/auth';
 import { useRouter } from 'vue-router';
 
+const toast = useToast();
+
 const login = ref('');
 const password = ref('');
-const error = ref('');
+const errorMessage = ref('');
 const touched = ref(false);
 
 const auth = useAuthStore();
@@ -18,7 +20,7 @@ const formValid = computed(() => loginValid.value && passwordValid.value);
 
 const submit = async () => {
   touched.value = true;
-  error.value = '';
+  errorMessage.value = '';
 
   if (!formValid.value) return;
 
@@ -28,9 +30,17 @@ const submit = async () => {
   });
 
   if (result.success) {
-    router.push('/login');
+    router.push('/');
+    toast.success({
+      title: 'Registration Success',
+      message: 'Your account has been created and you are now logged in.',
+    });
   } else {
-    error.value = result.message ?? 'Registration failed';
+    errorMessage.value = result.message ?? 'An unexpected error occurred. Please try again later.';
+    toast.error({
+      title: 'Registration Failure',
+      message: errorMessage.value,
+    });
   }
 };
 </script>
@@ -77,8 +87,8 @@ const submit = async () => {
         </button>
       </form>
 
-      <p v-if="error" class="text-red-500 text-center mt-4">
-        {{ error }}
+      <p v-if="errorMessage" class="text-red-500 text-center mt-4">
+        {{ errorMessage }}
       </p>
 
       <p class="text-center text-sm text-gray-500 mt-6">

@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import type { RandomTaskDTO, TaskJudgmentResultDTO, TaskSolutionDTO } from '~~/shared/dtos';
 import type { RandomTaskParametersDTO } from '~~/shared/schemas';
+import { FetchError } from 'ofetch';
 
 definePageMeta({
   requiresAuth: false,
 });
+
+const toast = useToast();
 
 const correctnessIcons = {
   Correct: { name: 'material-symbols:sentiment-excited', color: 'text-green-500' },
@@ -19,6 +22,7 @@ const difficultyId = computed(() => Number(route.query.difficultyId) || 1);
 const isLoading = ref<boolean>(false);
 const isSending = ref<boolean>(false);
 const isFormDisabled = ref<boolean>(false);
+
 const randomTask = ref<RandomTaskDTO | null>(null);
 const solutionForm = reactive<TaskSolutionDTO>({
   taskId: 0,
@@ -33,28 +37,56 @@ async function getRandomTask(categoryId: number, difficultyId: number) {
   isFormDisabled.value = false;
   solutionForm.taskId = 0;
   solutionForm.solution = '';
-  const response = await $fetch<RandomTaskDTO>('/api/protected/tasks/random', {
-    method: 'GET',
-    query: {
-      categoryId,
-      difficultyId,
-    } as RandomTaskParametersDTO,
-  });
-  randomTask.value = response;
-  solutionForm.taskId = randomTask.value.task.id;
-  isLoading.value = false;
+
+  try {
+    const response = await $fetch<RandomTaskDTO>('/api/protected/tasks/random', {
+      method: 'GET',
+      query: {
+        categoryId,
+        difficultyId,
+      } as RandomTaskParametersDTO,
+    });
+
+    randomTask.value = response;
+    solutionForm.taskId = randomTask.value.task.id;
+    isLoading.value = false;
+  } catch (error: unknown) {
+    if (error instanceof FetchError) {
+      toast.error({
+        title: 'Loading Failed',
+        message: 'The task could not be loaded. Please refresh or try again.',
+      });
+    }
+  }
 }
 
 const handleSolutionSubmit = async () => {
   isSending.value = true;
   taskJudgmentResult.value = null;
   isFormDisabled.value = true;
-  const response = await $fetch<TaskJudgmentResultDTO>('/api/protected/tasks/solution', {
-    method: 'POST',
-    body: solutionForm,
-  });
-  taskJudgmentResult.value = response;
-  isSending.value = false;
+
+  try {
+    const response = await $fetch<TaskJudgmentResultDTO>('/api/protected/tasks/solution', {
+      method: 'POST',
+      body: solutionForm,
+    });
+
+    toast.info({
+      title: `Solution Judgment Result`,
+      message: `${response.correctness} (+ ${response.experienceGained} XP)`,
+    });
+
+    taskJudgmentResult.value = response;
+  } catch (error: unknown) {
+    if (error instanceof FetchError) {
+      toast.error({
+        title: 'Loading Failed',
+        message: 'The task could not be loaded. Please refresh or try again.',
+      });
+    }
+  } finally {
+    isSending.value = false;
+  }
 };
 
 onMounted(() => {
