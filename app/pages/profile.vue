@@ -1,27 +1,16 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import type { LoginUserDTO, UpdatePasswordDTO } from '~/shared/schemes/user.scheme';
 
 definePageMeta({
   requiresAuth: true,
 });
 
-type UserProfile = {
-  id: number;
-  login: string;
-};
-
-type PasswordChangeData = {
-  newPassword: string;
-  currentPassword: string;
-  confirmPassword: string;
-};
-
-const user = ref<UserProfile>({
-  id: 0,
+const user = ref<LoginUserDTO>({
   login: '',
 });
 
-const passwordData = ref<PasswordChangeData>({
+const passwordData = ref<UpdatePasswordDTO & { currentPassword: string; confirmPassword: string }>({
   currentPassword: '',
   newPassword: '',
   confirmPassword: '',
@@ -38,7 +27,7 @@ const fetchUserProfile = async () => {
   error.value = null;
 
   try {
-    const data = await $fetch<UserProfile>('/api/protected/auth/me', {
+    const data = await $fetch<LoginUserDTO>('/api/protected/auth/me', {
       credentials: 'include',
     });
     user.value = data;
@@ -74,7 +63,7 @@ const changePassword = async () => {
       method: 'POST',
       body: {
         newPassword: passwordData.value.newPassword,
-      },
+      } as UpdatePasswordDTO,
       credentials: 'include',
     });
 
