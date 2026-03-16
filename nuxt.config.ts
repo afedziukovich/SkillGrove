@@ -74,5 +74,5 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['~/assets/css/mdc.css'],
+  css: ['~/assets/css/mdc.css', '~/assets/css/main.css'],
 });
