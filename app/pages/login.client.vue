@@ -52,79 +52,86 @@ const socialLogin = (provider: string) => {
 </script>
 
 <template>
-  <div class="flex justify-center py-20 px-4">
-    <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
-      <h1 class="text-2xl font-bold text-center mb-6">
+  <div class="h-screen flex items-start justify-center px-4 pt-[72px]">
+    <div class="w-full max-w-md bg-white border border-gray-200 rounded-sm p-8">
+      <h1 class="text-xl font-medium text-center mb-6 text-gray-900">
         Выполните вход, чтобы продолжить свой путь к знаниям
       </h1>
 
       <form class="space-y-4" @submit.prevent="submit">
-        <!-- login -->
         <div>
           <input
             v-model="login"
             type="text"
             placeholder="Логин"
-            class="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#08c]"
+            class="w-full px-4 py-3 text-[15px] border border-gray-300 rounded-sm focus:outline-none focus:border-[#08c] focus:ring-1 focus:ring-[#08c] transition-colors"
           />
         </div>
 
-        <!-- password -->
         <div>
           <input
             v-model="password"
             type="password"
             placeholder="Пароль"
-            class="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#08c]"
+            class="w-full px-4 py-3 text-[15px] border border-gray-300 rounded-sm focus:outline-none focus:border-[#08c] focus:ring-1 focus:ring-[#08c] transition-colors"
           />
         </div>
 
-        <div v-if="errorMessage" class="text-red-500 text-sm text-center">
+        <div v-if="errorMessage" class="text-sm text-center text-red-600 py-2">
           {{ errorMessage }}
         </div>
 
-        <button
-          type="submit"
-          :disabled="auth.loading"
-          class="w-full bg-[#08c] hover:bg-[#0077aa] text-white font-semibold py-3 rounded-md transition disabled:opacity-60"
-        >
+        <button type="submit" :disabled="auth.loading" class="btn btn-primary w-full !py-3">
           {{ auth.loading ? 'Вход...' : 'Войти' }}
         </button>
       </form>
 
       <div class="flex items-center my-6">
-        <div class="flex-1 h-px bg-gray-300"></div>
+        <div class="flex-1 h-px bg-gray-200"></div>
         <span class="px-3 text-sm text-gray-500">Другие варианты входа</span>
-        <div class="flex-1 h-px bg-gray-300"></div>
+        <div class="flex-1 h-px bg-gray-200"></div>
       </div>
 
-      <div class="flex justify-center gap-4">
+      <div class="flex justify-center gap-3">
         <button
-          class="w-12 h-12 border rounded-md hover:bg-gray-100 flex items-center justify-center"
+          class="w-12 h-12 border border-gray-200 rounded-sm hover:bg-gray-50 flex items-center justify-center transition-colors"
+          aria-label="Войти через Google"
           @click="socialLogin('Google')"
         >
-          <Icon name="devicon:google" class="w-5 h-5" />
+          <Icon name="devicon:google" class="w-5 h-5 text-gray-600" />
         </button>
 
         <button
-          class="w-12 h-12 border rounded-md hover:bg-gray-100 flex items-center justify-center"
+          class="w-12 h-12 border border-gray-200 rounded-sm hover:bg-gray-50 flex items-center justify-center transition-colors"
+          aria-label="Войти через GitHub"
           @click="socialLogin('GitHub')"
         >
-          <Icon name="devicon:github" class="w-5 h-5" />
+          <Icon name="devicon:github" class="w-5 h-5 text-gray-600" />
         </button>
 
         <button
-          class="w-12 h-12 border rounded-md hover:bg-gray-100 flex items-center justify-center"
+          class="w-12 h-12 border border-gray-200 rounded-sm hover:bg-gray-50 flex items-center justify-center transition-colors"
+          aria-label="Войти через LinkedIn"
           @click="socialLogin('LinkedIn')"
         >
-          <Icon name="devicon:linkedin" class="w-5 h-5" />
+          <Icon name="devicon:linkedin" class="w-5 h-5 text-gray-600" />
         </button>
       </div>
 
       <p class="text-center text-sm text-gray-500 mt-6">
         Не зарегистрированы?
-        <NuxtLink to="/register" class="text-[#08c] hover:underline"> Регистрация </NuxtLink>
+        <NuxtLink to="/register" class="text-[#08c] hover:text-[#0077aa] transition-colors">
+          Регистрация
+        </NuxtLink>
       </p>
     </div>
   </div>
 </template>
+
+<style scoped>
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+}
+</style>

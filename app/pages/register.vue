@@ -46,20 +46,19 @@ const submit = async () => {
 </script>
 
 <template>
-  <div class="flex justify-center py-20 px-4">
-    <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
-      <h1 class="text-2xl font-bold text-center mb-6">Создайте аккаунт</h1>
+  <div class="h-screen flex items-start justify-center px-4 pt-[72px]">
+    <div class="w-full max-w-md bg-white border border-gray-200 rounded-sm p-8">
+      <h1 class="text-xl font-medium text-center mb-6 text-gray-900">Создайте аккаунт</h1>
 
       <form class="space-y-4" @submit.prevent="submit">
         <div>
           <input
             v-model="login"
             type="text"
-            placeholder="Login"
-            class="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#08c]"
+            placeholder="Логин"
+            class="w-full px-4 py-3 text-[15px] border border-gray-300 rounded-sm focus:outline-none focus:border-[#08c] focus:ring-1 focus:ring-[#08c] transition-colors"
             @blur="touched = true"
           />
-
           <p v-if="touched && !loginValid" class="text-red-500 text-sm mt-1">
             Логин должен содержать минимум 3 символа
           </p>
@@ -69,32 +68,39 @@ const submit = async () => {
           <input
             v-model="password"
             type="password"
-            placeholder="Password"
-            class="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#08c]"
+            placeholder="Пароль"
+            class="w-full px-4 py-3 text-[15px] border border-gray-300 rounded-sm focus:outline-none focus:border-[#08c] focus:ring-1 focus:ring-[#08c] transition-colors"
           />
-
           <p v-if="touched && !passwordValid" class="text-red-500 text-sm mt-1">
             Пароль должен содержать минимум 6 символов
           </p>
         </div>
 
-        <button
-          type="submit"
-          :disabled="auth.loading"
-          class="w-full bg-[#08c] hover:bg-[#0077aa] text-white font-semibold py-3 rounded-md transition disabled:opacity-60"
-        >
+        <div v-if="errorMessage" class="text-sm text-center text-red-600 py-2">
+          {{ errorMessage }}
+        </div>
+
+        <button type="submit" :disabled="auth.loading" class="btn btn-primary w-full !py-3">
           {{ auth.loading ? 'Регистрация...' : 'Зарегистрироваться' }}
         </button>
       </form>
 
-      <p v-if="errorMessage" class="text-red-500 text-center mt-4">
-        {{ errorMessage }}
-      </p>
-
       <p class="text-center text-sm text-gray-500 mt-6">
         Уже есть аккаунт?
-        <NuxtLink to="/login" class="text-[#08c] hover:underline"> Войти </NuxtLink>
+        <NuxtLink to="/login" class="text-[#08c] hover:text-[#0077aa] transition-colors">
+          Войти
+        </NuxtLink>
       </p>
     </div>
   </div>
 </template>
+
+<style>
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+</style>
