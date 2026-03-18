@@ -20,14 +20,6 @@
             >
               Категории
             </NuxtLink>
-            <template v-if="isAuthenticated">
-              <NuxtLink
-                :to="`/task?categoryId=${Math.floor(Math.random() * 9) + 1}&difficultyId=${Math.floor(Math.random() * 3) + 1}`"
-                class="text-[15px] text-gray-700 hover:text-primary transition-colors"
-              >
-                Find Task
-              </NuxtLink>
-            </template>
           </nav>
         </div>
 
@@ -50,10 +42,11 @@
           <template v-else>
             <div ref="userMenuRef" class="user-menu">
               <button
-                class="px-3 py-2 text-[15px] text-gray-700 hover:bg-gray-100 rounded-sm transition-colors"
+                class="flex items-center gap-2 px-3 py-2 text-[15px] text-gray-700 hover:bg-gray-100 rounded-sm transition-colors"
                 @click="toggleMenu"
               >
                 {{ user?.login }}
+                <Icon name="mdi:user-circle" size="20" />
               </button>
               <div ref="dropdownRef" class="user-menu-dropdown" :class="{ open: isMenuOpen }">
                 <NuxtLink to="/profile" @click="closeMenu">Редактировать профиль</NuxtLink>

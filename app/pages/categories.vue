@@ -35,10 +35,15 @@ onMounted(() => {
 <template>
   <div class="min-h-screen">
     <div class="container-custom py-16">
-      <h1 class="text-2xl font-medium text-gray-900 mb-12 text-center">Категории заданий</h1>
+      <h1 class="text-3xl font-medium text-center mb-10">Категории заданий</h1>
 
-      <div v-if="loading" class="text-center text-gray-500 py-20 text-sm">
-        Загрузка категорий...
+      <div
+        v-if="loading"
+        class="flex justify-center items-center gap-2 text-center text-gray-500 py-20 text-base"
+      >
+        <img src="../assets/images/svg/loading.svg" class="size-4" /><span
+          >Загрузка категорий...</span
+        >
       </div>
 
       <div v-else-if="errorMessage" class="text-center text-red-600 py-20 text-sm">
@@ -54,10 +59,11 @@ onMounted(() => {
           v-for="category in categories"
           :key="category.id"
           :to="`/difficulties?categoryId=${category.id}`"
-          class="group bg-white border border-gray-200 rounded-sm p-6 text-center transition-colors hover:border-[#08c]"
+          class="border rounded-lg p-6 text-center hover:border-[#08c] hover:shadow-md transition"
         >
           <Icon name="material-symbols:category" size="30" class="text-[#08c] mb-3" />
-          <div class="text-base font-medium text-gray-900">
+
+          <div class="text-xl font-regular text-gray-900">
             {{ category.name }}
           </div>
         </NuxtLink>
