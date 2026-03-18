@@ -99,7 +99,7 @@ watch([categoryId, difficultyId], () => {
 </script>
 
 <template>
-  <div class="flex-1 min-h-36 flex flex-col gap-6">
+  <div class="flex-1 flex flex-col gap-6 container-custom py-16">
     <div v-if="isLoading" class="flex-1 w-full flex items-center justify-center">
       <img src="../assets/images/svg/loading.svg" class="size-16" />
     </div>
@@ -138,13 +138,14 @@ watch([categoryId, difficultyId], () => {
           <input v-model="solutionForm.taskId" type="hidden" name="taskId" />
           <textarea
             v-model="solutionForm.solution"
-            class="flex-1 border-2 p-2"
+            class="flex-1 px-4 py-3 text-[15px] border border-gray-300 rounded-sm focus:outline-none focus:border-[#08c] focus:ring-1 focus:ring-[#08c] transition-colors"
             name="solution"
             required
             placeholder="Enter solution..."
             :disabled="isFormDisabled"
+            rows="3"
           ></textarea>
-          <button class="btn-submit" :disabled="isFormDisabled">Submit</button>
+          <button class="btn btn-primary min-w-32 !py-3" :disabled="isFormDisabled">Submit</button>
         </form>
       </div>
     </template>
@@ -185,16 +186,13 @@ watch([categoryId, difficultyId], () => {
             class="mdc rounded-lg bg-slate-100 p-2"
           />
         </details>
-        <button class="btn-submit" @click="() => getRandomTask(categoryId, difficultyId)">
+        <button
+          class="btn btn-primary w-full !py-3"
+          @click="() => getRandomTask(categoryId, difficultyId)"
+        >
           Find New Task
         </button>
       </div>
     </template>
   </div>
 </template>
-
-<style scoped>
-.btn-submit {
-  @apply bg-blue-500 hover:bg-blue-700 disabled:bg-gray-500 text-white disabled:text-gray-600 font-bold py-2 px-4 rounded;
-}
-</style>

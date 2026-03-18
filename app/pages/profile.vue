@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import type { LoginUserDTO, UpdatePasswordDTO } from '~/shared/schemes/user.scheme';
+import type { LoginUserDTO, UpdatePasswordDTO } from '~~/shared/schemas/user';
 
 definePageMeta({
   requiresAuth: true,
@@ -10,8 +10,7 @@ const user = ref<LoginUserDTO>({
   login: '',
 });
 
-const passwordData = ref<UpdatePasswordDTO & { currentPassword: string; confirmPassword: string }>({
-  currentPassword: '',
+const passwordData = ref<UpdatePasswordDTO & { confirmPassword: string }>({
   newPassword: '',
   confirmPassword: '',
 });
@@ -39,11 +38,6 @@ const fetchUserProfile = async () => {
 };
 
 const changePassword = async () => {
-  if (!passwordData.value.currentPassword) {
-    passwordError.value = 'Введите текущий пароль';
-    return;
-  }
-
   if (passwordData.value.newPassword.length < 6) {
     passwordError.value = 'Новый пароль должен быть не менее 6 символов';
     return;
@@ -70,7 +64,6 @@ const changePassword = async () => {
     passwordSuccess.value = 'Пароль успешно изменен';
 
     passwordData.value = {
-      currentPassword: '',
       newPassword: '',
       confirmPassword: '',
     };
@@ -90,93 +83,89 @@ onMounted(fetchUserProfile);
 </script>
 
 <template>
-  <div class="max-w-3xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-10">Профиль пользователя</h1>
+  <div class="min-h-screen">
+    <div class="container-custom py-16">
+      <div class="max-w-md mx-auto">
+        <h1 class="text-2xl font-medium text-gray-900 mb-8 text-center">Профиль пользователя</h1>
 
-    <div v-if="loading" class="text-center py-10">
-      <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#08c]"></div>
-      <p class="mt-2 text-gray-600">Загрузка профиля...</p>
-    </div>
+        <div v-if="loading" class="text-center py-10">
+          <div
+            class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#08c]"
+          ></div>
+          <p class="mt-2 text-sm text-gray-500">Загрузка профиля...</p>
+        </div>
 
-    <div v-else-if="error" class="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
-      {{ error }}
-    </div>
+        <div v-else-if="error" class="bg-red-50 text-red-600 p-4 rounded-sm text-sm mb-6">
+          {{ error }}
+        </div>
 
-    <div v-else class="border rounded-lg p-6 space-y-6">
-      <div>
-        <label class="text-sm text-gray-600 block mb-1">Логин</label>
-        <input
-          :value="user.login"
-          class="border w-full p-2.5 rounded bg-gray-100 text-gray-600 cursor-not-allowed"
-          disabled
-          readonly
-        />
+        <div v-else class="bg-white border border-gray-200 rounded-sm p-8">
+          <div class="mb-8">
+            <label class="text-sm text-gray-500 block mb-2">Логин</label>
+            <input
+              :value="user.login"
+              class="w-full px-4 py-3 text-[15px] bg-gray-50 border border-gray-200 rounded-sm text-gray-600 cursor-not-allowed"
+              disabled
+              readonly
+            />
+          </div>
+
+          <div class="space-y-4">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">Смена пароля</h2>
+
+            <div v-if="passwordError" class="bg-red-50 text-red-600 p-3 rounded-sm text-sm">
+              {{ passwordError }}
+            </div>
+            <div v-if="passwordSuccess" class="bg-green-50 text-green-600 p-3 rounded-sm text-sm">
+              {{ passwordSuccess }}
+            </div>
+
+            <div>
+              <label class="text-sm text-gray-500 block mb-2">
+                Новый пароль <span class="text-red-500">*</span>
+              </label>
+              <input
+                v-model="passwordData.newPassword"
+                type="password"
+                placeholder="Минимум 6 символов"
+                class="w-full px-4 py-3 text-[15px] border border-gray-300 rounded-sm focus:outline-none focus:border-[#08c] focus:ring-1 focus:ring-[#08c] transition-colors"
+                :disabled="passwordLoading"
+                @input="clearMessages"
+              />
+            </div>
+
+            <div>
+              <label class="text-sm text-gray-500 block mb-2">
+                Подтверждение нового пароля <span class="text-red-500">*</span>
+              </label>
+              <input
+                v-model="passwordData.confirmPassword"
+                type="password"
+                placeholder="Повторите новый пароль"
+                class="w-full px-4 py-3 text-[15px] border border-gray-300 rounded-sm focus:outline-none focus:border-[#08c] focus:ring-1 focus:ring-[#08c] transition-colors"
+                :disabled="passwordLoading"
+                @input="clearMessages"
+              />
+            </div>
+
+            <button
+              :disabled="
+                passwordLoading || !passwordData.newPassword || !passwordData.confirmPassword
+              "
+              class="btn btn-primary w-full !py-3 mt-4"
+              @click="changePassword"
+            >
+              <span v-if="passwordLoading" class="flex items-center justify-center">
+                <span
+                  class="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"
+                ></span>
+                Смена пароля...
+              </span>
+              <span v-else>Сменить пароль</span>
+            </button>
+          </div>
+        </div>
       </div>
-
-      <div v-if="passwordError" class="bg-red-50 text-red-600 p-3 rounded-lg text-sm">
-        {{ passwordError }}
-      </div>
-      <div v-if="passwordSuccess" class="bg-green-50 text-green-600 p-3 rounded-lg text-sm">
-        {{ passwordSuccess }}
-      </div>
-
-      <div>
-        <label class="text-sm text-gray-600 block mb-1">
-          Текущий пароль <span class="text-red-500">*</span>
-        </label>
-        <input
-          v-model="passwordData.currentPassword"
-          type="password"
-          class="border w-full p-2.5 rounded focus:outline-none focus:ring-2 focus:ring-[#08c] focus:border-transparent"
-          :disabled="passwordLoading"
-          @input="clearMessages"
-        />
-      </div>
-
-      <div>
-        <label class="text-sm text-gray-600 block mb-1">
-          Новый пароль <span class="text-red-500">*</span>
-        </label>
-        <input
-          v-model="passwordData.newPassword"
-          type="password"
-          class="border w-full p-2.5 rounded focus:outline-none focus:ring-2 focus:ring-[#08c] focus:border-transparent"
-          :disabled="passwordLoading"
-          @input="clearMessages"
-        />
-      </div>
-
-      <div>
-        <label class="text-sm text-gray-600 block mb-1">
-          Подтвердите новый пароль <span class="text-red-500">*</span>
-        </label>
-        <input
-          v-model="passwordData.confirmPassword"
-          type="password"
-          class="border w-full p-2.5 rounded focus:outline-none focus:ring-2 focus:ring-[#08c] focus:border-transparent"
-          :disabled="passwordLoading"
-          @input="clearMessages"
-        />
-      </div>
-
-      <button
-        :disabled="
-          passwordLoading ||
-          !passwordData.currentPassword ||
-          !passwordData.newPassword ||
-          !passwordData.confirmPassword
-        "
-        class="w-full bg-[#08c] hover:bg-[#0077aa] text-white px-6 py-2.5 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        @click="changePassword"
-      >
-        <span v-if="passwordLoading" class="flex items-center justify-center">
-          <span
-            class="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"
-          ></span>
-          Смена пароля...
-        </span>
-        <span v-else>Сменить пароль</span>
-      </button>
     </div>
   </div>
 </template>

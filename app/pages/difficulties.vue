@@ -33,37 +33,35 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold text-center mb-10">Выберите уровень сложности</h1>
+  <div class="container-custom py-16">
+    <h1 class="text-3xl font-medium text-center mb-10">Выберите уровень сложности</h1>
 
-    <!-- Loading -->
-
-    <div v-if="loading" class="text-center text-gray-500 py-20">Загрузка уровней сложности...</div>
-
-    <!-- Error -->
-
-    <div v-else-if="errorMessage" class="text-center text-red-500 py-20">
-      {{ errorMessage }}
+    <div
+      v-if="loading"
+      class="flex justify-center items-center gap-2 text-center text-gray-500 py-20 text-base"
+    >
+      <img src="../assets/images/svg/loading.svg" class="size-4" />
+      <span>Загрузка уровней сложности...</span>
     </div>
 
-    <!-- Empty state -->
+    <div v-else-if="errorMessage" class="text-center text-red-600 py-20 text-sm">
+      {{ errorMessage }}
+    </div>
 
     <div v-else-if="difficulties.length === 0" class="text-center text-gray-500 py-20">
       Пока нет доступных уровней сложности
     </div>
 
-    <!-- Difficulties -->
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <NuxtLink
         v-for="difficulty in difficulties"
         :key="difficulty.id"
         :to="`/task?categoryId=${categoryId}&difficultyId=${difficulty.id}`"
         class="border rounded-lg p-6 text-center hover:border-[#08c] hover:shadow-md transition"
       >
-        <Icon name="material-symbols:book-4-spark-rounded" size="30" class="text-green-500" />
+        <Icon name="material-symbols:book-4-spark-rounded" size="30" class="text-[#08c] mb-3" />
 
-        <div class="text-xl font-semibold">
+        <div class="text-xl font-regular text-gray-900">
           {{ difficulty.name }}
         </div>
       </NuxtLink>
