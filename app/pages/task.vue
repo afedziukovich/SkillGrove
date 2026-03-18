@@ -143,7 +143,7 @@ watch([categoryId, difficultyId], () => {
             required
             placeholder="Enter solution..."
             :disabled="isFormDisabled"
-            rows="3"
+            :rows="randomTask.task.type === 'task' ? 10 : 4"
           ></textarea>
           <button class="btn btn-primary min-w-32 !py-3" :disabled="isFormDisabled">Submit</button>
         </form>
