@@ -8,7 +8,8 @@ definePageMeta({
 });
 
 const toast = useToast();
-const currentMode = ref('text');
+const currentEditorMode = ref('text');
+const editorModes = ['text', 'js', 'ts', 'json'];
 
 const route = useRoute();
 const categoryId = computed(() => Number(route.query.categoryId) || 1);
@@ -43,7 +44,8 @@ async function getRandomTask(categoryId: number, difficultyId: number) {
     });
 
     randomTask.value = response;
-    solutionForm.taskId = randomTask.value.task.id;
+    solutionForm.taskId = response.task.id;
+    currentEditorMode.value = response.task.answerType;
     isLoading.value = false;
   } catch (error: unknown) {
     if (error instanceof FetchError) {
@@ -136,12 +138,12 @@ watch([categoryId, difficultyId], () => {
               class="w-min flex flex-row gap-[2px] rounded-t-md border border-b-0 border-gray-300"
             >
               <button
-                v-for="m in ['text', 'js', 'ts', 'json']"
+                v-for="m in editorModes"
                 :key="m"
                 class="px-2 py-2 md:px-4 font-medium border-b-2 border-transparent hover:border-gray-300 text-sm md:text-base"
-                :class="{ 'text-[#08c] border-[#08c]': currentMode === m }"
+                :class="{ 'text-[#08c] border-[#08c]': currentEditorMode === m }"
                 type="button"
-                @click="currentMode = m"
+                @click="currentEditorMode = m"
               >
                 {{ m.toUpperCase() }}
               </button>
@@ -151,7 +153,7 @@ watch([categoryId, difficultyId], () => {
               <CodeEditor
                 v-model="solutionForm.solution"
                 class="flex-1 rounded-b-md rounded-e-md overflow-hidden border border-gray-300"
-                :mode="currentMode"
+                :mode="currentEditorMode"
                 name="solution"
                 placeholder="Enter solution..."
                 :min-rows="randomTask.task.type === 'task' ? 10 : 4"

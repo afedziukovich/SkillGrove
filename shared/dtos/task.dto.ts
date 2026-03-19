@@ -1,6 +1,7 @@
 export interface TaskDTO {
   id: number;
   type: string;
+  answerType: string;
   title: string;
   description: string;
   categoryId: number;
