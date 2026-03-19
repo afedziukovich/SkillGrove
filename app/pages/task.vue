@@ -8,12 +8,8 @@ definePageMeta({
 });
 
 const toast = useToast();
-
-const correctnessIcons = {
-  Correct: { name: 'material-symbols:sentiment-excited', color: 'text-green-500' },
-  'Partly correct': { name: 'material-symbols:sentiment-neutral', color: 'text-yellow-500' },
-  Incorrect: { name: 'material-symbols:sentiment-sad', color: 'text-red-500' },
-};
+const currentEditorMode = ref('text');
+const editorModes = ['text', 'html', 'css', 'js', 'ts', 'json'];
 
 const route = useRoute();
 const categoryId = computed(() => Number(route.query.categoryId) || 1);
@@ -48,7 +44,8 @@ async function getRandomTask(categoryId: number, difficultyId: number) {
     });
 
     randomTask.value = response;
-    solutionForm.taskId = randomTask.value.task.id;
+    solutionForm.taskId = response.task.id;
+    currentEditorMode.value = response.task.answerType;
     isLoading.value = false;
   } catch (error: unknown) {
     if (error instanceof FetchError) {
@@ -105,15 +102,15 @@ watch([categoryId, difficultyId], () => {
     </div>
 
     <template v-if="randomTask">
-      <div class="flex flex-row gap-4 items-center">
-        <span class="flex flex-row gap-2 items-center">
-          <Icon name="material-symbols:category" size="20" class="text-black-400" />
-          <span class="capitalize">{{ randomTask.category.name }}</span>
-        </span>
-        <span class="flex flex-row gap-2 items-center">
-          <Icon name="material-symbols:book-4-spark-rounded" size="20" class="text-black-400" />
-          <span class="capitalize">{{ randomTask.difficulty.name }}</span>
-        </span>
+      <div
+        class="w-fit flex flex-row flex-wrap gap-[1px] items-center bg-gray-300 border border-b-gray-300 rounded-md overflow-hidden"
+      >
+        <TaskBreadcrumb :text="randomTask.category.name" link="/categories" class="flex-1" />
+        <TaskBreadcrumb
+          :text="randomTask.difficulty.name"
+          :link="`/difficulties?categoryId=${randomTask.category.id}`"
+          class="flex-1"
+        />
       </div>
 
       <div class="flex flex-col gap-4">
@@ -131,21 +128,49 @@ watch([categoryId, difficultyId], () => {
         </div>
 
         <form
-          class="flex flex-row gap-2"
+          class="flex flex-col gap-2"
           :disabled="isFormDisabled"
           @submit.prevent="handleSolutionSubmit"
         >
           <input v-model="solutionForm.taskId" type="hidden" name="taskId" />
-          <textarea
-            v-model="solutionForm.solution"
-            class="flex-1 px-4 py-3 text-[15px] border border-gray-300 rounded-sm focus:outline-none focus:border-[#08c] focus:ring-1 focus:ring-[#08c] transition-colors"
-            name="solution"
-            required
-            placeholder="Enter solution..."
-            :disabled="isFormDisabled"
-            rows="3"
-          ></textarea>
-          <button class="btn btn-primary min-w-32 !py-3" :disabled="isFormDisabled">Submit</button>
+
+          <div class="flex flex-col items-start">
+            <div
+              class="w-min flex flex-row gap-[2px] rounded-t-md border border-b-0 border-gray-300"
+            >
+              <button
+                v-for="m in editorModes"
+                :key="m"
+                class="px-2 py-2 md:px-4 font-medium border-b-2 border-transparent hover:border-gray-300 text-sm md:text-base"
+                :class="{ 'text-[#08c] border-[#08c]': currentEditorMode === m }"
+                type="button"
+                @click="currentEditorMode = m"
+              >
+                {{ m.toUpperCase() }}
+              </button>
+            </div>
+
+            <div class="w-full flex flex-row gap-2">
+              <CodeEditor
+                v-model="solutionForm.solution"
+                class="flex-1 rounded-b-md rounded-e-md overflow-hidden border border-gray-300"
+                :mode="currentEditorMode"
+                name="solution"
+                placeholder="Enter solution..."
+                :min-rows="randomTask.task.type === 'task' ? 10 : 4"
+                :disabled="isFormDisabled"
+              />
+
+              <button
+                type="submit"
+                class="btn btn-primary md:min-w-32 !py-3 flex items-center justify-center gap-1 !rounded-md"
+                :disabled="isFormDisabled"
+              >
+                <span>Submit</span>
+                <Icon name="material-symbols:task-alt-rounded" size="16" />
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </template>
@@ -157,40 +182,22 @@ watch([categoryId, difficultyId], () => {
 
     <template v-if="taskJudgmentResult">
       <div class="flex flex-col gap-4">
-        <h5 class="flex flex-row gap-2 items-center text-2xl">
-          <Icon
-            :name="correctnessIcons[taskJudgmentResult.correctness].name"
-            :class="correctnessIcons[taskJudgmentResult.correctness].color"
+        <div class="flex flex-col md:flex-row items-center gap-4">
+          <TaskCorrectnessIndicator :correctness="taskJudgmentResult.correctness" />
+          <ProfileProgressPortable
+            :login="taskJudgmentResult.user.login"
+            :level="taskJudgmentResult.user.level"
+            :experience="taskJudgmentResult.user.experience"
+            :experience-gained="taskJudgmentResult.experienceGained"
           />
-          <div class="capitalize" :class="correctnessIcons[taskJudgmentResult.correctness].color">
-            {{ taskJudgmentResult.correctness }}
-          </div>
-        </h5>
-        <div
-          class="flex flex-row w-min gap-4 rounded border-2 border-black text-nowrap p-2 text-md"
-        >
-          <div class="flex flex-row gap-2">
-            <Icon name="mdi:user-circle" size="24" />{{ taskJudgmentResult.user.login }}
-          </div>
-          <div>{{ taskJudgmentResult.user.level }} lvl</div>
-          <div>
-            {{ taskJudgmentResult.user.experience }} XP (+{{ taskJudgmentResult.experienceGained }}
-            XP)
-          </div>
         </div>
-        <details>
-          <summary class="cursor-pointer select-none p-2 text-2xl">See explaination</summary>
-          <MDC
-            :value="taskJudgmentResult.explaination"
-            tag="p"
-            class="mdc rounded-lg bg-slate-100 p-2"
-          />
-        </details>
+        <ExplanationAccordion :explaination="taskJudgmentResult.explaination" />
         <button
-          class="btn btn-primary w-full !py-3"
+          class="btn btn-primary self-center !text-xl !py-4 flex items-center justify-center gap-2 !rounded-md"
           @click="() => getRandomTask(categoryId, difficultyId)"
         >
-          Find New Task
+          <Icon name="material-symbols:search-rounded" size="24" />
+          <span>Find New Task</span>
         </button>
       </div>
     </template>
