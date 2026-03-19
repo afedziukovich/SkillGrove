@@ -308,7 +308,7 @@
   {
     "id": 35,
     "type": "task",
-    "answer_type": "js",
+    "answer_type": "html",
     "title": "Create and append a button",
     "description": "**Task:** Create a new `<button>` element with the text `\"Click Me\"` and append it to the `<body>`.\n\n**Example:**\n```javascript\n// Your code here\n```",
     "category_id": 3,
@@ -371,7 +371,7 @@
   {
     "id": 42,
     "type": "task",
-    "answer_type": "js",
+    "answer_type": "html",
     "title": "Custom element with Shadow DOM",
     "description": "**Task:** Create a custom element `<hello-world>` with a Shadow DOM that displays `\"Hello, World!\"` in a `<p>` tag.\n\n**Example:**\n```javascript\nclass HelloWorld extends HTMLElement {\n  constructor() {\n    super();\n    // Your code here\n  }\n}\ncustomElements.define('hello-world', HelloWorld);\n```",
     "category_id": 3,
@@ -398,7 +398,7 @@
   {
     "id": 45,
     "type": "task",
-    "answer_type": "js",
+    "answer_type": "html",
     "title": "Counter Web Component",
     "description": "**Task:** Create a Web Component `<counter-element>` with a button that increments a counter displayed in a `<span>`.\n\n**Example:**\n```javascript\nclass CounterElement extends HTMLElement {\n  // Your code here\n}\ncustomElements.define('counter-element', CounterElement);\n```",
     "category_id": 3,

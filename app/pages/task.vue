@@ -9,7 +9,7 @@ definePageMeta({
 
 const toast = useToast();
 const currentEditorMode = ref('text');
-const editorModes = ['text', 'js', 'ts', 'json'];
+const editorModes = ['text', 'html', 'css', 'js', 'ts', 'json'];
 
 const route = useRoute();
 const categoryId = computed(() => Number(route.query.categoryId) || 1);
@@ -103,12 +103,13 @@ watch([categoryId, difficultyId], () => {
 
     <template v-if="randomTask">
       <div
-        class="w-min flex flex-row gap-[1px] items-center bg-gray-300 border border-b-gray-300 rounded-md overflow-hidden"
+        class="w-fit flex flex-row flex-wrap gap-[1px] items-center bg-gray-300 border border-b-gray-300 rounded-md overflow-hidden"
       >
-        <TaskBreadcrumb :text="randomTask.category.name" link="/categories" />
+        <TaskBreadcrumb :text="randomTask.category.name" link="/categories" class="flex-1" />
         <TaskBreadcrumb
           :text="randomTask.difficulty.name"
           :link="`/difficulties?categoryId=${randomTask.category.id}`"
+          class="flex-1"
         />
       </div>
 

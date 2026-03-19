@@ -74,5 +74,21 @@ export default defineNuxtConfig({
     },
   },
 
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'vue-codemirror',
+        '@codemirror/lang-javascript',
+        '@codemirror/lang-json',
+        '@codemirror/lang-html',
+        '@codemirror/lang-css',
+        '@codemirror/view',
+        '@codemirror/theme-one-dark',
+      ],
+    },
+  },
+
   css: ['~/assets/css/mdc.css', '~/assets/css/main.css'],
 });

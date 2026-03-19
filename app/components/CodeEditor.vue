@@ -3,6 +3,8 @@ import { computed } from 'vue';
 import { Codemirror } from 'vue-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { json } from '@codemirror/lang-json';
+import { html } from '@codemirror/lang-html';
+import { css } from '@codemirror/lang-css';
 import { EditorView } from '@codemirror/view';
 import { oneDark } from '@codemirror/theme-one-dark';
 
@@ -25,12 +27,21 @@ const extensions = computed(() => {
     exts.push(oneDark);
   }
 
-  if (props.mode === 'json') {
-    exts.push(json());
-  } else if (props.mode === 'js') {
-    exts.push(javascript());
-  } else if (props.mode === 'ts') {
-    exts.push(javascript({ typescript: true }));
+  switch (props.mode) {
+    case 'json':
+      exts.push(json());
+      break;
+    case 'js':
+    case 'ts':
+      exts.push(javascript());
+      break;
+    case 'html':
+      exts.push(html());
+      break;
+    case 'css':
+      exts.push(css());
+      break;
+    default:
   }
 
   return exts;
