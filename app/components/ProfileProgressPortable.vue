@@ -3,6 +3,7 @@ const props = defineProps({
   login: { type: String, required: true },
   level: { type: Number, required: true },
   experience: { type: Number, required: true },
+  experienceToNextLevel: { type: Number, required: true },
   experienceGained: { type: Number, required: true },
 });
 
@@ -25,7 +26,6 @@ const badge = ref(
   levelBadges[props.level] ?? { bageName: 'material-symbols:circle', textColor: 'text-[#000000]' }
 );
 
-const nextLevelExperience = 100;
 const experienceBefore = ref(props.experience - props.experienceGained);
 const experienceAfter = ref(experienceBefore.value);
 
@@ -62,11 +62,11 @@ onMounted(() => {
     >
       <div
         class="absolute left-0 z-10 h-full bg-blue-300 transition-[width] duration-[1000ms] ease-linear"
-        :style="{ width: (experienceAfter / nextLevelExperience) * 100 + '%' }"
+        :style="{ width: (experienceAfter / props.experienceToNextLevel) * 100 + '%' }"
       ></div>
       <div
         class="absolute left-0 z-20 h-full bg-blue-400"
-        :style="{ width: (experienceBefore / nextLevelExperience) * 100 + '%' }"
+        :style="{ width: (experienceBefore / props.experienceToNextLevel) * 100 + '%' }"
       ></div>
       <span class="flex items-center gap-1 text-sm z-40">
         <span class="font-semibold text-slate-900">{{ experience }} XP</span>
