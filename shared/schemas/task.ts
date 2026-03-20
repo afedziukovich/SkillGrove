@@ -9,7 +9,7 @@ export type RandomTaskParametersDTO = z.infer<typeof RandomTaskParametersSchema>
 
 export const TaskSolutionSchema = z.object({
   taskId: z.coerce.number().int().positive(),
-  solution: z.string().trim().min(1),
+  solution: z.string().trim().min(0),
 });
 
 export type TaskSolutionDTO = z.infer<typeof TaskSolutionSchema>;

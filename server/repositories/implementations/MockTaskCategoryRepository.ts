@@ -1,6 +1,6 @@
 import type { TaskCategory } from '~~/server/models/entities';
 import type { ITaskCategoryRepository } from '../interfaces';
-import categoriesData from '~~/server/data/task-categories.json';
+import categoriesData from '~~/server/data/entities/task-categories.json';
 
 export class MockTaskCategoryRepository implements ITaskCategoryRepository {
   private categories: TaskCategory[];

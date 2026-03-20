@@ -1,6 +1,6 @@
 import type { UserProgress } from '~~/server/models/entities';
 import type { IUserProgressRepository } from '../interfaces';
-import progressData from '~~/server/data/user-progress.json';
+import progressData from '~~/server/data/entities/user-progress.json';
 
 export class MockUserProgressRepository implements IUserProgressRepository {
   private progress: UserProgress[];
@@ -27,6 +27,10 @@ export class MockUserProgressRepository implements IUserProgressRepository {
 
   async findByTaskId(taskId: number): Promise<UserProgress[]> {
     return this.progress.filter((p) => p.task_id === taskId);
+  }
+
+  async findByUserIdAndTaskId(userId: number, taskId: number): Promise<UserProgress[]> {
+    return this.progress.filter((p) => p.user_id === userId && p.task_id === taskId);
   }
 
   async update(progress: UserProgress): Promise<UserProgress> {

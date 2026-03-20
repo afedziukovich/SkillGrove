@@ -1,6 +1,6 @@
 import type { User } from '~~/server/models/entities';
 import type { IUserRepository } from '../interfaces';
-import usersData from '~~/server/data/users.json';
+import usersData from '~~/server/data/entities/users.json';
 import { dynamicSort } from '#shared/utils/dynamic-sort';
 
 export class MockUserRepository implements IUserRepository {

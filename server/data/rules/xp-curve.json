@@ -1,0 +1,11 @@
+[
+  { "to_level": 2, "required_xp": 30 },
+  { "to_level": 3, "required_xp": 90 },
+  { "to_level": 4, "required_xp": 180 },
+  { "to_level": 5, "required_xp": 300 },
+  { "to_level": 6, "required_xp": 480 },
+  { "to_level": 7, "required_xp": 720 },
+  { "to_level": 8, "required_xp": 1020 },
+  { "to_level": 9, "required_xp": 1420 },
+  { "to_level": 10, "required_xp": 1920 }
+]
