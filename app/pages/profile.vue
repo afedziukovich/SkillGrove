@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { useAuthStore } from '~/stores/auth';
 import type { LoginUserDTO, UpdatePasswordDTO } from '~~/shared/schemas/user';
 
 definePageMeta({
   requiresAuth: true,
 });
+
+const auth = useAuthStore();
+const toast = useToast();
 
 const user = ref<LoginUserDTO>({
   login: '',
@@ -25,16 +29,19 @@ const fetchUserProfile = async () => {
   loading.value = true;
   error.value = null;
 
-  try {
-    const data = await $fetch<LoginUserDTO>('/api/protected/auth/me', {
-      credentials: 'include',
-    });
-    user.value = data;
-  } catch {
+  await auth.fetchUser();
+
+  if (auth.user) {
+    user.value = auth.user;
+  } else {
     error.value = 'Не удалось загрузить профиль';
-  } finally {
-    loading.value = false;
+    toast.error({
+      title: 'User Fetching Failure',
+      message: error.value,
+    });
   }
+
+  loading.value = false;
 };
 
 const changePassword = async () => {
@@ -52,26 +59,27 @@ const changePassword = async () => {
   passwordError.value = null;
   passwordSuccess.value = null;
 
-  try {
-    await $fetch('/api/protected/auth/update-password', {
-      method: 'POST',
-      body: {
-        newPassword: passwordData.value.newPassword,
-      } as UpdatePasswordDTO,
-      credentials: 'include',
-    });
+  const result = await auth.updatePassword({ newPassword: passwordData.value.newPassword });
 
+  if (result.success) {
     passwordSuccess.value = 'Пароль успешно изменен';
-
     passwordData.value = {
       newPassword: '',
       confirmPassword: '',
     };
-  } catch {
-    passwordError.value = 'Ошибка при смене пароля';
-  } finally {
-    passwordLoading.value = false;
+    toast.success({
+      title: 'Password Update Success',
+      message: 'Password has successfully updated.',
+    });
+  } else {
+    passwordError.value = result.message ?? 'Ошибка при смене пароля';
+    toast.error({
+      title: 'Password Update Failure',
+      message: passwordError.value,
+    });
   }
+
+  passwordLoading.value = false;
 };
 
 const clearMessages = () => {

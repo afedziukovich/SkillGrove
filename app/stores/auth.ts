@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { $fetch, FetchError } from 'ofetch';
 import type { UserDTO, ResultDTO } from '#shared/dtos';
-import type { UserCredentialsDTO } from '#shared/schemas';
+import type { UpdatePasswordDTO, UserCredentialsDTO } from '#shared/schemas';
 import { toResultDTO } from '#shared/converters';
 
 export const useAuthStore = defineStore('auth', {
@@ -68,6 +68,20 @@ export const useAuthStore = defineStore('auth', {
         return toResultDTO(false, message);
       } finally {
         this.loading = false;
+      }
+    },
+    async updatePassword(passwordData: UpdatePasswordDTO): Promise<ResultDTO> {
+      try {
+        return $fetch<ResultDTO>('/api/protected/auth/update-password', {
+          method: 'POST',
+          body: passwordData,
+        });
+      } catch (error: unknown) {
+        const message =
+          error instanceof FetchError
+            ? (error.statusMessage ?? error.message)
+            : 'Password update failed';
+        return toResultDTO(false, message);
       }
     },
   },

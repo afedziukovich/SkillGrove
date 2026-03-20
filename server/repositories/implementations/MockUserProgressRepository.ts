@@ -43,4 +43,10 @@ export class MockUserProgressRepository implements IUserProgressRepository {
   async deleteById(id: number): Promise<void> {
     this.progress = this.progress.filter((p) => p.id !== id);
   }
+
+  async countCompletedByUserId(userId: number): Promise<number> {
+    return new Set(
+      this.progress.filter((p) => p.user_id === userId && p.experience_gained > 0).map((p) => p.id)
+    ).size;
+  }
 }

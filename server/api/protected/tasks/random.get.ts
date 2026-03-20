@@ -76,7 +76,5 @@ export default defineEventHandler(async (event) => {
     (a, b) => b.experience_gained - a.experience_gained
   )[0];
 
-  console.log(taskSolutionTries, bestTry);
-
   return toRandomTaskDTO(randomTask, taskCategory, taskDifficulty, bestTry);
 });
