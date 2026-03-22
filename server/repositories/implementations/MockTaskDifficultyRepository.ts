@@ -1,6 +1,6 @@
 import type { TaskDifficulty } from '~~/server/models/entities';
 import type { ITaskDifficultyRepository } from '../interfaces';
-import difficultiesData from '~~/server/data/task-difficulties.json';
+import difficultiesData from '~~/server/data/entities/task-difficulties.json';
 
 export class MockTaskDifficultyRepository implements ITaskDifficultyRepository {
   private difficulties: TaskDifficulty[];

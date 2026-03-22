@@ -48,6 +48,14 @@ export default defineEventHandler(async (event) => {
     (t) => !userProgress.some((up) => up.task_id === t.id)
   );
   if (filteredTasks.length === 0) {
+    filteredTasks = tasksByParameters.filter(
+      (t) =>
+        !userProgress.some(
+          (up) => up.task_id === t.id && up.experience_gained === taskDifficulty.max_experience
+        )
+    );
+  }
+  if (filteredTasks.length === 0) {
     filteredTasks = tasksByParameters;
   }
 
@@ -60,5 +68,13 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  return toRandomTaskDTO(randomTask, taskCategory, taskDifficulty);
+  const taskSolutionTries = await userProgressRepository.findByUserIdAndTaskId(
+    user.id,
+    randomTask.id
+  );
+  const bestTry = taskSolutionTries.toSorted(
+    (a, b) => b.experience_gained - a.experience_gained
+  )[0];
+
+  return toRandomTaskDTO(randomTask, taskCategory, taskDifficulty, bestTry);
 });

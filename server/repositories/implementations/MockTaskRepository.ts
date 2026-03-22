@@ -1,6 +1,6 @@
 import type { Task } from '~~/server/models/entities';
 import type { ITaskRepository } from '../interfaces';
-import tasksData from '~~/server/data/tasks.json';
+import tasksData from '~~/server/data/entities/tasks.json';
 
 export class MockTaskRepository implements ITaskRepository {
   private tasks: Task[];

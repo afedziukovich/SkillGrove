@@ -1,6 +1,6 @@
 import type { UserProgress } from '~~/server/models/entities';
 import type { IUserProgressRepository } from '../interfaces';
-import progressData from '~~/server/data/user-progress.json';
+import progressData from '~~/server/data/entities/user-progress.json';
 
 export class MockUserProgressRepository implements IUserProgressRepository {
   private progress: UserProgress[];
@@ -29,6 +29,10 @@ export class MockUserProgressRepository implements IUserProgressRepository {
     return this.progress.filter((p) => p.task_id === taskId);
   }
 
+  async findByUserIdAndTaskId(userId: number, taskId: number): Promise<UserProgress[]> {
+    return this.progress.filter((p) => p.user_id === userId && p.task_id === taskId);
+  }
+
   async update(progress: UserProgress): Promise<UserProgress> {
     const index = this.progress.findIndex((p) => p.id === progress.id);
     if (index === -1) throw new Error('Progress not found');
@@ -38,5 +42,11 @@ export class MockUserProgressRepository implements IUserProgressRepository {
 
   async deleteById(id: number): Promise<void> {
     this.progress = this.progress.filter((p) => p.id !== id);
+  }
+
+  async countCompletedByUserId(userId: number): Promise<number> {
+    return new Set(
+      this.progress.filter((p) => p.user_id === userId && p.experience_gained > 0).map((p) => p.id)
+    ).size;
   }
 }

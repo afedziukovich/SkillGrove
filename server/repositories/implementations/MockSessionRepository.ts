@@ -1,6 +1,6 @@
 import type { Session } from '~~/server/models/entities';
 import type { ISessionRepository } from '../interfaces';
-import sessionsData from '~~/server/data/sessions.json';
+import sessionsData from '~~/server/data/entities/sessions.json';
 
 export class MockSessionRepository implements ISessionRepository {
   private sessions: Session[];

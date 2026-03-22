@@ -1,3 +1,4 @@
+import { useXPCurve } from '~~/server/composables/use-xp-curve';
 import type { AISingleAnswerRequestDTO } from '~~/server/models/dtos';
 import { AISingleAnswerResponseSchema } from '~~/server/models/schemas';
 import useRepositories from '~~/server/plugins/repositories';
@@ -97,6 +98,13 @@ export default defineEventHandler(async (event) => {
   );
   const attemptDate = new Date(Date.now());
 
+  const taskSolutionTries = await userProgressRepository.findByUserIdAndTaskId(user.id, task.id);
+  const bestTryExperience =
+    taskSolutionTries.toSorted((a, b) => b.experience_gained - a.experience_gained)[0]
+      ?.experience_gained ?? 0;
+  const experienceToGainCorrected =
+    experienceToGain - bestTryExperience >= 0 ? experienceToGain - bestTryExperience : 0;
+
   userProgressRepository.create({
     user_id: user.id,
     task_id: taskId,
@@ -104,16 +112,32 @@ export default defineEventHandler(async (event) => {
     last_attempt_at: attemptDate,
   });
 
-  const updatedUser = await userRepository.updateStatistics(
-    user.id,
-    user.level,
-    user.experience + experienceToGain
-  );
+  const xpCurve = useXPCurve();
+
+  let newLevel = user.level;
+  let newExperience = user.experience + experienceToGainCorrected;
+
+  let wantLevel = newLevel + 1;
+  while (wantLevel <= xpCurve.getMaxLevel()) {
+    const requiredXP = xpCurve.getXPForLevel(wantLevel);
+
+    if (requiredXP === undefined || newExperience < requiredXP) {
+      break;
+    }
+
+    newExperience -= requiredXP;
+    newLevel += 1;
+    wantLevel += 1;
+  }
+  const experienceToNextLevel = xpCurve.getXPForLevel(wantLevel) ?? 0;
+
+  const updatedUser = await userRepository.updateStatistics(user.id, newLevel, newExperience);
 
   return toTaskJudgmentResultDTO(
     updatedUser,
     parsedAiAnswer.correctness,
-    experienceToGain,
+    experienceToGainCorrected,
+    experienceToNextLevel,
     parsedAiAnswer.explanation
   );
 });

@@ -34,14 +34,12 @@ const submit = async () => {
     toast.success({
       title: 'Login Success',
       message: 'You have successfully logged in.',
-      position: 'bottomCenter',
     });
   } else {
     errorMessage.value = result.message ?? 'An unexpected error occurred. Please try again later.';
     toast.error({
       title: 'Login Failure',
       message: errorMessage.value,
-      position: 'bottomCenter',
     });
   }
 };

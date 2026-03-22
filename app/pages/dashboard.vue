@@ -1,6 +1,40 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { FetchError } from 'ofetch';
+import type { UserStatisticsDTO } from '~~/shared/dtos';
+
 definePageMeta({
   requiresAuth: true,
+});
+
+const toast = useToast();
+
+const statisticsLoading = ref(true);
+const statistics = ref<UserStatisticsDTO | null>();
+
+const fetchStatistics = async () => {
+  statisticsLoading.value = true;
+
+  try {
+    const response = await $fetch<UserStatisticsDTO>('/api/protected/statistics', {
+      method: 'POST',
+    });
+
+    statistics.value = response;
+
+    statisticsLoading.value = false;
+  } catch (error: unknown) {
+    if (error instanceof FetchError) {
+      toast.error({
+        title: 'Loading Failed',
+        message: 'Statistics could not be loaded. Please refresh page.',
+      });
+    }
+  }
+};
+
+onMounted(() => {
+  fetchStatistics();
 });
 </script>
 
@@ -14,18 +48,27 @@ definePageMeta({
 
         <div class="grid md:grid-cols-3 gap-6">
           <div class="bg-white border border-gray-200 rounded-sm p-6">
-            <p class="text-sm text-gray-500 mb-2">Решено задач</p>
-            <p class="text-3xl font-light text-[#08c]">0</p>
+            <p class="text-sm text-gray-500 mb-2">Уровень</p>
+            <p v-if="!statisticsLoading && statistics" class="text-3xl font-light text-[#08c]">
+              {{ statistics.level }}
+            </p>
+            <img v-if="statisticsLoading" src="../assets/images/svg/loading.svg" class="size-9" />
           </div>
 
           <div class="bg-white border border-gray-200 rounded-sm p-6">
             <p class="text-sm text-gray-500 mb-2">Опыт</p>
-            <p class="text-3xl font-light text-[#08c]">0 XP</p>
+            <p v-if="!statisticsLoading && statistics" class="text-3xl font-light text-[#08c]">
+              {{ statistics.experience }} / {{ statistics.experienceToNextLevel }} XP
+            </p>
+            <img v-if="statisticsLoading" src="../assets/images/svg/loading.svg" class="size-9" />
           </div>
 
           <div class="bg-white border border-gray-200 rounded-sm p-6">
-            <p class="text-sm text-gray-500 mb-2">Уровень</p>
-            <p class="text-3xl font-light text-[#08c]">1</p>
+            <p class="text-sm text-gray-500 mb-2">Решено задач</p>
+            <p v-if="!statisticsLoading && statistics" class="text-3xl font-light text-[#08c]">
+              {{ statistics.completedTasksTotal }}
+            </p>
+            <img v-if="statisticsLoading" src="../assets/images/svg/loading.svg" class="size-9" />
           </div>
         </div>
       </div>

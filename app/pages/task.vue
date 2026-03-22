@@ -102,14 +102,22 @@ watch([categoryId, difficultyId], () => {
     </div>
 
     <template v-if="randomTask">
-      <div
-        class="w-fit flex flex-row flex-wrap gap-[1px] items-center bg-gray-300 border border-b-gray-300 rounded-md overflow-hidden"
-      >
-        <TaskBreadcrumb :text="randomTask.category.name" link="/categories" class="flex-1" />
-        <TaskBreadcrumb
-          :text="randomTask.difficulty.name"
-          :link="`/difficulties?categoryId=${randomTask.category.id}`"
-          class="flex-1"
+      <div class="flex flex-col md:flex-row gap-2 items-center">
+        <div
+          class="w-fit flex flex-row flex-wrap gap-[1px] items-center bg-gray-300 border border-b-gray-300 rounded-md overflow-hidden"
+        >
+          <TaskBreadcrumb :text="randomTask.category.name" link="/categories" class="flex-1" />
+          <TaskBreadcrumb
+            :text="randomTask.difficulty.name"
+            :link="`/difficulties?categoryId=${randomTask.category.id}`"
+            class="flex-1"
+          />
+        </div>
+        <BestTryIndicator
+          v-if="randomTask.bestTry"
+          :max-experience="randomTask.difficulty.maxExperience"
+          :experience-gained="randomTask.bestTry.experienceGained"
+          :attempt-at="randomTask.bestTry.lastAttemptAt"
         />
       </div>
 
@@ -189,6 +197,7 @@ watch([categoryId, difficultyId], () => {
             :level="taskJudgmentResult.user.level"
             :experience="taskJudgmentResult.user.experience"
             :experience-gained="taskJudgmentResult.experienceGained"
+            :experience-to-next-level="taskJudgmentResult.experienceToNextLevel"
           />
         </div>
         <ExplanationAccordion :explaination="taskJudgmentResult.explaination" />
