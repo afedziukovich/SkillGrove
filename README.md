@@ -10,3 +10,7 @@
 
 - [Afedziukovich](https://github.com/afedziukovich)
 - [Artsiom Belski](https://github.com/Thrapis)
+
+## 📍 Checkpoint Video Evidences
+
+- [Week 5 Checkpoint Video Evidence](https://youtu.be/Cqdfz3UE-Oo)
