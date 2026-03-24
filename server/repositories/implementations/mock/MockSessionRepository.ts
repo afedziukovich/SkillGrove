@@ -1,5 +1,5 @@
 import type { Session } from '~~/server/models/entities';
-import type { ISessionRepository } from '../interfaces';
+import type { ISessionRepository } from '~~/server/repositories/interfaces';
 import sessionsData from '~~/server/data/entities/sessions.json';
 
 export class MockSessionRepository implements ISessionRepository {

@@ -36,6 +36,7 @@
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/mdc": "^0.20.2",
     "@pinia/nuxt": "^0.11.3",
+    "@supabase/supabase-js": "^2.100.0",
     "bcrypt": "^6.0.0",
     "codemirror": "^6.0.2",
     "jose": "^6.1.3",

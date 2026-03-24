@@ -1,5 +1,5 @@
 import type { User } from '~~/server/models/entities';
-import type { IUserRepository } from '../interfaces';
+import type { IUserRepository } from '~~/server/repositories/interfaces';
 import usersData from '~~/server/data/entities/users.json';
 import { dynamicSort } from '#shared/utils/dynamic-sort';
 

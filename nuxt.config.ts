@@ -13,11 +13,16 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    nuxtUseMock: process.env.NUXT_USE_MOCK,
+
     jwtSecret: process.env.JWT_SECRET,
 
     groqApiEndpointSingle: process.env.GROQ_API_ENDPOINT_SINGLE,
     groqApiKey: process.env.GROQ_API_KEY,
     groqTargetModel: process.env.GROQ_TARGET_MODEL,
+
+    supabaseUrl: process.env.SUPABASE_URL,
+    supabaseKey: process.env.SUPABASE_KEY,
 
     public: {
       jwtMaxAge: process.env.JWT_MAX_AGE || '604800',

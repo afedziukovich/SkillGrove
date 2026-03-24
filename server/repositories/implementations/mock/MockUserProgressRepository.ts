@@ -1,5 +1,5 @@
 import type { UserProgress } from '~~/server/models/entities';
-import type { IUserProgressRepository } from '../interfaces';
+import type { IUserProgressRepository } from '~~/server/repositories/interfaces';
 import progressData from '~~/server/data/entities/user-progress.json';
 
 export class MockUserProgressRepository implements IUserProgressRepository {
