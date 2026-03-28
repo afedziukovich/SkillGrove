@@ -20,6 +20,13 @@
             >
               Категории
             </NuxtLink>
+            <NuxtLink
+              v-if="isAuthenticated"
+              to="/users"
+              class="text-[15px] text-gray-700 hover:text-primary transition-colors"
+            >
+              Топ
+            </NuxtLink>
           </nav>
         </div>
 

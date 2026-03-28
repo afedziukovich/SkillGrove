@@ -1,4 +1,4 @@
-/* ===== Google Font: Inter (modern, elegant, screen-optimized) ===== */
+/* ===== Google Font: Inter ===== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 /* ===== CSS Variables (blue theme) ===== */
@@ -23,7 +23,7 @@
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* ===== Color Utilities ===== */
+/* ===== Color Utilities (custom colors not in Tailwind) ===== */
 .text-primary {
   color: var(--color-primary);
 }
@@ -37,19 +37,7 @@
   background-color: var(--color-primary-hover);
 }
 
-/* ===== Base Styles ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 15px;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
-}
-
+/* ===== Base Styles (body, fonts) ===== */
 body {
   font-family:
     'Inter',
@@ -59,60 +47,11 @@ body {
     Roboto,
     Arial,
     sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--color-gray-800);
-  background-color: var(--color-white);
-  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.heading {
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 0.5em;
-}
-
-h1 {
-  font-size: 2rem;
-}
-h2 {
-  font-size: 1.75rem;
-}
-h3 {
-  font-size: 1.5rem;
-}
-h4 {
-  font-size: 1.25rem;
-}
-h5 {
-  font-size: 1.1rem;
-}
-h6 {
-  font-size: 1rem;
-}
-
-p {
-  margin-bottom: 1rem;
-}
-
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-a:hover {
-  color: var(--color-primary-hover);
-}
-
-/* ===== Buttons (единый стиль на основе предоставленного примера) ===== */
+/* ===== Custom Buttons (not covered by Tailwind) ===== */
 .btn {
   display: inline-block;
   text-align: center;
@@ -131,13 +70,12 @@ a:hover {
   cursor: pointer;
   padding: 13px 19px;
   margin: 0;
-  font-size: 0.933em; /* ~14px от базового 15px */
+  font-size: 0.933em;
   line-height: 0.85;
   font-weight: normal;
   background: transparent;
 }
 
-/* Primary button (синяя обводка, прозрачный фон) */
 .btn-primary {
   border-color: var(--color-primary);
   color: var(--color-primary) !important;
@@ -147,7 +85,6 @@ a:hover {
   background-color: var(--color-primary-light);
 }
 
-/* Outline button (альтернативный вариант с обводкой) */
 .btn-outline {
   border-color: var(--color-gray-300);
   color: var(--color-gray-700);
@@ -158,7 +95,6 @@ a:hover {
   border-color: var(--color-gray-400);
 }
 
-/* Ghost button (как текстовая ссылка) */
 .btn-ghost {
   border-color: transparent;
   color: var(--color-gray-700);
@@ -172,56 +108,23 @@ a:hover {
   border-color: transparent;
 }
 
-/* Button sizes */
 .btn-small {
   padding: 8px 12px;
-  font-size: 0.867em; /* ~13px */
+  font-size: 0.867em;
 }
 
 .btn-large {
   padding: 16px 24px;
-  font-size: 1em; /* ~15px */
+  font-size: 1em;
 }
 
-/* Disabled state */
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
 }
 
-/* ===== Form Elements ===== */
-input,
-textarea,
-select {
-  font-family: inherit;
-  font-size: 15px;
-  line-height: 1.5;
-  padding: 10px 12px;
-  border: 1px solid var(--color-gray-300);
-  border-radius: 2px;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(0, 136, 204, 0.1);
-}
-
-label {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 4px;
-  display: block;
-  color: var(--color-gray-700);
-}
-
-/* ===== Dropdown Menu (user menu) ===== */
+/* ===== Custom Dropdown Menu ===== */
 .user-menu {
   position: relative;
   display: inline-block;
@@ -289,81 +192,7 @@ label {
   margin: 8px 0;
 }
 
-/* ===== Cards ===== */
-.card {
-  background: var(--color-white);
-  border: 1px solid var(--color-gray-200);
-  border-radius: 4px;
-  padding: 20px;
-  transition:
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-gray-300);
-}
-
-.card-title {
-  font-size: 1.25rem;
-  font-weight: 500;
-  margin-bottom: 12px;
-  color: var(--color-gray-900);
-}
-
-/* ===== Badges / Tags ===== */
-.badge {
-  display: inline-block;
-  padding: 4px 8px;
-  font-size: 12px;
-  line-height: 1;
-  font-weight: 500;
-  border-radius: 2px;
-  background-color: var(--color-gray-100);
-  color: var(--color-gray-700);
-  white-space: nowrap;
-}
-
-.badge-primary {
-  background-color: var(--color-primary-light);
-  color: var(--color-primary);
-}
-
-/* ===== Alerts ===== */
-.alert {
-  padding: 12px 16px;
-  border-radius: 2px;
-  border: 1px solid transparent;
-  margin-bottom: 16px;
-  font-size: 14px;
-}
-
-.alert-info {
-  background-color: var(--color-primary-light);
-  border-color: var(--color-primary);
-  color: var(--color-gray-800);
-}
-
-.alert-success {
-  background-color: #e6f7e6;
-  border-color: #28a745;
-  color: #155724;
-}
-
-.alert-warning {
-  background-color: #fff3e6;
-  border-color: #ffc107;
-  color: #856404;
-}
-
-.alert-error {
-  background-color: #f8e6e6;
-  border-color: #dc3545;
-  color: #721c24;
-}
-
-/* ===== Utility Classes ===== */
+/* ===== Custom Container (not in Tailwind by default) ===== */
 .container-custom {
   max-width: 1280px;
   margin: 0 auto;
@@ -371,137 +200,10 @@ label {
   width: 100%;
 }
 
-.text-balance {
-  text-wrap: balance;
-}
-
-.text-center {
-  text-align: center;
-}
-.text-left {
-  text-align: left;
-}
-.text-right {
-  text-align: right;
-}
-
-.mt-1 {
-  margin-top: 4px;
-}
-.mt-2 {
-  margin-top: 8px;
-}
-.mt-3 {
-  margin-top: 12px;
-}
-.mt-4 {
-  margin-top: 16px;
-}
-.mt-5 {
-  margin-top: 20px;
-}
-.mt-6 {
-  margin-top: 24px;
-}
-
-.mb-1 {
-  margin-bottom: 4px;
-}
-.mb-2 {
-  margin-bottom: 8px;
-}
-.mb-3 {
-  margin-bottom: 12px;
-}
-.mb-4 {
-  margin-bottom: 16px;
-}
-.mb-5 {
-  margin-bottom: 20px;
-}
-.mb-6 {
-  margin-bottom: 24px;
-}
-
-.p-1 {
-  padding: 4px;
-}
-.p-2 {
-  padding: 8px;
-}
-.p-3 {
-  padding: 12px;
-}
-.p-4 {
-  padding: 16px;
-}
-.p-5 {
-  padding: 20px;
-}
-.p-6 {
-  padding: 24px;
-}
-
-.flex {
-  display: flex;
-}
-.flex-col {
-  flex-direction: column;
-}
-.items-center {
-  align-items: center;
-}
-.justify-between {
-  justify-content: space-between;
-}
-.justify-center {
-  justify-content: center;
-}
-.gap-1 {
-  gap: 4px;
-}
-.gap-2 {
-  gap: 8px;
-}
-.gap-3 {
-  gap: 12px;
-}
-.gap-4 {
-  gap: 16px;
-}
-
-.w-full {
-  width: 100%;
-}
-.h-full {
-  height: 100%;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-/* ===== Responsive Utilities ===== */
+/* ===== Responsive Utilities (custom breakpoints) ===== */
 @media (max-width: 768px) {
   .container-custom {
     padding: 0 16px;
-  }
-
-  h1 {
-    font-size: 1.75rem;
-  }
-  h2 {
-    font-size: 1.5rem;
-  }
-  h3 {
-    font-size: 1.25rem;
   }
 
   .btn {
@@ -510,10 +212,6 @@ label {
 }
 
 @media (max-width: 480px) {
-  html {
-    font-size: 14px;
-  }
-
   .container-custom {
     padding: 0 12px;
   }
