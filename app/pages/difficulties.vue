@@ -21,7 +21,7 @@ const fetchDifficulties = async () => {
 
     difficulties.value = data;
   } catch {
-    errorMessage.value = 'Не удалось загрузить уровни сложности';
+    errorMessage.value = 'Failed to load difficulty levels';
   } finally {
     loading.value = false;
   }
@@ -34,14 +34,14 @@ onMounted(() => {
 
 <template>
   <div class="container-custom py-16">
-    <h1 class="text-3xl font-medium text-center mb-10">Выберите уровень сложности</h1>
+    <h1 class="text-3xl font-medium text-center mb-10">Select difficulty level</h1>
 
     <div
       v-if="loading"
       class="flex justify-center items-center gap-2 text-center text-gray-500 py-20 text-base"
     >
       <img src="../assets/images/svg/loading.svg" class="size-4" />
-      <span>Загрузка уровней сложности...</span>
+      <span>Loading difficulty levels...</span>
     </div>
 
     <div v-else-if="errorMessage" class="text-center text-red-600 py-20 text-sm">
@@ -49,7 +49,7 @@ onMounted(() => {
     </div>
 
     <div v-else-if="difficulties.length === 0" class="text-center text-gray-500 py-20">
-      Пока нет доступных уровней сложности
+      There are no difficulty levels available yet.
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">

@@ -20,7 +20,7 @@ const submit = async () => {
   errorMessage.value = '';
 
   if (!formValid.value) {
-    errorMessage.value = 'Заполните логин и пароль';
+    errorMessage.value = 'Fill in login and password';
     return;
   }
 
@@ -32,13 +32,13 @@ const submit = async () => {
   if (result.success) {
     router.push('/');
     toast.success({
-      title: 'Login Success',
+      title: 'Login success',
       message: 'You have successfully logged in.',
     });
   } else {
     errorMessage.value = result.message ?? 'An unexpected error occurred. Please try again later.';
     toast.error({
-      title: 'Login Failure',
+      title: 'Login failure',
       message: errorMessage.value,
     });
   }
@@ -53,7 +53,7 @@ const socialLogin = (provider: string) => {
   <div class="h-screen flex items-start justify-center px-4 pt-[72px]">
     <div class="w-full max-w-md bg-white border border-gray-200 rounded-sm p-8">
       <h1 class="text-xl font-medium text-center mb-6 text-gray-900">
-        Выполните вход, чтобы продолжить свой путь к знаниям
+        Sign in to continue your journey to knowledge.
       </h1>
 
       <form class="space-y-4" @submit.prevent="submit">
@@ -61,7 +61,7 @@ const socialLogin = (provider: string) => {
           <input
             v-model="login"
             type="text"
-            placeholder="Логин"
+            placeholder="Login"
             class="w-full px-4 py-3 text-[15px] border border-gray-300 rounded-sm focus:outline-none focus:border-[#08c] focus:ring-1 focus:ring-[#08c] transition-colors"
           />
         </div>
@@ -70,7 +70,7 @@ const socialLogin = (provider: string) => {
           <input
             v-model="password"
             type="password"
-            placeholder="Пароль"
+            placeholder="Password"
             class="w-full px-4 py-3 text-[15px] border border-gray-300 rounded-sm focus:outline-none focus:border-[#08c] focus:ring-1 focus:ring-[#08c] transition-colors"
           />
         </div>
@@ -80,20 +80,20 @@ const socialLogin = (provider: string) => {
         </div>
 
         <button type="submit" :disabled="auth.loading" class="btn btn-primary w-full !py-3">
-          {{ auth.loading ? 'Вход...' : 'Войти' }}
+          {{ auth.loading ? 'Signing in...' : 'Sign in' }}
         </button>
       </form>
 
       <div class="flex items-center my-6">
         <div class="flex-1 h-px bg-gray-200"></div>
-        <span class="px-3 text-sm text-gray-500">Другие варианты входа</span>
+        <span class="px-3 text-sm text-gray-500">Other sign in options</span>
         <div class="flex-1 h-px bg-gray-200"></div>
       </div>
 
       <div class="flex justify-center gap-3">
         <button
           class="w-12 h-12 border border-gray-200 rounded-sm hover:bg-gray-50 flex items-center justify-center transition-colors"
-          aria-label="Войти через Google"
+          aria-label="Sign in with Google"
           @click="socialLogin('Google')"
         >
           <Icon name="devicon:google" class="w-5 h-5 text-gray-600" />
@@ -101,7 +101,7 @@ const socialLogin = (provider: string) => {
 
         <button
           class="w-12 h-12 border border-gray-200 rounded-sm hover:bg-gray-50 flex items-center justify-center transition-colors"
-          aria-label="Войти через GitHub"
+          aria-label="Sign in with GitHub"
           @click="socialLogin('GitHub')"
         >
           <Icon name="devicon:github" class="w-5 h-5 text-gray-600" />
@@ -109,7 +109,7 @@ const socialLogin = (provider: string) => {
 
         <button
           class="w-12 h-12 border border-gray-200 rounded-sm hover:bg-gray-50 flex items-center justify-center transition-colors"
-          aria-label="Войти через LinkedIn"
+          aria-label="Sign in with LinkedIn"
           @click="socialLogin('LinkedIn')"
         >
           <Icon name="devicon:linkedin" class="w-5 h-5 text-gray-600" />
@@ -117,9 +117,9 @@ const socialLogin = (provider: string) => {
       </div>
 
       <p class="text-center text-sm text-gray-500 mt-6">
-        Не зарегистрированы?
+        Not registered?
         <NuxtLink to="/register" class="text-[#08c] hover:text-[#0077aa] transition-colors">
-          Регистрация
+          Sign up
         </NuxtLink>
       </p>
     </div>

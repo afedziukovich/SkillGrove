@@ -34,7 +34,7 @@ export const useUsers = () => {
       );
 
       if (!response.ok) {
-        throw new Error('Ошибка загрузки');
+        throw new Error('Loading error');
       }
 
       const data: UserDTO[] = await response.json();
@@ -43,10 +43,10 @@ export const useUsers = () => {
     } catch (err) {
       console.error(err);
 
-      error.value = 'Не удалось загрузить пользователей';
+      error.value = 'Failed to load users';
 
       toast.error({
-        title: 'Ошибка',
+        title: 'Error',
         message: error.value,
       });
     } finally {

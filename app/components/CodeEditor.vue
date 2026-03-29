@@ -11,7 +11,7 @@ import { oneDark } from '@codemirror/theme-one-dark';
 const props = defineProps({
   modelValue: { type: String, default: '' },
   mode: { type: String, default: 'text' },
-  placeholder: { type: String, default: 'Увядзіце код...' },
+  placeholder: { type: String, default: 'Enter solution...' },
   disabled: { type: Boolean, default: false },
   name: { type: String, default: '' },
   minRows: { type: Number, default: 3 },

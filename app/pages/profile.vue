@@ -34,9 +34,9 @@ const fetchUserProfile = async () => {
   if (auth.user) {
     user.value = auth.user;
   } else {
-    error.value = 'Не удалось загрузить профиль';
+    error.value = 'Failed to load profile';
     toast.error({
-      title: 'User Fetching Failure',
+      title: 'User fetching failure',
       message: error.value,
     });
   }
@@ -46,12 +46,12 @@ const fetchUserProfile = async () => {
 
 const changePassword = async () => {
   if (passwordData.value.newPassword.length < 6) {
-    passwordError.value = 'Новый пароль должен быть не менее 6 символов';
+    passwordError.value = 'The new password must be at least 6 characters long.';
     return;
   }
 
   if (passwordData.value.newPassword !== passwordData.value.confirmPassword) {
-    passwordError.value = 'Пароли не совпадают';
+    passwordError.value = "The passwords don't match";
     return;
   }
 
@@ -62,19 +62,19 @@ const changePassword = async () => {
   const result = await auth.updatePassword({ newPassword: passwordData.value.newPassword });
 
   if (result.success) {
-    passwordSuccess.value = 'Пароль успешно изменен';
+    passwordSuccess.value = 'Password changed successfully';
     passwordData.value = {
       newPassword: '',
       confirmPassword: '',
     };
     toast.success({
-      title: 'Password Update Success',
-      message: 'Password has successfully updated.',
+      title: 'Password change success',
+      message: 'Password has successfully changed.',
     });
   } else {
-    passwordError.value = result.message ?? 'Ошибка при смене пароля';
+    passwordError.value = result.message ?? 'Error changing password';
     toast.error({
-      title: 'Password Update Failure',
+      title: 'Password change failure',
       message: passwordError.value,
     });
   }
@@ -94,13 +94,13 @@ onMounted(fetchUserProfile);
   <div class="min-h-screen">
     <div class="container-custom py-16">
       <div class="max-w-md mx-auto">
-        <h1 class="text-2xl font-medium text-gray-900 mb-8 text-center">Профиль пользователя</h1>
+        <h1 class="text-2xl font-medium text-gray-900 mb-8 text-center">User profile</h1>
 
         <div v-if="loading" class="text-center py-10">
           <div
             class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#08c]"
           ></div>
-          <p class="mt-2 text-sm text-gray-500">Загрузка профиля...</p>
+          <p class="mt-2 text-sm text-gray-500">Loading profile...</p>
         </div>
 
         <div v-else-if="error" class="bg-red-50 text-red-600 p-4 rounded-sm text-sm mb-6">
@@ -109,7 +109,7 @@ onMounted(fetchUserProfile);
 
         <div v-else class="bg-white border border-gray-200 rounded-sm p-8">
           <div class="mb-8">
-            <label class="text-sm text-gray-500 block mb-2">Логин</label>
+            <label class="text-sm text-gray-500 block mb-2">Login</label>
             <input
               :value="user.login"
               class="w-full px-4 py-3 text-[15px] bg-gray-50 border border-gray-200 rounded-sm text-gray-600 cursor-not-allowed"
@@ -119,7 +119,7 @@ onMounted(fetchUserProfile);
           </div>
 
           <div class="space-y-4">
-            <h2 class="text-lg font-medium text-gray-900 mb-4">Смена пароля</h2>
+            <h2 class="text-lg font-medium text-gray-900 mb-4">Change password</h2>
 
             <div v-if="passwordError" class="bg-red-50 text-red-600 p-3 rounded-sm text-sm">
               {{ passwordError }}
@@ -130,12 +130,12 @@ onMounted(fetchUserProfile);
 
             <div>
               <label class="text-sm text-gray-500 block mb-2">
-                Новый пароль <span class="text-red-500">*</span>
+                New password <span class="text-red-500">*</span>
               </label>
               <input
                 v-model="passwordData.newPassword"
                 type="password"
-                placeholder="Минимум 6 символов"
+                placeholder="Minimum 6 characters"
                 class="w-full px-4 py-3 text-[15px] border border-gray-300 rounded-sm focus:outline-none focus:border-[#08c] focus:ring-1 focus:ring-[#08c] transition-colors"
                 :disabled="passwordLoading"
                 @input="clearMessages"
@@ -144,12 +144,12 @@ onMounted(fetchUserProfile);
 
             <div>
               <label class="text-sm text-gray-500 block mb-2">
-                Подтверждение нового пароля <span class="text-red-500">*</span>
+                Repeat new password <span class="text-red-500">*</span>
               </label>
               <input
                 v-model="passwordData.confirmPassword"
                 type="password"
-                placeholder="Повторите новый пароль"
+                placeholder="Repeat the new password"
                 class="w-full px-4 py-3 text-[15px] border border-gray-300 rounded-sm focus:outline-none focus:border-[#08c] focus:ring-1 focus:ring-[#08c] transition-colors"
                 :disabled="passwordLoading"
                 @input="clearMessages"
@@ -167,9 +167,9 @@ onMounted(fetchUserProfile);
                 <span
                   class="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"
                 ></span>
-                Смена пароля...
+                Changing password...
               </span>
-              <span v-else>Сменить пароль</span>
+              <span v-else>Change password</span>
             </button>
           </div>
         </div>

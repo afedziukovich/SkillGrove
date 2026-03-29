@@ -26,7 +26,7 @@ const fetchStatistics = async () => {
   } catch (error: unknown) {
     if (error instanceof FetchError) {
       toast.error({
-        title: 'Loading Failed',
+        title: 'Loading failure',
         message: 'Statistics could not be loaded. Please refresh page.',
       });
     }
@@ -44,11 +44,11 @@ onMounted(() => {
       <div class="max-w-4xl mx-auto">
         <h1 class="text-2xl font-medium text-gray-900 mb-8">Dashboard</h1>
 
-        <p class="text-sm text-gray-500 mb-8">Здесь отображается прогресс пользователя.</p>
+        <p class="text-sm text-gray-500 mb-8">The user's progress is displayed here.</p>
 
         <div class="grid md:grid-cols-3 gap-6">
           <div class="bg-white border border-gray-200 rounded-sm p-6">
-            <p class="text-sm text-gray-500 mb-2">Уровень</p>
+            <p class="text-sm text-gray-500 mb-2">Level</p>
             <p v-if="!statisticsLoading && statistics" class="text-3xl font-light text-[#08c]">
               {{ statistics.level }}
             </p>
@@ -56,7 +56,7 @@ onMounted(() => {
           </div>
 
           <div class="bg-white border border-gray-200 rounded-sm p-6">
-            <p class="text-sm text-gray-500 mb-2">Опыт</p>
+            <p class="text-sm text-gray-500 mb-2">Experience</p>
             <p v-if="!statisticsLoading && statistics" class="text-3xl font-light text-[#08c]">
               {{ statistics.experience }} / {{ statistics.experienceToNextLevel }} XP
             </p>
@@ -64,7 +64,7 @@ onMounted(() => {
           </div>
 
           <div class="bg-white border border-gray-200 rounded-sm p-6">
-            <p class="text-sm text-gray-500 mb-2">Решено задач</p>
+            <p class="text-sm text-gray-500 mb-2">Tasks solved</p>
             <p v-if="!statisticsLoading && statistics" class="text-3xl font-light text-[#08c]">
               {{ statistics.completedTasksTotal }}
             </p>
