@@ -45,7 +45,7 @@ const submit = async () => {
 };
 
 const socialLogin = (provider: string) => {
-  console.log(provider + ' login will connect to backend API');
+  toast.info({ title: 'Stub', message: provider + ' login will connect to backend API' });
 };
 </script>
 
@@ -53,7 +53,7 @@ const socialLogin = (provider: string) => {
   <div class="h-screen flex items-start justify-center px-4 pt-[72px]">
     <div class="w-full max-w-md bg-white border border-gray-200 rounded-sm p-8">
       <h1 class="text-xl font-medium text-center mb-6 text-gray-900">
-        Sign in to continue your journey to knowledge.
+        Sign in to continue your journey to knowledge
       </h1>
 
       <form class="space-y-4" @submit.prevent="submit">
