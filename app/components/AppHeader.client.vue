@@ -59,7 +59,7 @@
                 <NuxtLink to="/profile" @click="closeMenu">Edit profile</NuxtLink>
                 <NuxtLink to="/dashboard" @click="closeMenu">Dashboard</NuxtLink>
                 <div class="divider"></div>
-                <button @click="logout">Sign out</button>
+                <button class="!text-red-600" @click="logout">Sign out</button>
               </div>
             </div>
           </template>
@@ -91,10 +91,10 @@ const closeMenu = () => {
   isMenuOpen.value = false;
 };
 
-const logout = async () => {
-  await authStore.logout();
+const logout = () => {
   closeMenu();
-  router.push('/');
+  authStore.logout();
+  router.go(0);
 };
 
 const handleClickOutside = (event: MouseEvent) => {

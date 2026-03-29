@@ -4,7 +4,7 @@ import type { RandomTaskParametersDTO } from '~~/shared/schemas';
 import { FetchError } from 'ofetch';
 
 definePageMeta({
-  requiresAuth: false,
+  requiresAuth: true,
 });
 
 const toast = useToast();
