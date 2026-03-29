@@ -47,15 +47,36 @@ export const useUsers = () => {
         params.search = searchQuery.value.trim();
       }
 
-      const response = await $fetch<UsersResponse>('/api/protected/users', {
-        params,
+      const urlParams = new URLSearchParams();
+      urlParams.append('limit', String(params.limit));
+      urlParams.append('page', String(params.page));
+      urlParams.append('sortBy', params.sortBy);
+      urlParams.append('order', params.order);
+      if (params.search) {
+        urlParams.append('search', params.search);
+      }
+
+      const queryString = urlParams.toString();
+      const url = `/api/protected/users${queryString ? `?${queryString}` : ''}`;
+
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         credentials: 'include',
       });
 
-      users.value = response.data;
-      totalPages.value = response.totalPages;
-      totalUsers.value = response.total;
-      currentPage.value = response.page;
+      if (!response.ok) {
+        throw new Error('Ошибка загрузки');
+      }
+
+      const data: UsersResponse = await response.json();
+
+      users.value = data.data;
+      totalPages.value = data.totalPages;
+      totalUsers.value = data.total;
+      currentPage.value = data.page;
     } catch {
       error.value = 'Не удалось загрузить пользователей';
       toast.error({
