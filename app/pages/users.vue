@@ -27,14 +27,14 @@ const getRank = (index: number) => {
 <template>
   <div class="min-h-screen">
     <div class="container-custom py-16">
-      <h1 class="text-3xl font-medium mb-10">Таблица лидеров</h1>
+      <h1 class="text-3xl font-medium mb-10">Leaderboard</h1>
 
       <div
         v-if="loading"
         class="flex justify-center items-center gap-2 text-gray-500 py-20 text-base"
       >
         <img src="../assets/images/svg/loading.svg" class="size-4" />
-        Загрузка пользователей...
+        Loading users...
       </div>
 
       <div v-else-if="error" class="text-center text-red-600 py-20 text-sm">
@@ -48,14 +48,14 @@ const getRank = (index: number) => {
               <th class="px-6 py-3 text-left">#</th>
 
               <th class="px-6 py-3 text-left cursor-pointer" @click="changeSort('login')">
-                Логин
+                Login
                 <span v-if="sortBy === 'login'">
                   {{ sortOrder === 'asc' ? '↑' : '↓' }}
                 </span>
               </th>
 
               <th class="px-6 py-3 text-left cursor-pointer" @click="changeSort('level')">
-                Уровень
+                Level
                 <span v-if="sortBy === 'level'">
                   {{ sortOrder === 'asc' ? '↑' : '↓' }}
                 </span>

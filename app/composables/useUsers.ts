@@ -1,3 +1,4 @@
+import { FetchError } from 'ofetch';
 import type { UserDTO } from '#shared/dtos';
 
 export const useUsers = () => {
@@ -34,21 +35,21 @@ export const useUsers = () => {
       );
 
       if (!response.ok) {
-        throw new Error('Ошибка загрузки');
+        throw new Error('Loading error');
       }
 
       const data: UserDTO[] = await response.json();
 
       users.value = data || [];
-    } catch (err) {
-      console.error(err);
+    } catch (err: unknown) {
+      if (err instanceof FetchError) {
+        error.value = 'Failed to load users';
 
-      error.value = 'Не удалось загрузить пользователей';
-
-      toast.error({
-        title: 'Ошибка',
-        message: error.value,
-      });
+        toast.error({
+          title: 'Error',
+          message: error.value,
+        });
+      }
     } finally {
       loading.value = false;
     }

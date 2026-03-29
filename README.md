@@ -1,12 +1,12 @@
 # 🧠 SkillGrove
 
-**SkillGrove** — это интерактивная платформа для подготовки к техническим интервью и прокачки навыков JavaScript/TypeScript. Здесь можно проходить испытания, общаться с AI-тьютором, решать задачи и отслеживать прогресс. Проект создаётся в рамках финального задания RS School.
+**SkillGrove** is an interactive platform for preparing for technical interviews and improving JavaScript/TypeScript skills. Here, you can take tests, interact with an AI tutor, solve problems, and track your progress. The project is created as part of the final RS School assignment.
 
-## 🌐 Развёртывание
+## 🌐 Deployment
 
 [![Vercel](https://img.shields.io/badge/deployed%20on-Vercel-000000?logo=vercel&logoColor=white)](https://skillgrove.vercel.app/)
 
-## 👨‍💻 Команда
+## 👨‍💻 Team
 
 - [Afedziukovich](https://github.com/afedziukovich)
 - [Artsiom Belski](https://github.com/Thrapis)

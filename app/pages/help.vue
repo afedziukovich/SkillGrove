@@ -2,21 +2,18 @@
 
 <template>
   <div class="max-w-4xl mx-auto space-y-6">
-    <h1 class="text-3xl font-bold">Помощь</h1>
+    <h1 class="text-3xl font-bold">Help</h1>
 
     <div class="space-y-4 text-gray-600">
-      <p>
-        SkillGrove помогает разработчикам практиковать решение задач и готовиться к техническим
-        интервью.
-      </p>
+      <p>SkillGrove helps developers practice task-solving and prepare for technical interviews.</p>
 
-      <p>Чтобы начать:</p>
+      <p>To get started:</p>
 
       <ul class="list-disc pl-6 space-y-2">
-        <li>Выберите категорию задач</li>
-        <li>Выберите уровень сложности</li>
-        <li>Решите задачу и отправьте решение</li>
-        <li>Получите обратную связь и опыт</li>
+        <li>Select a task category</li>
+        <li>Select difficulty level</li>
+        <li>Solve the task and submit the solution</li>
+        <li>Get feedback and experience</li>
       </ul>
     </div>
   </div>

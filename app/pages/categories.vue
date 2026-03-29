@@ -21,7 +21,7 @@ const fetchCategories = async () => {
 
     categories.value = data;
   } catch {
-    errorMessage.value = 'Не удалось загрузить категории';
+    errorMessage.value = 'Failed to load categories';
   } finally {
     loading.value = false;
   }
@@ -33,16 +33,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="flex-1">
     <div class="container-custom py-16">
-      <h1 class="text-3xl font-medium text-center mb-10">Категории заданий</h1>
+      <h1 class="text-3xl font-medium text-center mb-10">Task categories</h1>
 
       <div
         v-if="loading"
         class="flex justify-center items-center gap-2 text-center text-gray-500 py-20 text-base"
       >
         <img src="../assets/images/svg/loading.svg" class="size-4" /><span
-          >Загрузка категорий...</span
+          >Loading categories...</span
         >
       </div>
 
@@ -51,7 +51,7 @@ onMounted(() => {
       </div>
 
       <div v-else-if="categories.length === 0" class="text-center text-gray-500 py-20 text-sm">
-        Пока нет доступных категорий
+        There are no categories available yet
       </div>
 
       <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

@@ -10,7 +10,7 @@ const props = defineProps({
       class="flex justify-between items-center cursor-pointer select-none p-2 text-2xl list-none bg-[#08c] text-white"
     >
       <div class="flex items-center gap-2">
-        <Icon name="material-symbols:info-rounded" size="24" /> See Explaination
+        <Icon name="material-symbols:info-rounded" size="24" /> See explaination
       </div>
       <Icon name="material-symbols:add-rounded" size="24" class="group-open:hidden ml-2" />
       <Icon name="material-symbols:remove-rounded" size="24" class="hidden group-open:block ml-2" />

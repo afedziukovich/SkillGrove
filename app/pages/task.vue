@@ -4,7 +4,7 @@ import type { RandomTaskParametersDTO } from '~~/shared/schemas';
 import { FetchError } from 'ofetch';
 
 definePageMeta({
-  requiresAuth: false,
+  requiresAuth: true,
 });
 
 const toast = useToast();
@@ -50,7 +50,7 @@ async function getRandomTask(categoryId: number, difficultyId: number) {
   } catch (error: unknown) {
     if (error instanceof FetchError) {
       toast.error({
-        title: 'Loading Failed',
+        title: 'Loading failure',
         message: 'The task could not be loaded. Please refresh or try again.',
       });
     }
@@ -69,7 +69,7 @@ const handleSolutionSubmit = async () => {
     });
 
     toast.info({
-      title: `Solution Judgment Result`,
+      title: `Solution judgment result`,
       message: `${response.correctness} (+ ${response.experienceGained} XP)`,
     });
 
@@ -77,8 +77,8 @@ const handleSolutionSubmit = async () => {
   } catch (error: unknown) {
     if (error instanceof FetchError) {
       toast.error({
-        title: 'Loading Failed',
-        message: 'The task could not be loaded. Please refresh or try again.',
+        title: 'Loading failure',
+        message: 'The task solution could not be submitted. Please refresh or try again.',
       });
     }
   } finally {
@@ -171,7 +171,7 @@ watch([categoryId, difficultyId], () => {
 
               <button
                 type="submit"
-                class="btn btn-primary md:min-w-32 !py-3 flex items-center justify-center gap-1 !rounded-md"
+                class="btn btn-primary md:min-w-32 py-3 !flex items-center justify-center gap-1 rounded-md"
                 :disabled="isFormDisabled"
               >
                 <span>Submit</span>
@@ -185,7 +185,7 @@ watch([categoryId, difficultyId], () => {
 
     <div v-if="isSending" class="flex-1 min-h-36 w-full flex items-center justify-center gap-2">
       <img src="../assets/images/svg/loading.svg" class="size-8" />
-      <span class="text-xl font-bold">Solution Judgment...</span>
+      <span class="text-xl font-bold">Solution judgment...</span>
     </div>
 
     <template v-if="taskJudgmentResult">
@@ -202,11 +202,11 @@ watch([categoryId, difficultyId], () => {
         </div>
         <ExplanationAccordion :explaination="taskJudgmentResult.explaination" />
         <button
-          class="btn btn-primary self-center !text-xl !py-4 flex items-center justify-center gap-2 !rounded-md"
+          class="btn btn-primary self-center text-xl py-4 !flex items-center justify-center gap-2 rounded-md"
           @click="() => getRandomTask(categoryId, difficultyId)"
         >
-          <Icon name="material-symbols:search-rounded" size="24" />
-          <span>Find New Task</span>
+          <Icon name="material-symbols:search-rounded" size="20" />
+          <span>Find new task</span>
         </button>
       </div>
     </template>

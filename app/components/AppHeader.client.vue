@@ -11,21 +11,21 @@
               to="/about"
               class="text-[15px] text-gray-700 hover:text-primary transition-colors"
             >
-              О проекте
+              About
             </NuxtLink>
             <NuxtLink
               v-if="isAuthenticated"
               to="/categories"
               class="text-[15px] text-gray-700 hover:text-primary transition-colors"
             >
-              Категории
+              Tasks
             </NuxtLink>
             <NuxtLink
               v-if="isAuthenticated"
               to="/users"
               class="text-[15px] text-gray-700 hover:text-primary transition-colors"
             >
-              Топ
+              Rankings
             </NuxtLink>
           </nav>
         </div>
@@ -36,13 +36,13 @@
               to="/login"
               class="px-[19px] py-[13px] text-[14px] leading-[0.85] text-gray-700 hover:text-primary transition-colors border border-transparent rounded-sm"
             >
-              Войти
+              Sign in
             </NuxtLink>
             <NuxtLink
               to="/register"
               class="px-[19px] py-[13px] text-[14px] leading-[0.85] font-normal border border-[#08c] rounded-sm bg-transparent text-[#08c] hover:bg-[#e6f3ff] transition-colors"
             >
-              Регистрация
+              Sign up
             </NuxtLink>
           </template>
 
@@ -56,10 +56,10 @@
                 <Icon name="mdi:user-circle" size="20" />
               </button>
               <div ref="dropdownRef" class="user-menu-dropdown" :class="{ open: isMenuOpen }">
-                <NuxtLink to="/profile" @click="closeMenu">Редактировать профиль</NuxtLink>
-                <NuxtLink to="/dashboard" @click="closeMenu">Дашборд</NuxtLink>
+                <NuxtLink to="/profile" @click="closeMenu">Edit profile</NuxtLink>
+                <NuxtLink to="/dashboard" @click="closeMenu">Dashboard</NuxtLink>
                 <div class="divider"></div>
-                <button @click="logout">Выйти</button>
+                <button class="!text-red-600" @click="logout">Sign out</button>
               </div>
             </div>
           </template>
@@ -91,10 +91,10 @@ const closeMenu = () => {
   isMenuOpen.value = false;
 };
 
-const logout = async () => {
-  await authStore.logout();
+const logout = () => {
   closeMenu();
-  router.push('/');
+  authStore.logout();
+  router.go(0);
 };
 
 const handleClickOutside = (event: MouseEvent) => {
