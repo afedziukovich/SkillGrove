@@ -46,7 +46,7 @@ const submit = async () => {
 </script>
 
 <template>
-  <div class="h-screen flex items-start justify-center px-4 pt-[72px]">
+  <div class="flex-1 flex items-start justify-center px-4 pt-[72px]">
     <div class="w-full max-w-md bg-white border border-gray-200 rounded-sm p-8">
       <h1 class="text-xl font-medium text-center mb-6 text-gray-900">Create an account</h1>
 

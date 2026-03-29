@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen pt-[72px]">
+  <div class="flex-1 pt-[72px]">
     <div class="max-w-3xl mx-auto text-center px-4">
       <h1 class="text-5xl font-light text-gray-900 mb-6 tracking-tight">
         <span class="text-[#08c] font-medium">Skill</span>Grove

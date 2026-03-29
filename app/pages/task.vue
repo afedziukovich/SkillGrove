@@ -171,7 +171,7 @@ watch([categoryId, difficultyId], () => {
 
               <button
                 type="submit"
-                class="btn btn-primary md:min-w-32 !py-3 flex items-center justify-center gap-1 !rounded-md"
+                class="btn btn-primary md:min-w-32 py-3 !flex items-center justify-center gap-1 rounded-md"
                 :disabled="isFormDisabled"
               >
                 <span>Submit</span>
@@ -202,10 +202,10 @@ watch([categoryId, difficultyId], () => {
         </div>
         <ExplanationAccordion :explaination="taskJudgmentResult.explaination" />
         <button
-          class="btn btn-primary self-center !text-xl !py-4 flex items-center justify-center gap-2 !rounded-md"
+          class="btn btn-primary self-center text-xl py-4 !flex items-center justify-center gap-2 rounded-md"
           @click="() => getRandomTask(categoryId, difficultyId)"
         >
-          <Icon name="material-symbols:search-rounded" size="24" />
+          <Icon name="material-symbols:search-rounded" size="20" />
           <span>Find new task</span>
         </button>
       </div>

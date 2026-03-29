@@ -33,7 +33,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="flex-1">
     <div class="container-custom py-16">
       <h1 class="text-3xl font-medium text-center mb-10">Task categories</h1>
 

@@ -18,7 +18,7 @@
               to="/categories"
               class="text-[15px] text-gray-700 hover:text-primary transition-colors"
             >
-              Categories
+              Tasks
             </NuxtLink>
             <NuxtLink
               v-if="isAuthenticated"

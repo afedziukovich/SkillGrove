@@ -39,7 +39,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="flex-1">
     <div class="container-custom py-16">
       <div class="max-w-4xl mx-auto">
         <h1 class="text-2xl font-medium text-gray-900 mb-8">Dashboard</h1>

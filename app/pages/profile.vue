@@ -91,7 +91,7 @@ onMounted(fetchUserProfile);
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="flex-1">
     <div class="container-custom py-16">
       <div class="max-w-md mx-auto">
         <h1 class="text-2xl font-medium text-gray-900 mb-8 text-center">User profile</h1>
