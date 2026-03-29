@@ -96,4 +96,8 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/mdc.css', '~/assets/css/main.css'],
+
+  imports: {
+    dirs: ['app/composables'],
+  },
 });
