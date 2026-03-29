@@ -75,6 +75,7 @@ import { useAuthStore } from '~/stores/auth';
 import { useRouter } from 'vue-router';
 
 const authStore = useAuthStore();
+const route = useRoute();
 const router = useRouter();
 
 const isAuthenticated = computed(() => authStore.isAuthenticated);
@@ -91,10 +92,13 @@ const closeMenu = () => {
   isMenuOpen.value = false;
 };
 
-const logout = () => {
+const logout = async () => {
   closeMenu();
   authStore.logout();
-  router.go(0);
+  router.replace({
+    path: route.path,
+    force: true,
+  });
 };
 
 const handleClickOutside = (event: MouseEvent) => {
