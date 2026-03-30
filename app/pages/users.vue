@@ -25,7 +25,7 @@ const getRank = (index: number) => {
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="flex-1">
     <div class="container-custom py-16">
       <h1 class="text-3xl font-medium mb-10">Leaderboard</h1>
 
