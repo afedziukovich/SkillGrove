@@ -1,29 +1,52 @@
 <template>
   <ClientOnly>
     <header class="sticky top-0 z-50 h-[72px] bg-white border-b border-gray-200 flex items-center">
-      <div class="container mx-auto px-6 flex items-center justify-between w-full">
-        <div class="flex items-center space-x-8">
-          <NuxtLink to="/" class="text-xl font-medium tracking-tight text-primary">
+      <div class="md:container px-4 md:px-6 md:mx-auto flex items-center justify-between w-full">
+        <div class="flex items-center gap-4 md:hidden">
+          <button
+            class="flex items-center gap-2 px-3 py-2 text-[15px] text-gray-700 hover:bg-gray-100 rounded-sm transition-colors select-none"
+            @click="openBurgerMenu"
+          >
+            <Icon name="mdi:hamburger-menu" size="24" />
+          </button>
+
+          <NuxtLink to="/" class="block md:hidden text-xl font-medium tracking-tight text-primary">
             SkillGrove
           </NuxtLink>
-          <nav class="hidden md:flex items-center space-x-6">
+        </div>
+
+        <div class="burger-menu" :style="isBurgerMenuOpen ? 'left: 0;' : ''">
+          <NuxtLink to="/" class="hidden md:block text-xl font-medium tracking-tight text-primary">
+            SkillGrove
+          </NuxtLink>
+          <nav class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+            <button
+              class="flex items-center md:hidden gap-2 px-3 py-2 text-[15px] text-gray-700 hover:bg-gray-100 rounded-sm transition-colors w-fit select-none"
+              @click="closeBurgerMenu"
+            >
+              <Icon name="mdi:close" size="24" />
+            </button>
+
             <NuxtLink
               to="/about"
-              class="text-[15px] text-gray-700 hover:text-primary transition-colors"
+              class="text-xl md:text-[15px] text-gray-700 hover:text-primary transition-colors"
+              @click="closeBurgerMenu"
             >
               About
             </NuxtLink>
             <NuxtLink
               v-if="isAuthenticated"
               to="/categories"
-              class="text-[15px] text-gray-700 hover:text-primary transition-colors"
+              class="text-xl md:text-[15px] text-gray-700 hover:text-primary transition-colors"
+              @click="closeBurgerMenu"
             >
               Tasks
             </NuxtLink>
             <NuxtLink
               v-if="isAuthenticated"
               to="/users"
-              class="text-[15px] text-gray-700 hover:text-primary transition-colors"
+              class="text-xl md:text-[15px] text-gray-700 hover:text-primary transition-colors"
+              @click="closeBurgerMenu"
             >
               Rankings
             </NuxtLink>
@@ -34,13 +57,13 @@
           <template v-if="!isAuthenticated">
             <NuxtLink
               to="/login"
-              class="px-[19px] py-[13px] text-[14px] leading-[0.85] text-gray-700 hover:text-primary transition-colors border border-transparent rounded-sm"
+              class="px-[19px] py-[13px] md:text-[14px] leading-[0.85] text-gray-700 hover:text-primary transition-colors border border-transparent rounded-sm"
             >
               Sign in
             </NuxtLink>
             <NuxtLink
               to="/register"
-              class="px-[19px] py-[13px] text-[14px] leading-[0.85] font-normal border border-[#08c] rounded-sm bg-transparent text-[#08c] hover:bg-[#e6f3ff] transition-colors"
+              class="px-[19px] py-[13px] md:text-[14px] leading-[0.85] font-normal border border-[#08c] rounded-sm bg-transparent text-[#08c] hover:bg-[#e6f3ff] transition-colors"
             >
               Sign up
             </NuxtLink>
@@ -83,6 +106,7 @@ const user = computed(() => authStore.user);
 
 const isMenuOpen = ref(false);
 const userMenuRef = ref<HTMLElement | null>(null);
+const isBurgerMenuOpen = ref(false);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
@@ -90,6 +114,14 @@ const toggleMenu = () => {
 
 const closeMenu = () => {
   isMenuOpen.value = false;
+};
+
+const openBurgerMenu = () => {
+  isBurgerMenuOpen.value = true;
+};
+
+const closeBurgerMenu = () => {
+  isBurgerMenuOpen.value = false;
 };
 
 const logout = async () => {
@@ -149,13 +181,17 @@ onUnmounted(() => {
   text-align: left;
   padding: 8px 16px;
   color: #374151;
-  font-size: 14px;
   white-space: nowrap;
   background: none;
   border: none;
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.1s ease;
+}
+
+.user-menu-dropdown a,
+.user-menu-dropdown button {
+  @apply text-[16px] md:text-[14px];
 }
 
 .user-menu-dropdown a:hover,
@@ -167,5 +203,13 @@ onUnmounted(() => {
   height: 1px;
   background-color: #e5e7eb;
   margin: 8px 0;
+}
+
+.burger-menu {
+  @apply flex gap-6 z-50;
+
+  @apply absolute left-[-100%] top-0 h-[100dvh] min-w-[240px] w-[40%] flex-col bg-white shadow-lg p-4;
+  @apply md:static md:h-auto md:flex-row md:items-center md:bg-none md:min-w-0 md:w-auto md:shadow-none md:p-0 md:gap-8;
+  @apply transition-[left];
 }
 </style>
