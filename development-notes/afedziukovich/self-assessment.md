@@ -41,5 +41,5 @@
 
 ## Ссылки
 
-- [Self-Assessment Pull Request](https://github.com/afedziukovich/SkillGrove/pull/95)
+- [Self-Assessment Pull Request](https://github.com/afedziukovich/SkillGrove/pull/96)
 - [Мой дневник разработки](/development-notes/afedziukovich/)
