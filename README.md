@@ -4,6 +4,10 @@
 
 **SkillGrove** is an interactive platform for preparing for technical interviews and improving JavaScript/TypeScript skills. Here, you can take tests, interact with an AI tutor, solve problems, and track your progress. The project is created as part of the final RS School assignment.
 
+## Presentation
+
+[View Presentation](/presentation/skillgrove-presentation.html)
+
 ## Demo Video
 
 [Demo Video](https://youtu.be/-RK4RseYrkc) - A 2-minute video showcasing the main features and user path of the application.
