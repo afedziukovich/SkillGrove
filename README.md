@@ -6,11 +6,11 @@
 
 ## Presentation
 
-[View Presentation](/presentation/skillgrove-presentation.html)
+[View Presentation](/presentation/presentation.html)
 
 ## Demo Video
 
-[Demo Video](https://youtu.be/-RK4RseYrkc) - A 2-minute video showcasing the main features and user path of the application.
+[Demo Video](https://youtu.be/BG3hMRmUS0Y) - video showcasing the main features and user path of the application.
 
 ## What We're Proud Of
 
