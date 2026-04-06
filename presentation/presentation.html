@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>SkillGrove — презентация</title>
+    <link rel="icon" type="image/x-icon" href="https://skillgrove.vercel.app/favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css"
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+
+      :root {
+        --sg-blue: #08c;
+        --sg-blue-rgb: 0, 136, 204;
+        --sg-light-bg: #f8fafc;
+        --sg-border: #e2e8f0;
+      }
+
+      .reveal {
+        font-family:
+          'Inter',
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: var(--sg-light-bg);
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .reveal .slides {
+        text-align: left;
+        height: 100%;
+      }
+
+      .reveal section {
+        padding: 15px 20px !important;
+        height: 100% !important;
+        top: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+      }
+
+      .reveal h1,
+      .reveal h2,
+      .reveal h3 {
+        text-transform: none;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      .reveal h1 {
+        color: var(--sg-blue);
+        font-size: 2em;
+        margin-bottom: 0.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .reveal h1 img {
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+      }
+
+      .reveal h2 {
+        color: #1e293b;
+        border-left: 3px solid var(--sg-blue);
+        padding-left: 0.8rem;
+        margin-bottom: 0.8rem;
+        font-size: 1.2em;
+      }
+
+      .reveal .stats {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin: 1rem 0;
+      }
+
+      .reveal .stat-card {
+        background: #ffffff;
+        border: 1px solid var(--sg-border);
+        border-radius: 12px;
+        padding: 0.4rem 1rem;
+        text-align: center;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+      }
+
+      .reveal .stat-number {
+        font-size: 1.6em;
+        font-weight: 700;
+        color: var(--sg-blue);
+        display: block;
+        line-height: 1.2;
+      }
+
+      .reveal .stat-label {
+        font-size: 0.6rem;
+        color: #64748b;
+      }
+
+      .reveal .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem;
+        margin: 0.8rem 0;
+      }
+
+      .reveal .feature-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 0.6rem;
+        text-align: center;
+        border: 1px solid var(--sg-border);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+      }
+
+      .reveal .feature-title {
+        font-weight: 600;
+        color: var(--sg-blue);
+        font-size: 0.8rem;
+      }
+
+      .reveal .feature-desc {
+        font-size: 0.65rem;
+        color: #475569;
+        margin-top: 0.2rem;
+      }
+
+      .reveal .category-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin: 0.8rem 0;
+      }
+
+      .reveal .category-item {
+        background: #f1f5f9;
+        border-radius: 20px;
+        padding: 0.2rem 0.8rem;
+        font-size: 0.65rem;
+        color: #1e293b;
+      }
+
+      .reveal .difficulty {
+        display: flex;
+        gap: 0.8rem;
+        margin: 0.8rem 0;
+      }
+
+      .reveal .difficulty-item {
+        background: #ffffff;
+        border: 1px solid var(--sg-border);
+        border-radius: 24px;
+        padding: 0.3rem 1rem;
+        font-size: 0.7rem;
+        font-weight: 500;
+      }
+
+      .reveal .difficulty-basic {
+        color: #16a34a;
+        border-color: #86efac;
+        background: #f0fdf4;
+      }
+      .reveal .difficulty-advanced {
+        color: #d97706;
+        border-color: #fcd34d;
+        background: #fffbeb;
+      }
+      .reveal .difficulty-expert {
+        color: #dc2626;
+        border-color: #fca5a5;
+        background: #fef2f2;
+      }
+
+      .reveal .code-example {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 0.5rem;
+        font-family: monospace;
+        font-size: 0.6rem;
+        border-left: 3px solid var(--sg-blue);
+        margin: 0.6rem 0;
+        color: #1e293b;
+      }
+
+      .reveal .dashboard-stats {
+        display: flex;
+        gap: 0.8rem;
+        margin: 0.8rem 0;
+      }
+
+      .reveal .dashboard-card {
+        background: #ffffff;
+        border: 1px solid var(--sg-border);
+        border-radius: 12px;
+        padding: 0.6rem;
+        text-align: center;
+        flex: 1;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+      }
+
+      .reveal .dashboard-value {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--sg-blue);
+      }
+
+      .reveal .leaderboard {
+        background: #ffffff;
+        border: 1px solid var(--sg-border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 0.5rem 0;
+      }
+
+      .reveal .leaderboard-row {
+        display: grid;
+        grid-template-columns: 40px 1fr 60px 60px;
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+        border-bottom: 1px solid var(--sg-border);
+        color: #1e293b;
+      }
+
+      .reveal .leaderboard-header {
+        background: #f1f5f9;
+        font-weight: 600;
+        color: var(--sg-blue);
+      }
+
+      .reveal .team-container {
+        display: flex;
+        gap: 1rem;
+        margin: 0.8rem 0;
+      }
+
+      .reveal .team-card {
+        background: #ffffff;
+        border: 1px solid var(--sg-border);
+        border-radius: 12px;
+        padding: 0.6rem;
+        flex: 1;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+      }
+
+      .reveal .team-name {
+        font-weight: 700;
+        color: var(--sg-blue);
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+        text-align: center;
+      }
+
+      .reveal .team-role {
+        font-size: 0.6rem;
+        font-weight: 600;
+        color: #475569;
+        text-align: center;
+        padding-bottom: 0.3rem;
+        border-bottom: 1px dashed var(--sg-border);
+        margin-bottom: 0.3rem;
+      }
+
+      .reveal .team-features {
+        font-size: 0.6rem;
+        color: #334155;
+      }
+
+      .reveal .team-features ul {
+        margin: 0.2rem 0;
+        padding-left: 1rem;
+      }
+
+      .reveal .team-features li {
+        margin: 0.15rem 0;
+      }
+
+      .reveal .score {
+        font-size: 0.6rem;
+        font-weight: 600;
+        color: var(--sg-blue);
+        text-align: center;
+        margin-top: 0.3rem;
+        padding-top: 0.3rem;
+        border-top: 1px dashed var(--sg-border);
+      }
+
+      .reveal .quote {
+        background: #f1f5f9;
+        border-left: 3px solid var(--sg-blue);
+        padding: 0.5rem 0.7rem;
+        font-size: 0.7rem;
+        margin-top: 0.8rem;
+        color: #1e293b;
+      }
+
+      .reveal ul,
+      .reveal p {
+        font-size: 0.7rem;
+        line-height: 1.3;
+        color: #334155;
+      }
+
+      .reveal li {
+        margin: 0.15rem 0;
+      }
+
+      .reveal pre code {
+        font-size: 0.55rem;
+        background: #f1f5f9;
+        border-radius: 8px;
+        color: #1e293b;
+      }
+
+      .reveal a {
+        color: var(--sg-blue);
+        text-decoration: none;
+      }
+
+      .reveal .small {
+        font-size: 0.55rem;
+        color: #64748b;
+      }
+
+      .reveal .tech-badge {
+        background: #f1f5f9;
+        border-radius: 20px;
+        padding: 0.15rem 0.7rem;
+        font-size: 0.65rem;
+        color: #1e293b;
+        display: inline-block;
+        margin: 0.15rem;
+      }
+
+      .reveal .badge-list {
+        margin: 0.5rem 0;
+      }
+
+      .reveal .video-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #f1f5f9;
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        border: 1px solid var(--sg-border);
+        transition: all 0.2s ease;
+        margin: 0.5rem 0;
+      }
+
+      .reveal .video-link:hover {
+        background: #e2e8f0;
+        border-color: var(--sg-blue);
+      }
+
+      .reveal .video-link-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .reveal .video-link-text {
+        font-size: 0.7rem;
+        color: #475569;
+      }
+
+      .reveal .video-link-url {
+        font-size: 0.55rem;
+        color: var(--sg-blue);
+        margin-top: 0.3rem;
+        word-break: break-all;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- Слайд 1: Проект -->
+        <section>
+          <h1>
+            <img
+              src="https://skillgrove.vercel.app/favicon.ico"
+              alt="SkillGrove icon"
+              onerror="this.style.display = 'none'"
+            />
+            SkillGrove
+          </h1>
+          <p style="font-size: 0.85rem; margin-top: -0.2rem; color: #475569">
+            Платформа для подготовки к техническим собеседованиям<br />JavaScript / TypeScript
+          </p>
+          <div class="stats">
+            <div class="stat-card">
+              <span class="stat-number">150+</span><span class="stat-label">задач</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">9</span><span class="stat-label">категорий</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">3</span><span class="stat-label">уровня</span>
+            </div>
+          </div>
+          <p class="small" style="margin-top: 0.8rem">
+            <a href="https://skillgrove.vercel.app" target="_blank">skillgrove.vercel.app</a> •
+            <a href="https://github.com/afedziukovich/SkillGrove" target="_blank">GitHub</a>
+          </p>
+        </section>
+
+        <!-- Слайд 2: О проекте -->
+        <section>
+          <h2>О проекте</h2>
+          <p style="font-size: 0.7rem">
+            <strong>SkillGrove</strong> — платформа для практики JavaScript и TypeScript. Помогает
+            подготовиться к техническим собеседованиям через реальные задачи.
+          </p>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-title">📋 Практические задачи</div>
+              <div class="feature-desc">Разные категории и уровни сложности</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-title">🤖 AI-оценка</div>
+              <div class="feature-desc">Мгновенный анализ кода</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-title">📈 Рост навыков</div>
+              <div class="feature-desc">Отслеживание прогресса и прокачка уровня</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Слайд 3: Демо-видео -->
+        <!--Видео с субтитрами https://youtu.be/BG3hMRmUS0Y-->
+        <section>
+          <h2>📺 Демонстрация работы</h2>
+          <p class="small" style="margin-bottom: 0.4rem">Обзор возможностей платформы</p>
+          <a
+            href="https://youtu.be/BG3hMRmUS0Y"
+            target="_blank"
+            class="video-link"
+            style="text-decoration: none"
+          >
+            <div class="video-link-icon">▶️</div>
+            <div class="video-link-text">Смотреть видео на YouTube</div>
+            <div class="video-link-url">youtu.be/BG3hMRmUS0Y</div>
+          </a>
+        </section>
+
+        <!-- Слайд 4: Категории задач -->
+        <section>
+          <h2>Категории задач</h2>
+          <div class="category-list">
+            <span class="category-item">JavaScript</span>
+            <span class="category-item">TypeScript</span>
+            <span class="category-item">DOM Manipulation</span>
+            <span class="category-item">Asynchronous JavaScript</span>
+            <span class="category-item">Arrays and Objects</span>
+            <span class="category-item">ES6+ Features</span>
+            <span class="category-item">Algorithms</span>
+            <span class="category-item">Testing</span>
+            <span class="category-item">Web APIs</span>
+          </div>
+          <p class="small">9 направлений для комплексной подготовки</p>
+        </section>
+
+        <!-- Слайд 5: Уровни сложности -->
+        <section>
+          <h2>Уровни сложности</h2>
+          <div class="difficulty">
+            <div class="difficulty-item difficulty-basic">🔰 Basic</div>
+            <div class="difficulty-item difficulty-advanced">⚡ Advanced</div>
+            <div class="difficulty-item difficulty-expert">🎯 Expert</div>
+          </div>
+          <div class="code-example">
+            <strong>Пример задачи (Basic):</strong><br />
+            "В чём разница между let, const и var в JavaScript? Объясните с примерами."
+          </div>
+          <p class="small">Решение с объяснением → проверка AI → рейтинг</p>
+        </section>
+
+        <!-- Слайд 6: Интерфейс решения -->
+        <section>
+          <h2>Рабочее пространство</h2>
+          <ul>
+            <li>📝 Встроенный редактор кода (CodeMirror)</li>
+            <li>🎨 Подсветка синтаксиса (JS/TS/HTML/CSS/JSON)</li>
+            <li>🚀 Отправка решения → AI-оценка</li>
+          </ul>
+          <div class="badge-list" style="margin-top: 0.5rem">
+            <span class="tech-badge">TEXT</span>
+            <span class="tech-badge">HTML</span>
+            <span class="tech-badge">CSS</span>
+            <span class="tech-badge">JS</span>
+            <span class="tech-badge">TS</span>
+            <span class="tech-badge">JSON</span>
+          </div>
+        </section>
+
+        <!-- Слайд 7: Дашборд -->
+        <section>
+          <h2>Дашборд пользователя</h2>
+          <div class="dashboard-stats">
+            <div class="dashboard-card">
+              <div class="dashboard-value">1</div>
+              <div class="small">Уровень</div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-value">19/30 XP</div>
+              <div class="small">Опыт</div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-value">3</div>
+              <div class="small">Задач решено</div>
+            </div>
+          </div>
+          <p class="small">📊 Отслеживание прогресса в реальном времени</p>
+        </section>
+
+        <!-- Слайд 8: Таблица лидеров -->
+        <section>
+          <h2>Рейтинг</h2>
+          <div class="leaderboard">
+            <div class="leaderboard-row leaderboard-header">
+              <span>#</span><span>Login</span><span>Level</span><span>XP</span>
+            </div>
+            <div class="leaderboard-row">
+              <span>1</span><span>player_3</span><span>10</span><span>320</span>
+            </div>
+            <div class="leaderboard-row">
+              <span>2</span><span>player_36</span><span>10</span><span>27</span>
+            </div>
+            <div class="leaderboard-row">
+              <span>3</span><span>player_11</span><span>10</span><span>29</span>
+            </div>
+            <div class="leaderboard-row">
+              <span>4</span><span>player_29</span><span>10</span><span>32</span>
+            </div>
+            <div class="leaderboard-row">
+              <span>5</span><span>player_4</span><span>10</span><span>58</span>
+            </div>
+          </div>
+          <p class="small">🏆 Пагинация, сортировка по логину и уровню</p>
+        </section>
+
+        <!-- Слайд 10: Команда -->
+        <section>
+          <h2>Команда</h2>
+          <div class="team-container">
+            <div class="team-card">
+              <div class="team-name">afedziukovich</div>
+              <div class="team-role">🎨 Frontend • UI/UX • Тесты</div>
+              <div class="team-features">
+                <ul>
+                  <li>AppHeader (выпадающее меню)</li>
+                  <li>Login / Register / Profile</li>
+                  <li>Dashboard / Users table (лидеры)</li>
+                  <li>Responsive стили</li>
+                  <li>Vitest: настройка + тесты</li>
+                  <li>Деплой на Vercel</li>
+                </ul>
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-name">Thrapis</div>
+              <div class="team-role">⚙️ Backend • Auth • AI • Архитектура</div>
+              <div class="team-features">
+                <ul>
+                  <li>Task Solution Space (CodeMirror)</li>
+                  <li>Solution Judgment (AI + native fetch)</li>
+                  <li>Custom Auth (JWT + bcrypt)</li>
+                  <li>Supabase + Nitro server</li>
+                  <li>Кэширование, CI/CD</li>
+                  <li>Миграция на Nuxt</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="quote">
+            💪 «Справились с кризисом (уход участника), выбрали стек — не жалеем»
+          </div>
+        </section>
+
+        <!-- Слайд 11: Запуск -->
+        <section>
+          <h2>Быстрый старт</h2>
+          <pre><code data-trim data-noescape>
+git clone https://github.com/afedziukovich/SkillGrove.git
+npm install
+cp .env.example .env
+npm run dev
+                </code></pre>
+          <div class="feature-grid" style="margin-top: 0.8rem">
+            <div class="feature-card">
+              <div class="feature-title">206</div>
+              <div class="feature-desc">коммитов</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-title">2</div>
+              <div class="feature-desc">контрибьютора</div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-title">✅</div>
+              <div class="feature-desc">готовый MVP</div>
+            </div>
+          </div>
+          <p style="margin-top: 0.8rem; text-align: center">
+            <a href="https://skillgrove.vercel.app" target="_blank">🌐 Открыть демо</a>
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        transition: 'slide',
+        center: true,
+      });
+    </script>
+  </body>
+</html>
